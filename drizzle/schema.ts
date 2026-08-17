@@ -129,3 +129,64 @@ export const rampageAuditEvents = pgTable(
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type RampageUser = typeof rampageUsers.$inferSelect;
+
+export const rampageLessonState = pgTable(
+  "rampage_lesson_state",
+  {
+    userId: bigint("user_id", { mode: "number" }).notNull(),
+    courseId: text("course_id").notNull(),
+    lessonId: text("lesson_id").notNull(),
+    currentSecond: integer("current_second").notNull().default(0),
+    durationSecond: integer("duration_second").notNull().default(0),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  table => ({ pk: primaryKey({ columns: [table.userId, table.courseId, table.lessonId] }), userIndex: index("rampage_lesson_state_user_idx").on(table.userId, table.updatedAt) }),
+);
+
+export const rampageChapterCompletions = pgTable(
+  "rampage_chapter_completions",
+  {
+    userId: bigint("user_id", { mode: "number" }).notNull(),
+    courseId: text("course_id").notNull(),
+    chapterId: text("chapter_id").notNull(),
+    completedAt: timestamp("completed_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  table => ({ pk: primaryKey({ columns: [table.userId, table.courseId, table.chapterId] }) }),
+);
+
+export const rampageQuizAttempts = pgTable(
+  "rampage_quiz_attempts",
+  {
+    id: bigserial("id", { mode: "number" }).primaryKey(),
+    userId: bigint("user_id", { mode: "number" }).notNull(),
+    courseId: text("course_id").notNull(),
+    chapterId: text("chapter_id").notNull(),
+    lessonId: text("lesson_id").notNull(),
+    attemptNumber: integer("attempt_number").notNull(),
+    score: integer("score").notNull().default(0),
+    passed: integer("passed").notNull().default(0),
+    answers: jsonb("answers").notNull().default({}),
+    integrity: jsonb("integrity").notNull().default({}),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+    submittedAt: timestamp("submitted_at", { withTimezone: true }),
+  },
+  table => ({ userCourseIndex: index("rampage_quiz_attempts_user_course_idx").on(table.userId, table.courseId, table.chapterId) }),
+);
+
+export const rampageAssessmentAttempts = pgTable(
+  "rampage_assessment_attempts",
+  {
+    id: bigserial("id", { mode: "number" }).primaryKey(),
+    userId: bigint("user_id", { mode: "number" }).notNull(),
+    courseId: text("course_id").notNull(),
+    attemptNumber: integer("attempt_number").notNull(),
+    score: integer("score").notNull().default(0),
+    passed: integer("passed").notNull().default(0),
+    answers: jsonb("answers").notNull().default({}),
+    questionOrder: jsonb("question_order").notNull().default([]),
+    integrity: jsonb("integrity").notNull().default({}),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
+    submittedAt: timestamp("submitted_at", { withTimezone: true }),
+  },
+  table => ({ userCourseIndex: index("rampage_assessment_attempts_user_course_idx").on(table.userId, table.courseId, table.startedAt) }),
+);

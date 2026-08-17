@@ -36,3 +36,17 @@
 - [x] Apply a targeted UX and micro-interaction polish pass across onboarding, navigation, lessons, resources, reader, My Learning, and certificates.
 - [x] Test auth gates, protected procedure boundaries, certificate rules, responsive behavior, visual states, and production build; document authenticated-session limitations.
 - [x] Save the full-stack UX upgrade checkpoint and report the result.
+
+## Rebuild: Real Course System
+
+- [x] Audit and remove placeholder or mock course data, links, embeds, durations, and completion claims.
+- [ ] Research and verify real course pages, lesson videos, notes, PDFs, labs, and durations for every active course. (Follow-up: complete source-by-source audit for every catalog record.)
+- [x] Define a normalized course > chapter > lesson > quiz > final assessment content model.
+- [x] Rebuild course entry flow with prerequisites, outcomes, chapters, progress, and a clear start/resume action.
+- [x] Add real lesson sources, optional video links, notes, reading resources, and verified durations.
+- [x] Add lesson quizzes and chapter completion gates with persistent state.
+- [x] Add a final course assessment required before certificate eligibility.
+- [x] Add defensible anti-cheating controls: authenticated attempts, randomized question order, time window, attempt limits, server-side scoring, and audit events; do not claim impossible cheat prevention.
+- [x] Add local timeline resume with last position, continue lesson, and cross-device-safe fallback messaging.
+- [x] Validate every active course route, source link, embed, duration, quiz, assessment, certificate gate, responsive state, and security boundary.
+- [x] Save the rebuilt course-system checkpoint and report implementation limits and next steps.

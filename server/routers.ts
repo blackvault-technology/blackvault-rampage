@@ -18,7 +18,10 @@ import {
   rampageReaderState,
   writeAuditEvent,
 } from "./db";
-import { COURSE_LESSON_COUNTS, isSupportedCourse } from "@shared/courseRules";
+import { COURSE_LESSON_COUNTS, buildAttemptIntegrity, getCourseRule, isSupportedCourse } from "@shared/courseRules";
+import { chapterQuizBank, finalAssessmentBank } from "@shared/courseAssessments";
+import { desc, sql } from "drizzle-orm";
+import { rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts } from "./db";
 
 const courseIdInput = z.object({ courseId: z.string().min(1).max(120) });
 
@@ -78,6 +81,59 @@ export const appRouter = router({
       await db.insert(rampageReaderHighlights).values({ userId: learner.id, resourceId: input.resourceId, page: input.page, quote: input.quote, note: input.note ?? null });
       return { success: true } as const;
     }),
+    saveTimeline: protectedProcedure.input(z.object({ courseId: z.string().min(1), lessonId: z.string().min(1), currentSecond: z.number().int().min(0), durationSecond: z.number().int().min(0) })).mutation(async ({ ctx, input }) => {
+      if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
+      await db.insert(rampageLessonState).values({ userId: learner.id, courseId: input.courseId, lessonId: input.lessonId, currentSecond: input.currentSecond, durationSecond: input.durationSecond }).onConflictDoUpdate({ target: [rampageLessonState.userId, rampageLessonState.courseId, rampageLessonState.lessonId], set: { currentSecond: input.currentSecond, durationSecond: input.durationSecond, updatedAt: new Date() } });
+      return { success: true } as const;
+    }),
+    completeChapter: protectedProcedure.input(z.object({ courseId: z.string().min(1), chapterId: z.string().min(1), lessonIds: z.array(z.string().min(1)).min(1) })).mutation(async ({ ctx, input }) => {
+      if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
+      const completed = await db.select({ lessonId: rampageProgress.lessonId }).from(rampageProgress).where(and(eq(rampageProgress.userId, learner.id), eq(rampageProgress.courseId, input.courseId)));
+      const completedIds = new Set(completed.map(row => row.lessonId));
+      if (!input.lessonIds.every(id => completedIds.has(id))) throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Complete every lesson in this chapter first." });
+      await db.insert(rampageChapterCompletions).values({ userId: learner.id, courseId: input.courseId, chapterId: input.chapterId }).onConflictDoUpdate({ target: [rampageChapterCompletions.userId, rampageChapterCompletions.courseId, rampageChapterCompletions.chapterId], set: { completedAt: new Date() } });
+      await writeAuditEvent(learner.id, "chapter_completed", "chapter", input.chapterId, { courseId: input.courseId });
+      return { success: true } as const;
+    }),
+    submitQuiz: protectedProcedure.input(z.object({ courseId: z.string().min(1), chapterId: z.string().min(1), lessonId: z.string().min(1), answers: z.record(z.string(), z.number().int().min(0)), startedAt: z.number().int().positive(), tabSwitches: z.number().int().min(0).max(100), fullscreenExits: z.number().int().min(0).max(100) })).mutation(async ({ ctx, input }) => {
+      if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
+      const questions = chapterQuizBank[input.courseId] ?? [];
+      if (!questions.length) throw new TRPCError({ code: "PRECONDITION_FAILED", message: "This lesson has no verified quiz yet." });
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
+      const previous = await db.select().from(rampageQuizAttempts).where(and(eq(rampageQuizAttempts.userId, learner.id), eq(rampageQuizAttempts.courseId, input.courseId), eq(rampageQuizAttempts.chapterId, input.chapterId), eq(rampageQuizAttempts.lessonId, input.lessonId)));
+      const score = Math.round((questions.filter(question => input.answers[question.id] === question.answer).length / questions.length) * 100);
+      const passed = score >= 80 ? 1 : 0;
+      const submittedAt = Date.now();
+      await db.insert(rampageQuizAttempts).values({ userId: learner.id, courseId: input.courseId, chapterId: input.chapterId, lessonId: input.lessonId, attemptNumber: previous.length + 1, score, passed, answers: input.answers, integrity: buildAttemptIntegrity({ startedAt: input.startedAt, submittedAt, tabSwitches: input.tabSwitches, fullscreenExits: input.fullscreenExits, questionOrder: questions.map(question => question.id) }), startedAt: new Date(input.startedAt), submittedAt: new Date(submittedAt) });
+      await writeAuditEvent(learner.id, "quiz_submitted", "lesson", input.lessonId, { courseId: input.courseId, score, passed });
+      return { score, passed: Boolean(passed), explanations: questions.map(question => ({ id: question.id, explanation: question.explanation })) };
+    }),
+    submitFinalAssessment: protectedProcedure.input(z.object({ courseId: z.string().min(1), answers: z.record(z.string(), z.number().int().min(0)), startedAt: z.number().int().positive(), tabSwitches: z.number().int().min(0).max(100), fullscreenExits: z.number().int().min(0).max(100) })).mutation(async ({ ctx, input }) => {
+      if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
+      const rule = getCourseRule(input.courseId);
+      const questions = finalAssessmentBank[input.courseId] ?? [];
+      if (!rule || questions.length !== rule.finalQuestionCount) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Assessment configuration is incomplete." });
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
+      const previous = await db.select().from(rampageAssessmentAttempts).where(and(eq(rampageAssessmentAttempts.userId, learner.id), eq(rampageAssessmentAttempts.courseId, input.courseId)));
+      const recent = previous.filter(attempt => attempt.startedAt.getTime() > Date.now() - 24 * 60 * 60 * 1000);
+      if (recent.length >= rule.maxAssessmentAttemptsPerDay) throw new TRPCError({ code: "TOO_MANY_REQUESTS", message: "Daily assessment attempt limit reached. Return after the review window." });
+      const score = Math.round((questions.filter(question => input.answers[question.id] === question.answer).length / questions.length) * 100);
+      const passed = score >= rule.passScore ? 1 : 0;
+      const submittedAt = Date.now();
+      await db.insert(rampageAssessmentAttempts).values({ userId: learner.id, courseId: input.courseId, attemptNumber: previous.length + 1, score, passed, answers: input.answers, questionOrder: questions.map(question => question.id), integrity: buildAttemptIntegrity({ startedAt: input.startedAt, submittedAt, tabSwitches: input.tabSwitches, fullscreenExits: input.fullscreenExits, questionOrder: questions.map(question => question.id) }), startedAt: new Date(input.startedAt), submittedAt: new Date(submittedAt) });
+      await writeAuditEvent(learner.id, "final_assessment_submitted", "course", input.courseId, { score, passed, attemptNumber: previous.length + 1 });
+      return { score, passed: Boolean(passed), attemptNumber: previous.length + 1 };
+    }),
     issueCertificate: protectedProcedure.input(courseIdInput).mutation(async ({ ctx, input }) => {
       if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
       const db = await getDb();
@@ -85,7 +141,12 @@ export const appRouter = router({
       const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
       const completed = await db.select({ lessonId: rampageProgress.lessonId }).from(rampageProgress).where(and(eq(rampageProgress.userId, learner.id), eq(rampageProgress.courseId, input.courseId)));
       const required = COURSE_LESSON_COUNTS[input.courseId];
+      const rule = getCourseRule(input.courseId);
       if (completed.length < required) throw new TRPCError({ code: "PRECONDITION_FAILED", message: `Complete all ${required} lessons before requesting a certificate.` });
+      const chapters = await db.select().from(rampageChapterCompletions).where(and(eq(rampageChapterCompletions.userId, learner.id), eq(rampageChapterCompletions.courseId, input.courseId)));
+      if (!rule || chapters.length < rule.chapterCount) throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Complete every chapter before requesting a certificate." });
+      const assessments = await db.select().from(rampageAssessmentAttempts).where(and(eq(rampageAssessmentAttempts.userId, learner.id), eq(rampageAssessmentAttempts.courseId, input.courseId)));
+      if (!assessments.some(attempt => attempt.passed === 1)) throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Pass the final assessment before requesting a certificate." });
       const existing = await db.select().from(rampageCertificates).where(and(eq(rampageCertificates.userId, learner.id), eq(rampageCertificates.courseId, input.courseId))).limit(1);
       if (existing[0]) return existing[0];
       const certificateId = `RMP-${new Date().getUTCFullYear()}-${randomUUID().slice(0, 8).toUpperCase()}`;

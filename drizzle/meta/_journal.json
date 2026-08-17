@@ -8,6 +8,13 @@
       "when": 1786956186066,
       "tag": "0000_round_sphinx",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1786957019131,
+      "tag": "0001_smart_sugar_man",
+      "breakpoints": true
     }
   ]
 }

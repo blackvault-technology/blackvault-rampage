@@ -3,12 +3,16 @@ import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
 import {
   InsertUser,
+  rampageAssessmentAttempts,
   rampageAuditEvents,
+  rampageChapterCompletions,
   rampageCertificates,
   rampageProgress,
   rampageReaderBookmarks,
   rampageReaderHighlights,
   rampageReaderState,
+  rampageLessonState,
+  rampageQuizAttempts,
   rampageUsers,
   users,
 } from "../drizzle/schema";
@@ -96,4 +100,4 @@ export async function writeAuditEvent(userId: number, eventType: string, entityT
   await db.insert(rampageAuditEvents).values({ userId, eventType, entityType: entityType ?? null, entityId: entityId ?? null, metadata });
 }
 
-export { and, eq, rampageCertificates, rampageProgress, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState };
+export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState };
