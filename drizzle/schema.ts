@@ -23,6 +23,7 @@ export const users = pgTable(
     loginMethod: varchar("login_method", { length: 64 }),
     passwordHash: text("password_hash"),
     passwordSalt: text("password_salt"),
+    emailVerifiedAt: timestamp("email_verified_at", { withTimezone: true }),
     role: text("role").notNull().default("user"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
@@ -131,6 +132,20 @@ export const rampageAuditEvents = pgTable(
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type RampageUser = typeof rampageUsers.$inferSelect;
+
+export const localAuthTokens = pgTable(
+  "local_auth_tokens",
+  {
+    id: bigserial("id", { mode: "number" }).primaryKey(),
+    userId: bigint("user_id", { mode: "number" }).notNull(),
+    tokenHash: text("token_hash").notNull(),
+    purpose: text("purpose").notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    consumedAt: timestamp("consumed_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  table => ({ tokenUnique: uniqueIndex("local_auth_tokens_hash_unique").on(table.tokenHash), userPurposeIndex: index("local_auth_tokens_user_purpose_idx").on(table.userId, table.purpose) }),
+);
 
 export const rampageXpLedger = pgTable(
   "rampage_xp_ledger",

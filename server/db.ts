@@ -15,9 +15,12 @@ import {
   rampageQuizAttempts,
   rampageXpLedger,
   rampageUsers,
-  users,
+  localAuthTokens,
+  users as authUsers,
 } from "../drizzle/schema";
 import { ENV } from "./_core/env";
+
+export { localAuthTokens };
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
@@ -42,7 +45,7 @@ export async function upsertUser(user: InsertUser): Promise<void> {
   }
 
   const role = user.role ?? (user.openId === ENV.ownerOpenId ? "admin" : "user");
-  await db.insert(users).values({
+  await db.insert(authUsers).values({
     openId: user.openId,
     name: user.name ?? null,
     email: user.email ?? null,
@@ -50,7 +53,7 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     role,
     lastSignedIn: user.lastSignedIn ?? new Date(),
   }).onConflictDoUpdate({
-    target: users.openId,
+    target: authUsers.openId,
     set: {
       name: user.name ?? null,
       email: user.email ?? null,
@@ -65,14 +68,21 @@ export async function upsertUser(user: InsertUser): Promise<void> {
 export async function getUserByEmail(email: string) {
   const db = await getDb();
   if (!db) return undefined;
-  const result = await db.select().from(users).where(eq(users.email, email.toLowerCase())).limit(1);
+  const result = await db.select().from(authUsers).where(eq(authUsers.email, email.toLowerCase())).limit(1);
+  return result[0];
+}
+
+export async function getUserById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(authUsers).where(eq(authUsers.id, id)).limit(1);
   return result[0];
 }
 
 export async function getUserByOpenId(openId: string) {
   const db = await getDb();
   if (!db) return undefined;
-  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
+  const result = await db.select().from(authUsers).where(eq(authUsers.openId, openId)).limit(1);
   return result[0];
 }
 
@@ -110,4 +120,4 @@ export async function writeAuditEvent(userId: number, eventType: string, entityT
   await db.insert(rampageAuditEvents).values({ userId, eventType, entityType: entityType ?? null, entityId: entityId ?? null, metadata });
 }
 
-export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState, rampageXpLedger, users };
+export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState, rampageXpLedger, authUsers as userTable };

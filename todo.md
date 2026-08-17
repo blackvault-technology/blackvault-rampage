@@ -180,6 +180,16 @@
 - [x] Validate full application behavior, security boundaries, production build, and deployment configuration after auth changes. TypeScript, 9 Vitest tests, build, and source-reference scan pass.
 - [x] Synchronize the validated codebase to the connected GitHub repository without overwriting unrelated remote work. Completed through the validated project checkpoint sync.
 - [x] Save a recoverable checkpoint and document the Vercel publishing steps and required secrets. Checkpoint `5cd9948b` and `VERCEL_DEPLOYMENT.md` provide the handoff.
+
+## Continue: Full First-Party Auth and Learner Account Ecosystem
+- [x] Audit local auth, database schema, route protection, learner dashboard, and certificate visibility gates.
+- [x] Extend the Neon schema and server procedures for email verification, password reset, profile updates, learner activity, quiz summaries, and certificate ownership.
+- [x] Build polished `/login`, `/register`, `/verify`, and `/reset-password` experiences with clear states and safe validation.
+- [x] Add authenticated profile/settings pages for account details and earned certificates.
+- [x] Build a personalized learner dashboard with course progress, quiz scores, recent activity, and certificate states. Reused the existing persisted My Learning dashboard plus the new protected learner summary procedure.
+- [x] Enforce issued-only certificate rendering and block certificate access until server-verified completion and assessment gates pass. The certificate page now shows a sealed not-issued state and no credential card until issuance succeeds.
+- [x] Run migration, tests, type checking, production build, responsive screenshots, and auth-flow validation.
+- [x] Save a new recoverable checkpoint after validation.
 - [x] Deepen the three AI courses with source-aligned lesson objectives, resource context, and interactive quiz coverage.
 - [x] Wire quiz start, one-question flow, scoring feedback, and persisted progress for the three AI courses through server-verified contracts.
 - [x] Polish mobile bottom navigation transitions, active indicators, focus states, and safe-area behavior.

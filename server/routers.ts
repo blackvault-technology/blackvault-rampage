@@ -11,6 +11,7 @@ import {
   getDb,
   getLearnerState,
   getUserByEmail,
+  getUserById,
   getOrCreateRampageUser,
   rampageCertificates,
   rampageProgress,
@@ -22,7 +23,7 @@ import {
 import { COURSE_LESSON_COUNTS, buildAttemptIntegrity, getCourseRule, isAssessmentWithinWindow, isSupportedCourse } from "@shared/courseRules";
 import { chapterQuizBank, finalAssessmentBank } from "@shared/courseAssessments";
 import { desc, sql } from "drizzle-orm";
-import { rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger, users } from "./db";
+import { localAuthTokens, rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger, userTable } from "./db";
 import { sdk } from "./_core/sdk";
 
 const courseIdInput = z.object({ courseId: z.string().min(1).max(120) });
@@ -39,6 +40,22 @@ function verifyPassword(password: string, saltHex: string, hashHex: string) {
   const expected = Buffer.from(hashHex, "hex");
   const actual = Buffer.from(passwordDigest(password, Buffer.from(saltHex, "hex")), "hex");
   return expected.length === actual.length && timingSafeEqual(expected, actual);
+}
+
+function createOneTimeCode() {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+function hashToken(token: string) {
+  return createHash("sha256").update(token).digest("hex");
+}
+
+async function issueAuthCode(userId: number, purpose: "verify_email" | "reset_password") {
+  const db = await getDb();
+  if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+  const code = createOneTimeCode();
+  await db.insert(localAuthTokens).values({ userId, tokenHash: hashToken(code), purpose, expiresAt: new Date(Date.now() + 15 * 60 * 1000) });
+  return code;
 }
 
 async function setSessionCookie(ctx: { req: any; res: any }, user: { openId: string; name: string | null }) {
@@ -62,16 +79,63 @@ export const appRouter = router({
       if (await getUserByEmail(email)) throw new TRPCError({ code: "CONFLICT", message: "An account with that email already exists" });
       const salt = randomBytes(16);
       const openId = `local_${randomUUID()}`;
-      const [user] = await db.insert(users).values({ openId, name: input.name.trim(), email, loginMethod: "password", passwordHash: passwordDigest(input.password, salt), passwordSalt: salt.toString("hex") }).returning();
+      const [user] = await db.insert(userTable).values({ openId, name: input.name.trim(), email, loginMethod: "password", passwordHash: passwordDigest(input.password, salt), passwordSalt: salt.toString("hex") }).returning();
       if (!user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Unable to create account" });
+      const verificationCode = await issueAuthCode(user.id, "verify_email");
       await setSessionCookie(ctx, user);
-      return user;
+      return { ...user, developmentVerificationCode: process.env.NODE_ENV === "development" ? verificationCode : undefined };
+    }),
+    requestVerification: protectedProcedure.mutation(async ({ ctx }) => {
+      const user = await getUserById(ctx.user.id);
+      if (!user?.email) throw new TRPCError({ code: "BAD_REQUEST", message: "Add an email address before requesting verification." });
+      if (user.emailVerifiedAt) return { sent: false, alreadyVerified: true as const };
+      const code = await issueAuthCode(user.id, "verify_email");
+      return { sent: true, alreadyVerified: false as const, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
+    }),
+    verifyEmail: publicProcedure.input(z.object({ email: z.string().email().max(320), code: z.string().regex(/^\d{6}$/) })).mutation(async ({ input }) => {
+      const user = await getUserByEmail(normalizeEmail(input.email));
+      if (!user) throw new TRPCError({ code: "NOT_FOUND", message: "Account not found" });
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const [token] = await db.select().from(localAuthTokens).where(and(eq(localAuthTokens.userId, user.id), eq(localAuthTokens.purpose, "verify_email"), eq(localAuthTokens.tokenHash, hashToken(input.code)), sql`${localAuthTokens.consumedAt} IS NULL`, sql`${localAuthTokens.expiresAt} > now()`)).limit(1);
+      if (!token) throw new TRPCError({ code: "BAD_REQUEST", message: "That verification code is invalid or expired." });
+      await db.update(localAuthTokens).set({ consumedAt: new Date() }).where(eq(localAuthTokens.id, token.id));
+      await db.update(userTable).set({ emailVerifiedAt: new Date(), updatedAt: new Date() }).where(eq(userTable.id, user.id));
+      return { success: true as const };
+    }),
+    requestPasswordReset: publicProcedure.input(z.object({ email: z.string().email().max(320) })).mutation(async ({ input }) => {
+      const user = await getUserByEmail(normalizeEmail(input.email));
+      if (!user) return { sent: true as const };
+      const code = await issueAuthCode(user.id, "reset_password");
+      return { sent: true as const, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
+    }),
+    resetPassword: publicProcedure.input(z.object({ email: z.string().email().max(320), code: z.string().regex(/^\d{6}$/), password: z.string().min(10).max(128) })).mutation(async ({ input }) => {
+      const user = await getUserByEmail(normalizeEmail(input.email));
+      if (!user) throw new TRPCError({ code: "BAD_REQUEST", message: "That reset code is invalid or expired." });
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const [token] = await db.select().from(localAuthTokens).where(and(eq(localAuthTokens.userId, user.id), eq(localAuthTokens.purpose, "reset_password"), eq(localAuthTokens.tokenHash, hashToken(input.code)), sql`${localAuthTokens.consumedAt} IS NULL`, sql`${localAuthTokens.expiresAt} > now()`)).limit(1);
+      if (!token) throw new TRPCError({ code: "BAD_REQUEST", message: "That reset code is invalid or expired." });
+      const salt = randomBytes(16);
+      await db.update(userTable).set({ passwordHash: passwordDigest(input.password, salt), passwordSalt: salt.toString("hex"), updatedAt: new Date() }).where(eq(userTable.id, user.id));
+      await db.update(localAuthTokens).set({ consumedAt: new Date() }).where(eq(localAuthTokens.id, token.id));
+      return { success: true as const };
+    }),
+    profile: protectedProcedure.query(async ({ ctx }) => getUserById(ctx.user.id)),
+    updateProfile: protectedProcedure.input(z.object({ name: z.string().trim().min(2).max(80), email: z.string().email().max(320) })).mutation(async ({ ctx, input }) => {
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const email = normalizeEmail(input.email);
+      const existing = await getUserByEmail(email);
+      if (existing && existing.id !== ctx.user.id) throw new TRPCError({ code: "CONFLICT", message: "That email is already in use." });
+      const [updated] = await db.update(userTable).set({ name: input.name, email, emailVerifiedAt: email === ctx.user.email ? undefined : null, updatedAt: new Date() }).where(eq(userTable.id, ctx.user.id)).returning();
+      return updated;
     }),
     login: publicProcedure.input(z.object({ email: z.string().email().max(320), password: z.string().min(1).max(128) })).mutation(async ({ ctx, input }) => {
       const user = await getUserByEmail(normalizeEmail(input.email));
       if (!user?.passwordHash || !user.passwordSalt || !verifyPassword(input.password, user.passwordSalt, user.passwordHash)) throw new TRPCError({ code: "UNAUTHORIZED", message: "Invalid email or password" });
       const db = await getDb();
-      if (db) await db.update(users).set({ lastSignedIn: new Date(), updatedAt: new Date() }).where(eq(users.id, user.id));
+      if (db) await db.update(userTable).set({ lastSignedIn: new Date(), updatedAt: new Date() }).where(eq(userTable.id, user.id));
       await setSessionCookie(ctx, user);
       return user;
     }),
@@ -84,6 +148,19 @@ export const appRouter = router({
 
   learner: router({
     state: protectedProcedure.query(async ({ ctx }) => getLearnerState(ctx.user.openId)),
+    dashboard: protectedProcedure.query(async ({ ctx }) => {
+      const state = await getLearnerState(ctx.user.openId);
+      return {
+        learner: state.learner,
+        progress: state.progress,
+        certificates: state.certificates,
+        xp: state.xp,
+        xpLedger: state.xpLedger.slice(0, 12),
+        readerState: state.readerState,
+        bookmarks: state.bookmarks,
+        highlights: state.highlights,
+      };
+    }),
     completeLesson: protectedProcedure.input(z.object({ courseId: z.string().min(1), lessonId: z.string().min(1) })).mutation(async ({ ctx, input }) => {
       if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
       const db = await getDb();
