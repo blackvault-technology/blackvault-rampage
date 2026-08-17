@@ -321,3 +321,76 @@ footer { border-top:1px solid var(--rv-line); padding:38px clamp(22px,6vw,88px);
 .assessment-submit { justify-content:space-between; }
 .assessment-submit p { max-width:520px; margin:0; color:rgba(250,247,239,.56); font-size:12px; line-height:1.5; }
 @media (max-width:700px) { .preflight-grid { grid-template-columns:1fr; gap:22px; } .assessment-preflight, .assessment-result-panel { padding:22px; } .assessment-livebar { align-items:flex-start; flex-direction:column; } .assessment-clock { font-size:22px; } .assessment-submit { align-items:flex-start; flex-direction:column; } .assessment-submit .complete-button { width:100%; justify-content:center; } .learning-xp-signal { justify-self:start; } }
+
+/* Catalog refresh: badge + metadata rail */
+.course-card-badge {
+  display: inline-flex;
+  width: fit-content;
+  margin: .95rem 0 .6rem;
+  padding: .34rem .55rem .28rem;
+  border: 1px solid color-mix(in srgb, var(--lime) 55%, transparent);
+  background: color-mix(in srgb, var(--lime) 10%, transparent);
+  color: var(--lime);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  line-height: 1;
+}
+.course-card:not(.featured) .course-card-badge {
+  border-color: color-mix(in srgb, var(--orange) 52%, transparent);
+  background: color-mix(in srgb, var(--orange) 9%, transparent);
+  color: var(--orange);
+}
+.course-card-details {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-top: 1.15rem;
+  padding-top: .8rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  color: color-mix(in srgb, currentColor 70%, transparent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .67rem;
+  letter-spacing: .04em;
+  line-height: 1.35;
+}
+.course-card-details span:last-child { text-align: right; }
+
+/* One-question checkpoint presentation */
+.quiz-step-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0 .6rem;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem;
+  letter-spacing: .08em;
+}
+.quiz-step-label span { color: var(--orange); }
+.quiz-step-label b { color: var(--cream); font-weight: 700; }
+.quiz-question--active,
+.assessment-question--active { animation: quiz-question-in .22s cubic-bezier(.23,1,.32,1); }
+.lesson-quiz-scorecard {
+  display: grid;
+  gap: .65rem;
+  padding: 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--lime) 45%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--lime) 12%, transparent), transparent 72%);
+}
+.lesson-quiz-scorecard.retry { border-color: color-mix(in srgb, var(--orange) 50%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--orange) 10%, transparent), transparent 72%); }
+.lesson-quiz-scorecard strong { color: var(--lime); font-size: clamp(3rem, 8vw, 5rem); line-height: .85; letter-spacing: -.08em; }
+.lesson-quiz-scorecard.retry strong { color: var(--orange); }
+.lesson-quiz-scorecard p { max-width: 34rem; margin: 0; color: var(--muted); }
+.quiz-question--active label.is-selected,
+.assessment-question--active label.is-selected { border-color: var(--lime); background: color-mix(in srgb, var(--lime) 12%, transparent); }
+@keyframes quiz-question-in { from { opacity: .35; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .quiz-question--active, .assessment-question--active { animation: none; } }
+.assessment-step-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; }
+@media (max-width: 640px) {
+  .course-card-details { align-items: flex-start; flex-direction: column; gap: .25rem; }
+  .course-card-details span:last-child { text-align: left; }
+  .assessment-step-nav { align-items: stretch; flex-direction: column-reverse; }
+  .assessment-step-nav button { justify-content: center; }
+}

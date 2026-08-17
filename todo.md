@@ -107,4 +107,14 @@
 - [x] Save the validated XP, secure assessment, SEO, and learner-UX checkpoint.
 - [x] Extend lesson quizzes with a bounded five-minute server window plus visibility/fullscreen integrity signals; final assessments retain the stronger fifteen-minute certificate-gated controls.
 - [x] Add stronger SPA-compatible multi-course SEO foundations: route-aware titles/descriptions/canonicals, Open Graph/Twitter metadata, robots.txt, and course-level JSON-LD. A deployment-domain sitemap remains a hosting configuration step.
-- [ ] Save a recoverable checkpoint after resolving the XP, quiz-security, and SEO gaps.
+- [x] Save a recoverable checkpoint after resolving the XP, quiz-security, and SEO gaps.
+
+## Continue: One-by-One Quizzes and Course Catalog Refresh
+- [x] Audit lesson quiz, final assessment, question banks, score states, and catalog card metadata.
+- [x] Add a clear start-quiz state and one-question-at-a-time navigation for lesson quizzes.
+- [x] Add one-question-at-a-time final assessment flow with secure timing/integrity continuity and final score card.
+- [x] Enrich all listed course cards with honest real-source metadata and a new badge/tag treatment; keep Networking accurately Coming Soon because its verified curriculum is not yet populated.
+- [x] Validate all quiz states, score cards, course routes, tests, responsive build, and save a checkpoint.
+- [x] Validate the new one-question lesson quiz and final assessment UI/code paths for start, navigation, completion, score, retry, and certificate-gate states; authenticated interactive replay remains a manual QA boundary.
+- [x] Capture responsive verification for updated quiz, assessment, and catalog cards at desktop and mobile breakpoints.
+- [x] Save a new recoverable checkpoint after the validated one-by-one quiz/assessment and catalog refresh.
