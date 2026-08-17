@@ -185,6 +185,15 @@
 - [x] The first-party account ecosystem is implemented and checkpointed.
 
 ## Continue: Modal Authentication and Header Account Actions
+- [x] The modal authentication replacement and header account actions are implemented and checkpointed.
+
+## Continue: Reset Confirmation and Responsive Header Polish
+- [x] Audit auth-modal reset states and responsive header account markup.
+- [x] Implement an animated “check your inbox” success state after password-reset requests.
+- [x] Polish the responsive header so signed-in learners see only their first name in compact layouts.
+- [x] Run tests, type checking, production build, responsive screenshots, and interaction validation.
+- [x] Save a new recoverable checkpoint after validation.
+
 - [x] Audit current auth routes, dialog primitives, header shell, and protected redirect behavior.
 - [x] Build polished modal states for login, registration, verification-code entry, and password recovery.
 - [x] Replace public auth-page navigation with modal launchers and add account actions to desktop/mobile headers.
