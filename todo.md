@@ -322,3 +322,10 @@
 - [x] Run complete tests, TypeScript checks, production build, and responsive/live-preview smoke validation.
 - [x] Save the final publish-ready checkpoint and provide post-publish browser inspection steps.
 
+
+## Continue: Fix Live Vercel Raw-Source Deployment
+- [x] Inspect the live deployment response, Vercel configuration, function entrypoint, build output, and current runtime response.
+- [x] Correct the Vercel build and routing architecture so the homepage serves the Vite application rather than server source code.
+- [x] Validate SPA routes, API entrypoint, deployment artifact, tests, type checks, and production build.
+- [x] Save a corrected checkpoint and provide republish and browser-review instructions.
+
