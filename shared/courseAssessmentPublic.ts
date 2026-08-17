@@ -1,6 +1,27 @@
 export type PublicAssessmentQuestion = { id: string; prompt: string; options: string[] };
 
 export const publicFinalAssessmentBank: Record<string, PublicAssessmentQuestion[]> = {
+  "ai-product-systems": [
+    { id: "aps-f1", prompt: "What is the strongest first step for an AI feature?", options: ["Define the user problem, task, constraints, and quality bar", "Choose the biggest model", "Skip evaluation until launch", "Start with a dashboard"] },
+    { id: "aps-f2", prompt: "What should retrieval evidence let a reviewer do?", options: ["Trace an answer back to relevant source context", "Confirm that every answer is correct automatically", "Avoid reading source material", "Hide low-confidence results"] },
+    { id: "aps-f3", prompt: "Why version evaluation results?", options: ["To compare changes against a known set and baseline", "To make scores impossible to challenge", "To remove product judgment", "To avoid monitoring"] },
+    { id: "aps-f4", prompt: "Which set of signals best describes operating an AI feature?", options: ["Quality, latency, cost, failures, and user impact", "Only token count", "Only uptime", "Only a model card"] },
+    { id: "aps-f5", prompt: "What belongs in a responsible AI system brief?", options: ["Data, model, evaluation, costs, failure modes, and next experiment", "Only a prompt", "Only a vendor name", "Only a launch date"] },
+  ],
+  "ai-evaluation-engineering": [
+    { id: "aee-f1", prompt: "What is an evaluation contract?", options: ["A defined task, dataset, rubric, metric, and decision rule", "A model purchase order", "A prompt library without outcomes", "A dashboard theme"] },
+    { id: "aee-f2", prompt: "What makes a test set representative?", options: ["It covers normal, difficult, ambiguous, and risk-relevant cases", "It contains only easy examples", "It changes silently each run", "It excludes real failure modes"] },
+    { id: "aee-f3", prompt: "What does a rubric add beyond a raw score?", options: ["An explanation of why an output succeeds or fails", "A guarantee of truth", "A replacement for examples", "A way to remove human judgment"] },
+    { id: "aee-f4", prompt: "Why track evaluation drift?", options: ["Because data, users, and system behavior change over time", "Because scores never need context", "Because monitoring replaces testing", "Because old results are always wrong"] },
+    { id: "aee-f5", prompt: "What makes an evaluation report reproducible?", options: ["Versioned data, procedure, environment, results, and stated limits", "Only a final number", "Only a chart", "Only a model name"] },
+  ],
+  "ai-data-infrastructure": [
+    { id: "adi-f1", prompt: "What should a data contract make explicit?", options: ["Source, ownership, provenance, quality, and permitted use", "Only file size", "Only embedding dimension", "Only a vendor"] },
+    { id: "adi-f2", prompt: "Why is chunking a model-facing decision?", options: ["It determines which relationships and evidence reach the context window", "It only changes file names", "It removes retrieval", "It guarantees factuality"] },
+    { id: "adi-f3", prompt: "What is the proper role of embeddings in retrieval?", options: ["Retrieve useful candidates that still require relevance and evidence checks", "Prove that a passage is true", "Replace source provenance", "Guarantee the best answer"] },
+    { id: "adi-f4", prompt: "What does a freshness policy define?", options: ["When context is stale, who owns invalidation, and how it is observed", "A permanent cache with no expiry", "Only model temperature", "Only document color"] },
+    { id: "adi-f5", prompt: "What should a retrieval runbook cover?", options: ["Empty, wrong, stale, and untraceable results with diagnostic steps", "Only successful queries", "Only database uptime", "Only prompt formatting"] },
+  ],
   "networking-systems": [
     { id: "net-f1", prompt: "Which sequence best describes a typical web request path?", options: ["Name resolution, transport connection, application request, response", "Compiler, kernel panic, PDF export, response", "Only DNS with no transport", "Only a switch lookup"] },
     { id: "net-f2", prompt: "What is the role of a subnet prefix?", options: ["It identifies the network boundary used for local delivery and routing", "It encrypts every packet", "It assigns a process ID", "It replaces a port number"] },

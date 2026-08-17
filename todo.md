@@ -170,3 +170,13 @@
 - [x] Run tests, type checking, production build, responsive screenshots, accessibility review, and interaction validation.
 - [x] Save a new recoverable checkpoint after validation.
 - [x] Remove generated duplicate PDF placeholder records so the resource index contains only canonical sources or explicitly authored records.
+
+## Continue: AI Course Interactivity and Offline Mobile Shell
+- [x] Audit the three AI course lesson inventories, quiz-bank contracts, progress procedures, mobile shell, and PWA entry points.
+- [x] Deepen the three AI courses with source-aligned lesson objectives, resource context, and interactive quiz coverage.
+- [x] Wire quiz start, one-question flow, scoring feedback, and persisted progress for the three AI courses through server-verified contracts.
+- [x] Polish mobile bottom navigation transitions, active indicators, focus states, and safe-area behavior.
+- [x] Implement offline lesson caching with explicit cache versioning, stale fallback behavior, and cache invalidation.
+- [x] Add installable PWA manifest, service-worker registration, and offline-ready status UX without caching authenticated responses unsafely.
+- [x] Run tests, type checking, production build, responsive screenshots, accessibility review, and offline/PWA validation.
+- [ ] Save a new recoverable checkpoint after validation.

@@ -1,0 +1,18 @@
+{
+  "name": "BlackVault Rampage",
+  "short_name": "Rampage",
+  "description": "Source-led systems and AI learning for builders.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f0e8",
+  "theme_color": "#101923",
+  "icons": [
+    { "src": "/manus-storage/rampage-symbol_0c3dbff7.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/manus-storage/rampage-symbol_0c3dbff7.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "My learning", "short_name": "Learn", "url": "/learn" },
+    { "name": "Course catalog", "short_name": "Courses", "url": "/#catalog" }
+  ]
+}
