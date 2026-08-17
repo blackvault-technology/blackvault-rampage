@@ -263,3 +263,37 @@ footer { border-top:1px solid var(--rv-line); padding:38px clamp(22px,6vw,88px);
 .not-found-footer a { display:inline-flex; align-items:center; gap:7px; color:var(--lime); }
 @media (max-width:700px) { .course-sidebar { border-right:0; } .course-outline { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; } .outline-phase { min-width:0; padding:12px 8px; } .outline-phase b { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .outline-phase small { font-size:9px; } .lesson-flow-strip { align-items:flex-start; flex-direction:column; gap:8px; } .lesson-flow-strip span:not(:last-of-type)::after { display:none; } .lesson-flow-strip strong { margin-left:0; } .topbar .brand { min-width:0; } .rampage-lockup { min-width:112px; } .rampage-lockup b { font-size:13px; } .rampage-lockup small { display:none; } .course-hero::after { display:none; } .phase-section { padding-left:14px; } .phase-section-head::before { left:-20px; } .phase-mission { grid-template-columns:1fr; } .phase-mission > div { min-height:auto; } .not-found-page { padding:42px 5vw; } .not-found-panel { padding:30px 24px; } .not-found-footer { flex-direction:column; } }
 
+
+/* Unified learning checkpoint area */
+.learning-checkpoint-zone { margin-top: 34px; padding: 28px; background: linear-gradient(135deg, #071f42 0%, #061932 100%); border: 1px solid var(--rv-line); clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%); }
+.checkpoint-zone-head { display:flex; justify-content:space-between; gap:24px; align-items:flex-start; padding-bottom:24px; border-bottom:1px solid var(--rv-line); }
+.checkpoint-zone-head h2 { margin:12px 0 8px; font-size:clamp(28px,4vw,46px); letter-spacing:-.07em; }
+.checkpoint-zone-head p { max-width:560px; margin:0; color:#9eafc3; font-size:13px; line-height:1.5; }
+.checkpoint-zone-signal { display:flex; align-items:center; gap:7px; color:var(--rv-lime); font:9px var(--rv-mono); letter-spacing:.08em; white-space:nowrap; }
+.checkpoint-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+.learning-checkpoint-zone .lesson-timeline, .learning-checkpoint-zone .lesson-quiz-panel { margin:0; padding:22px; background:#04152f; border:1px solid var(--rv-line); clip-path:none; }
+.checkpoint-card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:18px; }
+.checkpoint-card-head h3 { margin:11px 0 0; font-size:25px; letter-spacing:-.06em; }
+.timeline-time { color:var(--rv-cream); font:700 20px var(--rv-display); white-space:nowrap; }
+.timeline-readout { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin:30px 0 10px; }
+.timeline-readout strong, .quiz-state-label { color:var(--rv-lime); font:10px var(--rv-mono); letter-spacing:.08em; }
+.timeline-readout span { color:#8495ad; font:9px var(--rv-mono); }
+.timeline-track, .quiz-progress { height:5px; background:#122e55; margin-bottom:14px; overflow:hidden; }
+.timeline-track i, .quiz-progress i { display:block; height:100%; background:var(--rv-lime); transition:width .2s ease; }
+.learning-checkpoint-zone input[type="range"] { width:100%; accent-color:var(--rv-orange); cursor:pointer; }
+.timeline-scale { display:flex; justify-content:space-between; color:#7186a1; font:9px var(--rv-mono); margin-top:7px; }
+.learning-checkpoint-zone .lesson-timeline p, .quiz-instruction { color:#91a5bd; font-size:12px; line-height:1.5; margin:20px 0 0; }
+.quiz-instruction { margin:18px 0; }
+.quiz-progress { margin:0 0 18px; }
+.quiz-question { border:0; border-top:1px solid var(--rv-line); padding:18px 0 0; margin:0 0 18px; min-inline-size:0; }
+.quiz-question legend { display:flex; gap:11px; align-items:flex-start; color:var(--rv-cream); font-size:15px; line-height:1.35; padding:0; }
+.quiz-question legend span { color:var(--rv-orange); font:10px var(--rv-mono); padding-top:3px; }
+.quiz-question label { display:flex; gap:9px; align-items:flex-start; padding:10px 12px; margin-top:7px; border:1px solid transparent; color:#a8b8ca; font-size:12px; line-height:1.4; cursor:pointer; transition:background .16s ease,border-color .16s ease,color .16s ease; }
+.quiz-question label:hover { border-color:var(--rv-line); background:#09234a; color:var(--rv-cream); }
+.quiz-question input { margin-top:2px; accent-color:var(--rv-lime); }
+.quiz-actions { display:flex; align-items:center; gap:14px; flex-wrap:wrap; border-top:1px solid var(--rv-line); padding-top:18px; }
+.quiz-actions .complete-button:disabled { cursor:not-allowed; opacity:.55; }
+.quiz-result { color:#ffb29e; font:10px var(--rv-mono); letter-spacing:.05em; }
+.quiz-result.passed { color:var(--rv-lime); }
+@media (max-width:900px) { .learning-checkpoint-zone { padding:18px; } .checkpoint-zone-head { flex-direction:column; gap:14px; } .checkpoint-grid { grid-template-columns:1fr; } .checkpoint-card-head h3 { font-size:22px; } }
+@media (max-width:480px) { .learning-checkpoint-zone { margin-inline:-1px; } .checkpoint-zone-head h2 { font-size:34px; } .timeline-readout { align-items:flex-start; flex-direction:column; gap:6px; } .quiz-question label { padding:11px 9px; } .quiz-actions .complete-button { width:100%; justify-content:center; } }

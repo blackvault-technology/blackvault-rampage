@@ -87,3 +87,13 @@
 - [x] Review lesson quiz pass/fail/retry rendering branches in the lesson UI; automated server tests pass, while interactive browser replay remains a manual QA recommendation.
 - [x] Add and verify an explicit certificate-eligibility cue at the final lesson handoff: pass the final assessment to unlock the Rampage digital certificate.
 - [x] Save a new checkpoint after resolving the final lesson-page validation gaps.
+
+## Continue: Quiz and Timeline Checkpoint Area
+- [x] Audit current quiz and timeline copy, controls, states, and persistence messaging.
+- [x] Redesign the two sections as a unified learning checkpoint area with clearer hierarchy and next actions.
+- [x] Improve quiz selection, submission, passed/retry feedback, and timeline resume controls using existing real data.
+- [x] Validate desktop/mobile states, tests, production build, and save a checkpoint.
+- [x] Format timeline position as mm:ss and remove the incorrect minutes label.
+- [x] Base the checkpoint rail on lesson duration data, with a safe 3-minute fallback for lessons lacking parseable duration metadata.
+- [x] Save a recoverable checkpoint after the timeline correction.
+- [x] Save a new recoverable checkpoint after the validated mm:ss and duration-based timeline changes.
