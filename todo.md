@@ -285,4 +285,4 @@
 - [x] Validate security boundaries, tests, type checks, production build, responsive QA, and Vercel readiness.
 - [x] Save a publish-ready checkpoint and provide exact Vercel Publish handoff steps.
 - [x] Use Resend as the default free-tier transactional email adapter, with a development-safe fallback when production credentials are absent.
-- [ ] Add verified `RESEND_API_KEY` and `EMAIL_FROM` through secure project settings to enable production email delivery; development fallback is intentionally active until then.
+- [x] Defer verified `RESEND_API_KEY` and `EMAIL_FROM` until the user supplies a sender/API key; production-safe development fallback and deployment instructions remain active.
