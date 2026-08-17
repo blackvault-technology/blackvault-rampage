@@ -253,3 +253,21 @@
 - [x] Validate protected flows, profile interactions, landing responsiveness, accessibility, tests, type checks, and production build.
 - [x] Save a recoverable checkpoint after the account, profile, and landing upgrade.
 
+
+## Continue: Certificate Sharing, Visual Progress, and Learner UX Expansion
+- [x] Audit certificate/profile data, existing controls, and Vercel handoff constraints.
+- [x] Add LinkedIn and X/Twitter sharing actions to the issued certificate experience with safe share fallbacks.
+- [x] Add a visual multi-course progress overview to the profile page with accessible completion semantics.
+- [x] Add a profile activity timeline with recent learner events and useful empty states.
+- [x] Add certificate sharing copy and a clear privacy note for public share URLs.
+- [x] Add certificate print/share action feedback and disabled/loading states.
+- [x] Add course progress filtering or sorting on the profile page.
+- [x] Add a “continue next lesson” action to each in-progress course card.
+- [x] Add a compact completion ring or percentage indicator to profile course cards.
+- [x] Add a verification-status callout with a direct recovery/resend action.
+- [x] Add a learner streak or study-consistency summary using existing progress timestamps only.
+- [x] Add profile-level responsive keyboard/focus polish for progress and certificate actions.
+- [x] Add accessible labels and live status messaging for sharing and progress controls.
+- [x] Add regression tests for certificate share URL construction and protected profile data.
+- [x] Validate tests, type checks, production build, responsive screenshots, and Vercel handoff readiness.
+- [ ] Save a publish-ready checkpoint and provide the user with the Vercel Publish handoff steps.
