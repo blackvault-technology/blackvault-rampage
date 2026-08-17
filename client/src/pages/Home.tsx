@@ -76,36 +76,33 @@ export default function Home() {
     const root = document.querySelector<HTMLElement>(".academy-home");
     if (!root) return;
 
-    const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
-      const railCleanups: Array<() => void> = [];
-      const context = gsap.context(() => {
-        gsap.fromTo("[data-motion=hero]", { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" });
-        gsap.fromTo("[data-motion=section]", { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.56, stagger: 0.08, delay: 0.18, ease: "power3.out" });
+    root.classList.add("motion-ready");
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sections = Array.from(root.querySelectorAll<HTMLElement>("[data-motion]"));
+    if (prefersReduced || !("IntersectionObserver" in window)) {
+      sections.forEach((section) => section.classList.add("is-visible"));
+      return () => root.classList.remove("motion-ready");
+    }
 
-        gsap.utils.toArray<HTMLElement>(".logo-rail-track").forEach((track, index) => {
-          const loop = gsap.to(track, { xPercent: -50, duration: index % 2 === 0 ? 38 : 46, ease: "none", repeat: -1 });
-          const pause = () => loop.timeScale(0.22);
-          const resume = () => loop.timeScale(1);
-          track.addEventListener("mouseenter", pause);
-          track.addEventListener("mouseleave", resume);
-          track.addEventListener("focusin", pause);
-          track.addEventListener("focusout", resume);
-          railCleanups.push(() => {
-            track.removeEventListener("mouseenter", pause);
-            track.removeEventListener("mouseleave", resume);
-            track.removeEventListener("focusin", pause);
-            track.removeEventListener("focusout", resume);
-          });
-        });
-      }, root);
-      return () => {
-        railCleanups.forEach((cleanup) => cleanup());
-        context.revert();
-      };
-    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+    sections.forEach((section) => observer.observe(section));
 
-    return () => media.revert();
+    const hero = root.querySelector<HTMLElement>("[data-motion=hero]");
+    if (hero) {
+      gsap.fromTo(hero, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" });
+    }
+
+    return () => {
+      observer.disconnect();
+      root.classList.remove("motion-ready");
+    };
   }, []);
 
   return <Shell><main className="academy-home">

@@ -370,3 +370,22 @@
 - [x] Validate logo rendering, sizing, contrast, and responsive header behavior.
 - [x] Run TypeScript, production build, and responsive screenshot checks.
 - [x] Save a recoverable branding checkpoint and provide the updated project version.
+
+
+## Continue: Production Authentication JSON and 500 Repair
+- [x] Reproduce the auth.me and auth.login failures and identify the first server-side exception.
+- [x] Repair Vercel serverless auth routing, database configuration, and JSON-safe error responses.
+- [x] Harden login, registration, password recovery, verification, logout, and session hydration flows.
+- [x] Resolve the auth dialog accessibility warning and improve error/loading states.
+- [x] Add or update Vitest coverage for the repaired auth paths.
+- [x] Run tests, TypeScript, production build, API smoke checks, and responsive auth-modal validation.
+- [ ] Save a recoverable auth repair checkpoint and provide the updated version.
+
+
+## Continue: Production Auth, Animation, and Deep SEO Repair
+- [x] Complete JSON-safe auth transport and session-cookie regression coverage.
+- [x] Make scroll-reveal animations reliably initialize and animate in production builds with reduced-motion support.
+- [x] Make the logo rail continuously animate, pause on interaction, and remain responsive and accessible.
+- [x] Add canonical metadata, Open Graph/Twitter cards, structured data, robots.txt, and sitemap.xml for public routes.
+- [x] Validate local production-like HTML, crawler files, auth API responses, animations, tests, TypeScript, and production build.
+- [ ] Save a recoverable combined repair checkpoint and provide the updated project version.

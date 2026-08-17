@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://edurampage.vercel.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://edurampage.vercel.app/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://edurampage.vercel.app/paths</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://edurampage.vercel.app/resources</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://edurampage.vercel.app/certificate/verify</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://edurampage.vercel.app/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://edurampage.vercel.app/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://edurampage.vercel.app/cookies</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://edurampage.vercel.app/acceptable-use</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

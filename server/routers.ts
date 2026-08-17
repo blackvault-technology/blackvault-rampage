@@ -33,6 +33,19 @@ function normalizeEmail(email: string) {
   return email.trim().toLowerCase();
 }
 
+export function serializeSessionCookie(name: string, value: string, options: { maxAge: number; expires?: Date; httpOnly?: boolean; path?: string; sameSite?: boolean | "none" | "lax" | "strict"; secure?: boolean }) {
+  const sameSite = options.sameSite === true ? "Strict" : options.sameSite === "none" ? "None" : options.sameSite === "strict" ? "Strict" : "Lax";
+  const attributes = [
+    `Path=${options.path ?? "/"}`,
+    options.httpOnly !== false ? "HttpOnly" : "",
+    `SameSite=${sameSite}`,
+    options.secure ? "Secure" : "",
+    `Max-Age=${options.maxAge}`,
+    options.expires ? `Expires=${options.expires.toUTCString()}` : "",
+  ].filter(Boolean);
+  return `${name}=${encodeURIComponent(value)}; ${attributes.join("; ")}`;
+}
+
 function passwordDigest(password: string, salt: Buffer) {
   return scryptSync(password, salt, 64).toString("hex");
 }
@@ -61,7 +74,8 @@ async function issueAuthCode(userId: number, purpose: "verify_email" | "reset_pa
 
 async function setSessionCookie(ctx: { req: any; res: any }, user: { openId: string; name: string | null }) {
   const token = await sdk.createSessionToken(user.openId, { name: user.name ?? "Rampage learner" });
-  ctx.res.cookie(COOKIE_NAME, token, { ...getSessionCookieOptions(ctx.req), maxAge: 1000 * 60 * 60 * 24 * 30 });
+  const serializedCookie = serializeSessionCookie(COOKIE_NAME, token, { ...getSessionCookieOptions(ctx.req), maxAge: 60 * 60 * 24 * 30 });
+  ctx.res.setHeader("Set-Cookie", serializedCookie);
 }
 
 async function awardXp(db: NonNullable<Awaited<ReturnType<typeof getDb>>>, userId: number, eventKey: string, amount: number, sourceType: string, sourceId: string, courseId: string, metadata: Record<string, unknown> = {}) {
@@ -145,7 +159,12 @@ export const appRouter = router({
     }),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
-      ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
+      if (typeof ctx.res.setHeader === "function") {
+        const serializedCookie = serializeSessionCookie(COOKIE_NAME, "", { ...cookieOptions, maxAge: 0, expires: new Date(0) });
+        ctx.res.setHeader("Set-Cookie", serializedCookie);
+      } else if (typeof ctx.res.clearCookie === "function") {
+        ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
+      }
       return { success: true } as const;
     }),
   }),

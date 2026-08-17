@@ -5,3 +5,5 @@ Disallow: /learn
 Disallow: /course/*/lesson/
 Disallow: /course/*/assessment
 Disallow: /certificate/
+
+Sitemap: https://edurampage.vercel.app/sitemap.xml

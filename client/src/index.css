@@ -963,3 +963,23 @@ footer { border-top:1px solid var(--rv-line); padding:38px clamp(22px,6vw,88px);
   .primary-cta:hover, .text-cta:hover, .github-link:hover, .header-account-link:hover, .course-card:hover, .course-card:focus-visible, .lesson-card:hover, .lesson-card:focus-visible, .profile-course-card:hover, .verification-card:hover, .rail-item:hover, .rail-item:focus-within { transform: none; }
   .course-card::after { display: none; }
 }
+
+
+/* Production motion layer: CSS remains the reliable baseline, while GSAP enhances hero entry. */
+.academy-home.motion-ready [data-motion="section"] { opacity: 0; transform: translate3d(0, 1.1rem, 0); transition: opacity .62s var(--ease-out), transform .62s var(--ease-out); }
+.academy-home.motion-ready [data-motion="section"].is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+.academy-home.motion-ready [data-motion="section"]:nth-of-type(2) { transition-delay: .04s; }
+.academy-home.motion-ready [data-motion="section"]:nth-of-type(3) { transition-delay: .08s; }
+.academy-home.motion-ready [data-motion="section"]:nth-of-type(4) { transition-delay: .12s; }
+.academy-home.motion-ready [data-motion="section"]:nth-of-type(5) { transition-delay: .16s; }
+.academy-home.motion-ready [data-motion="section"]:nth-of-type(6) { transition-delay: .2s; }
+.academy-home.motion-ready [data-motion="section"]:nth-of-type(7) { transition-delay: .24s; }
+.academy-home.motion-ready [data-motion="section"]:nth-of-type(8) { transition-delay: .28s; }
+.logo-rail { isolation: isolate; }
+.logo-rail-track { animation: provenance-drift 42s linear infinite; will-change: transform; transform: translate3d(0, 0, 0); }
+.logo-rail:hover .logo-rail-track, .logo-rail:focus-within .logo-rail-track, .logo-rail:active .logo-rail-track { animation-play-state: paused; }
+.logo-rail-track { touch-action: pan-y; }
+@media (prefers-reduced-motion: reduce) {
+  .academy-home.motion-ready [data-motion="section"] { opacity: 1; transform: none; transition: none; }
+  .logo-rail-track { animation: none !important; transform: none; }
+}

@@ -34,7 +34,7 @@ function RouteSeo() {
   useEffect(() => {
     const cleanPath = location.split("?")[0];
     const pageNames: Record<string, string> = {
-      "/": "Learn like the top 1%",
+      "/": "Learn the systems behind the surface",
       "/resources": "Reading Room",
       "/paths": "Learning Paths",
       "/learn": "My Learning",
@@ -46,13 +46,14 @@ function RouteSeo() {
       "/certificate/verify": "Certificate Verification",
     };
     const section = pageNames[cleanPath] || (cleanPath.includes("assessment") ? "Final Assessment" : cleanPath.includes("certificate") ? "Digital Certificate" : cleanPath.includes("lesson") ? "Lesson Workspace" : cleanPath.includes("course") ? "Course Overview" : "Academy");
-    const description = cleanPath.includes("assessment") ? "A timed, server-scored Rampage learning assessment with transparent integrity signals." : cleanPath.includes("resources") ? "A structured reading room for verified technical papers, books, and institutional sources." : cleanPath === "/about" ? "Meet BlackVault Foundation, the people and principles behind BlackVault Rampage’s structured approach to technical learning." : cleanPath.includes("course") ? "A source-backed BlackVault Rampage course with guided lessons, labs, and real technical resources." : "BlackVault Rampage is a source-first technical academy for building systems fluency through guided courses and real resources.";
-    document.title = `Rampage — ${section}`;
+    const description = cleanPath.includes("assessment") ? "A timed, server-scored BlackVault Rampage learning assessment with transparent integrity signals." : cleanPath.includes("resources") ? "A structured reading room for verified technical papers, books, and institutional sources." : cleanPath === "/about" ? "Meet BlackVault Foundation, the people and principles behind BlackVault Rampage’s structured approach to technical learning." : cleanPath.includes("course") ? "A source-backed BlackVault Rampage course with guided lessons, labs, and real technical resources." : "BlackVault Rampage is a source-first technical academy for building systems fluency through guided courses and real resources.";
+    const pageTitle = cleanPath === "/" ? "BlackVault Rampage — Learn the systems behind the surface" : `BlackVault Rampage — ${section}`;
+    document.title = pageTitle;
     const setMeta = (name: string, content: string) => { let tag = document.querySelector(`meta[name="${name}"]`); if (!tag) { tag = document.createElement("meta"); tag.setAttribute("name", name); document.head.appendChild(tag); } tag.setAttribute("content", content); };
     setMeta("description", description);
     const setProperty = (property: string, content: string) => { let tag = document.querySelector(`meta[property="${property}"]`); if (!tag) { tag = document.createElement("meta"); tag.setAttribute("property", property); document.head.appendChild(tag); } tag.setAttribute("content", content); };
-    setProperty("og:title", `Rampage — ${section}`); setProperty("og:description", description); setProperty("og:type", cleanPath.includes("course") ? "article" : "website"); setProperty("og:url", `${window.location.origin}${cleanPath}`);
-    setMeta("twitter:card", "summary"); setMeta("twitter:title", `Rampage — ${section}`); setMeta("twitter:description", description);
+    setProperty("og:title", pageTitle); setProperty("og:description", description); setProperty("og:type", cleanPath.includes("course") ? "article" : "website"); setProperty("og:url", `${window.location.origin}${cleanPath}`);
+    setMeta("twitter:card", "summary"); setMeta("twitter:title", pageTitle); setMeta("twitter:description", description);
     const canonical = document.querySelector('link[rel="canonical"]') || document.createElement("link"); canonical.setAttribute("rel", "canonical"); canonical.setAttribute("href", `${window.location.origin}${cleanPath}`); if (!canonical.parentNode) document.head.appendChild(canonical);
     const courseId = cleanPath.match(/^\/course\/([^/]+)/)?.[1]; const course = courseId ? courses.find((item) => item.id === courseId) : undefined;
     const ld = course ? { "@context": "https://schema.org", "@type": "Course", name: course.title, description: course.subtitle, provider: { "@type": "Organization", name: "BlackVault Rampage", url: window.location.origin }, url: `${window.location.origin}${cleanPath}` } : cleanPath === "/about" ? { "@context": "https://schema.org", "@type": "AboutPage", name: "About BlackVault Foundation", description, url: `${window.location.origin}/about`, isPartOf: { "@type": "WebSite", name: "BlackVault Rampage", url: window.location.origin } } : { "@context": "https://schema.org", "@type": "WebSite", name: "BlackVault Rampage", description, url: window.location.origin, publisher: { "@type": "Organization", name: "BlackVault Foundation" } };
