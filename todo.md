@@ -251,5 +251,5 @@
 - [x] Humanize landing-page copy and hierarchy so the academy feels authored, specific, and useful rather than generically AI-generated.
 - [x] Add or update regression tests for protected learner boundaries and profile/account contracts.
 - [x] Validate protected flows, profile interactions, landing responsiveness, accessibility, tests, type checks, and production build.
-- [ ] Save a recoverable checkpoint after the account, profile, and landing upgrade.
+- [x] Save a recoverable checkpoint after the account, profile, and landing upgrade.
 
