@@ -414,3 +414,10 @@
 - [x] Add regression coverage for the production API module-resolution path.
 - [x] Validate auth.me, auth.login, registration, Neon access, TypeScript, tests, and production build.
 - [x] Save a recoverable module-resolution repair checkpoint and provide the updated version.
+
+
+## Continue: Vercel API Path Collision Repair
+- [x] Remove the conflicting `api/index.js` and `api/index.ts` path names while preserving the bundled serverless entrypoint.
+- [x] Update the production build and Vercel routing to use one canonical API function path.
+- [x] Validate auth JSON routing, bundle importability, tests, TypeScript, and production build.
+- [ ] Save a recoverable collision-repair checkpoint and provide the updated version.

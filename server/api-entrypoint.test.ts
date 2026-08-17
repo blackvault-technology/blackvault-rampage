@@ -8,7 +8,7 @@ describe("Vercel API entrypoint", () => {
   });
 
   it("ships a bundled JavaScript artifact without extensionless local ESM imports", () => {
-    const bundledApi = readFileSync(new URL("../api/index.js", import.meta.url), "utf8");
+    const bundledApi = readFileSync(new URL("../api/handler.js", import.meta.url), "utf8");
     expect(bundledApi).toContain("createExpressMiddleware");
     expect(bundledApi).not.toMatch(/from [\"']\.\.\/server\//);
   });
