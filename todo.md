@@ -182,6 +182,17 @@
 - [x] Save a recoverable checkpoint and document the Vercel publishing steps and required secrets. Checkpoint `5cd9948b` and `VERCEL_DEPLOYMENT.md` provide the handoff.
 
 ## Continue: Full First-Party Auth and Learner Account Ecosystem
+- [x] The first-party account ecosystem is implemented and checkpointed.
+
+## Continue: Modal Authentication and Header Account Actions
+- [x] Audit current auth routes, dialog primitives, header shell, and protected redirect behavior.
+- [x] Build polished modal states for login, registration, verification-code entry, and password recovery.
+- [x] Replace public auth-page navigation with modal launchers and add account actions to desktop/mobile headers.
+- [x] Preserve deep-link recovery and verification states, protected redirects, and issued-only certificate gates.
+- [x] Remove standalone auth routes from normal navigation and retain safe compatibility handling for stale links.
+- [x] Run tests, type checking, production build, responsive screenshots, and modal interaction validation.
+- [x] Save a new recoverable checkpoint after validation.
+
 - [x] Audit local auth, database schema, route protection, learner dashboard, and certificate visibility gates.
 - [x] Extend the Neon schema and server procedures for email verification, password reset, profile updates, learner activity, quiz summaries, and certificate ownership.
 - [x] Build polished `/login`, `/register`, `/verify`, and `/reset-password` experiences with clear states and safe validation.
