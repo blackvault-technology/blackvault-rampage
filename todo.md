@@ -199,7 +199,7 @@
 - [x] Implement a responsive two-part brand-and-auth popup layout for larger screens with a focused mobile fallback.
 - [x] Polish all auth popup states, transitions, focus, loading, errors, success, verification, reset, and legal links.
 - [x] Validate responsive desktop/mobile flows, tests, type/build, and accessibility behavior.
-- [ ] Save a new recoverable checkpoint after validation.
+- [x] Save a new recoverable checkpoint after validation.
 
 - [x] Audit Vercel project state, deployment configuration, required secrets, and repository sync.
 - [x] Run a focused security review and fix actionable deployment blockers. Fixed the remaining dialog-description accessibility warning and documented production dependency advisories in SECURITY-AUDIT.md.
