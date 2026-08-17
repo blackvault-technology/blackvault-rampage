@@ -1,6 +1,11 @@
 export type AssessmentQuestion = { id: string; prompt: string; options: string[]; answer: number; explanation: string };
 
 export const chapterQuizBank: Record<string, AssessmentQuestion[]> = {
+  "networking-systems": [
+    { id: "net-q1", prompt: "What is the main purpose of layering in a network architecture?", options: ["To separate responsibilities behind stable interfaces", "To eliminate all latency", "To replace IP addresses", "To make every device identical"], answer: 0, explanation: "Layering keeps responsibilities and interfaces separate so a change in one part does not require rewriting every other part." },
+    { id: "net-q2", prompt: "What does a router primarily use to make a forwarding decision?", options: ["A destination network prefix", "A browser cookie", "A CPU instruction", "A PDF bookmark"], answer: 0, explanation: "Routers compare the destination address with routing prefixes to choose the next hop." },
+    { id: "net-q3", prompt: "What problem does TCP congestion control respond to?", options: ["Too much traffic competing for network capacity", "A missing HTML tag", "A broken keyboard", "A compiler syntax error"], answer: 0, explanation: "Congestion control adapts sending behavior when traffic competes for limited capacity and queues grow." },
+  ],
   "systems-fundamentals": [
     { id: "sf-q1", prompt: "Which abstraction lets a process use addresses without directly naming physical RAM?", options: ["Virtual memory", "Git", "TCP", "A shell alias"], answer: 0, explanation: "Virtual memory maps process-visible addresses to physical memory." },
     { id: "sf-q2", prompt: "What does a system call cross?", options: ["The user/kernel boundary", "A DNS zone", "A compiler phase", "A CSS module"], answer: 0, explanation: "System calls are the controlled interface from user programs into the kernel." },
@@ -24,6 +29,13 @@ export const chapterQuizBank: Record<string, AssessmentQuestion[]> = {
 };
 
 export const finalAssessmentBank: Record<string, AssessmentQuestion[]> = {
+  "networking-systems": [
+    { id: "net-f1", prompt: "Which sequence best describes a typical web request path?", options: ["Name resolution, transport connection, application request, response", "Compiler, kernel panic, PDF export, response", "Only DNS with no transport", "Only a switch lookup"], answer: 0, explanation: "A web request commonly resolves a name, establishes or reuses transport, sends an application request, and receives a response." },
+    { id: "net-f2", prompt: "What is the role of a subnet prefix?", options: ["It identifies the network boundary used for local delivery and routing", "It encrypts every packet", "It assigns a process ID", "It replaces a port number"], answer: 0, explanation: "A prefix separates the network portion from the host portion and supports forwarding decisions." },
+    { id: "net-f3", prompt: "What does TCP provide above IP?", options: ["Ordered, reliable byte-stream delivery with flow and congestion control", "A wireless radio signal", "A DNS zone", "A physical cable"], answer: 0, explanation: "TCP adds reliable ordered delivery and controls the sender based on receiver capacity and network congestion." },
+    { id: "net-f4", prompt: "Which troubleshooting step is strongest?", options: ["Start from a concrete symptom, choose a measurement, and record the evidence", "Change several devices at once", "Trust a diagram without measuring", "Restart everything and record nothing"], answer: 0, explanation: "A defensible troubleshooting loop connects a symptom to a specific measurement and preserves the result for comparison." },
+    { id: "net-f5", prompt: "What is a useful network security boundary?", options: ["A stated trust boundary with controls and expected failure behavior", "A larger logo", "An untested default password", "A hidden route"], answer: 0, explanation: "Security work is clearer when trust boundaries, controls, and failure behavior are explicit and testable." },
+  ],
   "systems-fundamentals": [
     { id: "sf-f1", prompt: "Which boundary is protected by a system call?", options: ["User space and kernel space", "HTML and CSS", "DNS and HTTP", "Git and Vim"], answer: 0, explanation: "System calls cross the user/kernel boundary." },
     { id: "sf-f2", prompt: "What does virtual memory provide?", options: ["A process-visible address space mapped to physical memory", "A replacement for tests", "A network route", "A shell prompt"], answer: 0, explanation: "Virtual memory maps process addresses to physical storage." },

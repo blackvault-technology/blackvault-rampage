@@ -3,6 +3,7 @@ export const COURSE_RULES = {
   "ai-systems": { lessonCount: 10, chapterCount: 5, passScore: 80, finalQuestionCount: 5, maxAssessmentAttemptsPerDay: 3 },
   "systems-research-lab": { lessonCount: 8, chapterCount: 4, passScore: 80, finalQuestionCount: 5, maxAssessmentAttemptsPerDay: 3 },
   "compiler-runtime-architecture": { lessonCount: 8, chapterCount: 4, passScore: 80, finalQuestionCount: 5, maxAssessmentAttemptsPerDay: 3 },
+  "networking-systems": { lessonCount: 12, chapterCount: 6, passScore: 80, finalQuestionCount: 5, maxAssessmentAttemptsPerDay: 3 },
 } as const;
 
 export const COURSE_LESSON_COUNTS = Object.fromEntries(

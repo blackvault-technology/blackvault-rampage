@@ -143,7 +143,7 @@ export const appRouter = router({
       await db.insert(rampageAssessmentAttempts).values({ userId: learner.id, courseId: input.courseId, attemptNumber: previous.length + 1, score, passed, answers: input.answers, questionOrder: questions.map(question => question.id), integrity: buildAttemptIntegrity({ startedAt: input.startedAt, submittedAt, tabSwitches: input.tabSwitches, fullscreenExits: input.fullscreenExits, questionOrder: questions.map(question => question.id) }), startedAt: new Date(input.startedAt), submittedAt: new Date(submittedAt) });
       const xpAwarded = passed ? await awardXp(db, learner.id, `final-pass:${input.courseId}`, 200, "final_assessment_pass", input.courseId, input.courseId, { score, attemptNumber: previous.length + 1 }) : 0;
       await writeAuditEvent(learner.id, "final_assessment_submitted", "course", input.courseId, { score, passed, xpAwarded, attemptNumber: previous.length + 1 });
-      return { score, passed: Boolean(passed), xpAwarded, attemptNumber: previous.length + 1 };
+      return { score, passed: Boolean(passed), xpAwarded, attemptNumber: previous.length + 1, review: questions.map(question => ({ id: question.id, correctOption: question.answer, explanation: question.explanation })) };
     }),
     issueCertificate: protectedProcedure.input(courseIdInput).mutation(async ({ ctx, input }) => {
       if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
