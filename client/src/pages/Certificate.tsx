@@ -1,7 +1,8 @@
 import { ArrowLeft, Check, Copy, Download, Linkedin, LockKeyhole, Printer, ShieldCheck, Sparkles, Twitter } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { courses } from "@/data/catalog";
-import { Shell, useProgress } from "@/components/AcademyShell";
+import { Shell } from "@/components/AcademyShell";
+import { useProgress } from "@/hooks/useProgress";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { AuthLauncher } from "@/components/AuthModal";
 import { trpc } from "@/lib/trpc";

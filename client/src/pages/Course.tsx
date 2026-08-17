@@ -1,7 +1,8 @@
 import { ArrowUpRight, Check, Clock3, ExternalLink, Flag, LockKeyhole, Play, Terminal, Trophy } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { courses } from "@/data/catalog";
-import { Shell, useProgress } from "@/components/AcademyShell";
+import { Shell } from "@/components/AcademyShell";
+import { useProgress } from "@/hooks/useProgress";
 
 export default function Course() {
   const [, params] = useRoute("/course/:courseId");

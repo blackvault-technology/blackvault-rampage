@@ -32,11 +32,17 @@ const companySignals = [
   { name: "OpenAI", slug: "openai", lens: "model systems" },
 ];
 
+const supportedLogoSlugs = new Set(["google", "microsoft", "nvidia", "amazon", "oracle", "cisco", "cloudflare", "redhat", "datadog", "openai"]);
+
 function SourceLogo({ slug, name }: { slug: string; name: string }) {
   const [src, setSrc] = useState<string>();
   const [failed, setFailed] = useState(false);
   useEffect(() => {
     let active = true;
+    if (!supportedLogoSlugs.has(slug)) {
+      setFailed(true);
+      return () => { active = false; };
+    }
     const url = `https://api.iconify.design/simple-icons/${slug}.svg?color=%23ffffff`;
     const load = async () => {
       try {
@@ -77,4 +83,3 @@ export default function Home() {
   </main></Shell>;
 }
 
-export { facultySources, companySignals };

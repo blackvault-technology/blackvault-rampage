@@ -4,10 +4,10 @@ import { Link, useLocation } from "wouter";
 import { courses } from "@/data/catalog";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { AuthLauncher, AuthModal } from "@/components/AuthModal";
+import { useAuthModal } from "@/hooks/useAuthModal";
 
 const symbol = "/manus-storage/rampage-symbol_0c3dbff7.png";
 export function Brand() { return <Link href="/"><div className="brand"><img src={symbol} alt="BlackVault starburst" /><div><span>BLACKVAULT</span><small>TECHNOLOGY</small></div><strong className="rampage-lockup"><i>/</i><b>RAMPAGE</b><small>OPEN LEARNING SYSTEM</small></strong></div></Link>; }
-export function useProgress() { const [done, setDone] = useState<string[]>(() => JSON.parse(localStorage.getItem("rampage-completed") || "[]")); const mark = (id: string) => { const next = done.includes(id) ? done : [...done, id]; setDone(next); localStorage.setItem("rampage-completed", JSON.stringify(next)); }; return { done, mark }; }
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -28,4 +28,3 @@ export function Shell({ children }: { children: React.ReactNode }) {
   </div>;
 }
 
-export function useAuthModal() { const [open, setOpen] = useState(false); const [redirect, setRedirect] = useState("/learn"); useEffect(() => { const handler = (event: Event) => { const detail = (event as CustomEvent<{ redirect?: string }>).detail; setRedirect(detail?.redirect || "/learn"); setOpen(true); }; window.addEventListener("rampage:auth", handler); return () => window.removeEventListener("rampage:auth", handler); }, []); return { open, setOpen, redirect }; }

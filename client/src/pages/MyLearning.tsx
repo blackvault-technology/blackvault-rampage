@@ -4,7 +4,8 @@ import { ArrowRight, BookOpen, Bookmark, Check, Clock3, Compass, FileText, Highl
 import { Link } from "wouter";
 import { courses, pdfCatalog } from "@/data/catalog";
 import { learningPaths } from "@/data/paths";
-import { Shell, useProgress } from "@/components/AcademyShell";
+import { Shell } from "@/components/AcademyShell";
+import { useProgress } from "@/hooks/useProgress";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 
