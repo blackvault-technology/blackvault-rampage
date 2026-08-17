@@ -379,7 +379,7 @@
 - [x] Resolve the auth dialog accessibility warning and improve error/loading states.
 - [x] Add or update Vitest coverage for the repaired auth paths.
 - [x] Run tests, TypeScript, production build, API smoke checks, and responsive auth-modal validation.
-- [ ] Save a recoverable auth repair checkpoint and provide the updated version.
+- [x] Save a recoverable auth repair checkpoint and provide the updated version.
 
 
 ## Continue: Production Auth, Animation, and Deep SEO Repair
@@ -388,4 +388,4 @@
 - [x] Make the logo rail continuously animate, pause on interaction, and remain responsive and accessible.
 - [x] Add canonical metadata, Open Graph/Twitter cards, structured data, robots.txt, and sitemap.xml for public routes.
 - [x] Validate local production-like HTML, crawler files, auth API responses, animations, tests, TypeScript, and production build.
-- [ ] Save a recoverable combined repair checkpoint and provide the updated project version.
+- [x] Save a recoverable combined repair checkpoint and provide the updated project version.
