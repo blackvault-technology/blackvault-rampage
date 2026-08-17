@@ -1,11 +1,12 @@
-# Rampage Multi-Course Upgrade
+# Rampage Ecosystem Upgrade
 
-- [x] Research and verify official course pages, lecture playlists, labs, repositories, and project references.
-- [x] Save source URLs and verification notes in a research file.
-- [x] Define scalable JSON content models for courses, phases, lessons, resources, and projects.
-- [x] Add real YouTube embeds with privacy-conscious lazy loading.
-- [x] Build separate routes/pages for academy, course overview, lesson player, resource library, and project brief.
-- [x] Make System Fundamentals the spotlight course while exposing additional course cards and a coming-soon architecture.
-- [x] Add resource discovery, filtering, search, and external-link metadata.
-- [x] Validate type checking, production build, route behavior, responsive layouts, and embed URLs.
-- [ ] Save a final checkpoint and report the upgraded deliverable.
+- [x] Research and verify a broad set of real open PDFs, books, lecture notes, papers, and official course materials.
+- [x] Save source URLs, title, author/institution, topic, license/source notes, and resource type in the research record.
+- [x] Define a structured resource index with PDF metadata, categories, tags, reading time, and course relationships.
+- [x] Add two deeper courses with phases, projects, lessons, and official source links.
+- [x] Build a resource library with search, filters, category navigation, and featured collections.
+- [x] Build a PDF reader page with embedded browser reader, source metadata, open/download fallback, and reading progress.
+- [x] Improve course UX with breadcrumbs, phase navigation, saved progress, next actions, and project gates.
+- [x] Add a non-legal digital completion certificate flow with local certificate ID, learner name, course, completion date, and print/download view.
+- [x] Validate resource URLs, reader behavior, certificate output, responsive layouts, type checking, and production build.
+- [x] Save the final ecosystem checkpoint and report the upgraded deliverable.
