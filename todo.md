@@ -406,3 +406,11 @@
 - [x] Inspect current Vercel deployment logs and routing for any remaining serverless invocation failure.
 - [x] Apply and validate the smallest durable repair for the published auth endpoint.
 - [x] Save a recoverable checkpoint after confirming the exact endpoint returns JSON.
+
+
+## Continue: Vercel ESM Module Resolution Repair
+- [x] Reproduce the published `ERR_MODULE_NOT_FOUND` failure and inspect the Vercel API build path.
+- [x] Make the API entrypoint self-contained or correctly bundled so extensionless server imports resolve in Vercel.
+- [x] Add regression coverage for the production API module-resolution path.
+- [x] Validate auth.me, auth.login, registration, Neon access, TypeScript, tests, and production build.
+- [ ] Save a recoverable module-resolution repair checkpoint and provide the updated version.
