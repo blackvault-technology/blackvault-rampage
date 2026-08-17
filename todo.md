@@ -433,11 +433,11 @@
 
 ## Continue: Working Verification Link Delivery
 - [x] Audit verification-token creation, email adapter, environment configuration, and account UI states.
-- [ ] Configure a real transactional email delivery path and fail clearly when required credentials are absent.
+- [x] Configure a real transactional email delivery path and fail clearly when required credentials are absent.
 - [x] Harden verification-link expiry, resend throttling, link construction, and success/error UX.
 - [x] Add or update focused tests for delivery outcomes and verification completion.
 - [x] Run tests, TypeScript, production build, and verification-flow validation.
-- [ ] Save a recoverable verification-delivery checkpoint and provide the updated version.
+- [x] Save a recoverable verification-delivery checkpoint and provide the updated version.
 
 
 ## Continue: Neon Auth Mail Verification Delivery
@@ -446,7 +446,7 @@
 - [x] Connect verification, resend, expiry, and completion flows to Neon-backed auth state.
 - [x] Add focused delivery and verification regression tests.
 - [x] Run tests, TypeScript, production build, and auth-flow validation.
-- [ ] Save a recoverable Neon mail-delivery checkpoint and provide the updated version.
+- [x] Save a recoverable Neon mail-delivery checkpoint and provide the updated version.
 
 
 ## Continue: Full Neon-Connected UX and Interaction Polish
@@ -473,3 +473,9 @@
 - [x] Apply the additive schema change and verify the account/preferences query uses real Neon data without fallback warnings.
 - [x] Run focused tests, TypeScript, production build, and account smoke validation.
 - [x] Save a recoverable checkpoint after the warning is resolved.
+
+## Continue: Premium Landing Hero Polish
+- [x] Audit the current hero hierarchy, CTA flow, responsive composition, and motion treatment.
+- [x] Refine hero copy, visual framing, course-focus signal, and technical-manual details without introducing mock claims.
+- [x] Add restrained premium motion and responsive behavior with reduced-motion support.
+- [x] Verify desktop and mobile screenshots, run TypeScript/tests/build, and save a recoverable checkpoint.
