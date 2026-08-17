@@ -130,6 +130,27 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type RampageUser = typeof rampageUsers.$inferSelect;
 
+export const rampageXpLedger = pgTable(
+  "rampage_xp_ledger",
+  {
+    id: bigserial("id", { mode: "number" }).primaryKey(),
+    userId: bigint("user_id", { mode: "number" }).notNull(),
+    eventKey: text("event_key").notNull(),
+    amount: integer("amount").notNull(),
+    sourceType: text("source_type").notNull(),
+    sourceId: text("source_id").notNull(),
+    courseId: text("course_id"),
+    metadata: jsonb("metadata").notNull().default({}),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  table => ({
+    eventUnique: uniqueIndex("rampage_xp_event_unique").on(table.userId, table.eventKey),
+    userCreatedIndex: index("rampage_xp_user_created_idx").on(table.userId, table.createdAt),
+  }),
+);
+
+export type RampageXpLedger = typeof rampageXpLedger.$inferSelect;
+
 export const rampageLessonState = pgTable(
   "rampage_lesson_state",
   {

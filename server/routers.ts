@@ -21,9 +21,14 @@ import {
 import { COURSE_LESSON_COUNTS, buildAttemptIntegrity, getCourseRule, isSupportedCourse } from "@shared/courseRules";
 import { chapterQuizBank, finalAssessmentBank } from "@shared/courseAssessments";
 import { desc, sql } from "drizzle-orm";
-import { rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts } from "./db";
+import { rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger } from "./db";
 
 const courseIdInput = z.object({ courseId: z.string().min(1).max(120) });
+
+async function awardXp(db: NonNullable<Awaited<ReturnType<typeof getDb>>>, userId: number, eventKey: string, amount: number, sourceType: string, sourceId: string, courseId: string, metadata: Record<string, unknown> = {}) {
+  const inserted = await db.insert(rampageXpLedger).values({ userId, eventKey, amount, sourceType, sourceId, courseId, metadata }).onConflictDoNothing({ target: [rampageXpLedger.userId, rampageXpLedger.eventKey] }).returning({ amount: rampageXpLedger.amount });
+  return inserted[0]?.amount ?? 0;
+}
 
 export const appRouter = router({
   system: systemRouter,
@@ -47,8 +52,9 @@ export const appRouter = router({
         target: [rampageProgress.userId, rampageProgress.courseId, rampageProgress.lessonId],
         set: { completedAt: new Date() },
       });
-      await writeAuditEvent(learner.id, "lesson_completed", "lesson", input.lessonId, { courseId: input.courseId });
-      return { success: true } as const;
+      const xpAwarded = await awardXp(db, learner.id, `lesson:${input.courseId}:${input.lessonId}`, 10, "lesson_completion", input.lessonId, input.courseId);
+      await writeAuditEvent(learner.id, "lesson_completed", "lesson", input.lessonId, { courseId: input.courseId, xpAwarded });
+      return { success: true, xpAwarded } as const;
     }),
     saveReaderState: protectedProcedure.input(z.object({ resourceId: z.string().min(1), currentPage: z.number().int().min(1), progressPercent: z.number().min(0).max(100), note: z.string().max(5000).nullable().optional() })).mutation(async ({ ctx, input }) => {
       const db = await getDb();
@@ -98,8 +104,9 @@ export const appRouter = router({
       const completedIds = new Set(completed.map(row => row.lessonId));
       if (!input.lessonIds.every(id => completedIds.has(id))) throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Complete every lesson in this chapter first." });
       await db.insert(rampageChapterCompletions).values({ userId: learner.id, courseId: input.courseId, chapterId: input.chapterId }).onConflictDoUpdate({ target: [rampageChapterCompletions.userId, rampageChapterCompletions.courseId, rampageChapterCompletions.chapterId], set: { completedAt: new Date() } });
-      await writeAuditEvent(learner.id, "chapter_completed", "chapter", input.chapterId, { courseId: input.courseId });
-      return { success: true } as const;
+      const xpAwarded = await awardXp(db, learner.id, `chapter:${input.courseId}:${input.chapterId}`, 50, "chapter_completion", input.chapterId, input.courseId);
+      await writeAuditEvent(learner.id, "chapter_completed", "chapter", input.chapterId, { courseId: input.courseId, xpAwarded });
+      return { success: true, xpAwarded } as const;
     }),
     submitQuiz: protectedProcedure.input(z.object({ courseId: z.string().min(1), chapterId: z.string().min(1), lessonId: z.string().min(1), answers: z.record(z.string(), z.number().int().min(0)), startedAt: z.number().int().positive(), tabSwitches: z.number().int().min(0).max(100), fullscreenExits: z.number().int().min(0).max(100) })).mutation(async ({ ctx, input }) => {
       if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
@@ -113,8 +120,9 @@ export const appRouter = router({
       const passed = score >= 80 ? 1 : 0;
       const submittedAt = Date.now();
       await db.insert(rampageQuizAttempts).values({ userId: learner.id, courseId: input.courseId, chapterId: input.chapterId, lessonId: input.lessonId, attemptNumber: previous.length + 1, score, passed, answers: input.answers, integrity: buildAttemptIntegrity({ startedAt: input.startedAt, submittedAt, tabSwitches: input.tabSwitches, fullscreenExits: input.fullscreenExits, questionOrder: questions.map(question => question.id) }), startedAt: new Date(input.startedAt), submittedAt: new Date(submittedAt) });
-      await writeAuditEvent(learner.id, "quiz_submitted", "lesson", input.lessonId, { courseId: input.courseId, score, passed });
-      return { score, passed: Boolean(passed), explanations: questions.map(question => ({ id: question.id, explanation: question.explanation })) };
+      const xpAwarded = passed ? await awardXp(db, learner.id, `quiz-pass:${input.courseId}:${input.lessonId}`, 25, "quiz_pass", input.lessonId, input.courseId, { score }) : 0;
+      await writeAuditEvent(learner.id, "quiz_submitted", "lesson", input.lessonId, { courseId: input.courseId, score, passed, xpAwarded });
+      return { score, passed: Boolean(passed), xpAwarded, explanations: questions.map(question => ({ id: question.id, explanation: question.explanation })) };
     }),
     submitFinalAssessment: protectedProcedure.input(z.object({ courseId: z.string().min(1), answers: z.record(z.string(), z.number().int().min(0)), startedAt: z.number().int().positive(), tabSwitches: z.number().int().min(0).max(100), fullscreenExits: z.number().int().min(0).max(100) })).mutation(async ({ ctx, input }) => {
       if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
@@ -130,9 +138,13 @@ export const appRouter = router({
       const score = Math.round((questions.filter(question => input.answers[question.id] === question.answer).length / questions.length) * 100);
       const passed = score >= rule.passScore ? 1 : 0;
       const submittedAt = Date.now();
+      const elapsedSeconds = Math.floor((submittedAt - input.startedAt) / 1000);
+      if (input.startedAt > submittedAt + 5_000) throw new TRPCError({ code: "BAD_REQUEST", message: "Assessment start time is invalid." });
+      if (elapsedSeconds > 16 * 60) throw new TRPCError({ code: "TIMEOUT", message: "Assessment time window expired. Review the course before retrying." });
       await db.insert(rampageAssessmentAttempts).values({ userId: learner.id, courseId: input.courseId, attemptNumber: previous.length + 1, score, passed, answers: input.answers, questionOrder: questions.map(question => question.id), integrity: buildAttemptIntegrity({ startedAt: input.startedAt, submittedAt, tabSwitches: input.tabSwitches, fullscreenExits: input.fullscreenExits, questionOrder: questions.map(question => question.id) }), startedAt: new Date(input.startedAt), submittedAt: new Date(submittedAt) });
-      await writeAuditEvent(learner.id, "final_assessment_submitted", "course", input.courseId, { score, passed, attemptNumber: previous.length + 1 });
-      return { score, passed: Boolean(passed), attemptNumber: previous.length + 1 };
+      const xpAwarded = passed ? await awardXp(db, learner.id, `final-pass:${input.courseId}`, 200, "final_assessment_pass", input.courseId, input.courseId, { score, attemptNumber: previous.length + 1 }) : 0;
+      await writeAuditEvent(learner.id, "final_assessment_submitted", "course", input.courseId, { score, passed, xpAwarded, attemptNumber: previous.length + 1 });
+      return { score, passed: Boolean(passed), xpAwarded, attemptNumber: previous.length + 1 };
     }),
     issueCertificate: protectedProcedure.input(courseIdInput).mutation(async ({ ctx, input }) => {
       if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });

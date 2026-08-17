@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /learn
+Disallow: /course/*/lesson/
+Disallow: /course/*/assessment
+Disallow: /certificate/

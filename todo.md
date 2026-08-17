@@ -97,3 +97,10 @@
 - [x] Base the checkpoint rail on lesson duration data, with a safe 3-minute fallback for lessons lacking parseable duration metadata.
 - [x] Save a recoverable checkpoint after the timeline correction.
 - [x] Save a new recoverable checkpoint after the validated mm:ss and duration-based timeline changes.
+
+## Continue: Gamified Secure Assessment and SEO Upgrade
+- [ ] Audit assessment, quiz, progress, SEO metadata, sitemap/robots, and repository readiness.
+- [ ] Design a non-monetary learning XP system with secure server-verified awards and transparent learner states.
+- [ ] Upgrade quizzes and final tests with full-screen timed UX, integrity signals, anti-cheat logging, and clear failure/retry handling without claiming impossible prevention.
+- [ ] Add learning UX upgrades and SEO foundations for scalable multi-course discovery.
+- [ ] Validate tests, build, responsive assessment routes, and GitHub/Vercel readiness; save a checkpoint.

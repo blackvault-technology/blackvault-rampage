@@ -13,6 +13,7 @@ import {
   rampageReaderState,
   rampageLessonState,
   rampageQuizAttempts,
+  rampageXpLedger,
   rampageUsers,
   users,
 } from "../drizzle/schema";
@@ -84,14 +85,16 @@ export async function getLearnerState(authOpenId: string) {
   const learner = await getOrCreateRampageUser(authOpenId);
   const db = await getDb();
   if (!db) throw new Error("Neon database is not configured");
-  const [progress, readerState, bookmarks, highlights, certificates] = await Promise.all([
+  const [progress, readerState, bookmarks, highlights, certificates, xpLedger] = await Promise.all([
     db.select().from(rampageProgress).where(eq(rampageProgress.userId, learner.id)),
     db.select().from(rampageReaderState).where(eq(rampageReaderState.userId, learner.id)).orderBy(desc(rampageReaderState.updatedAt)),
     db.select().from(rampageReaderBookmarks).where(eq(rampageReaderBookmarks.userId, learner.id)).orderBy(desc(rampageReaderBookmarks.createdAt)),
     db.select().from(rampageReaderHighlights).where(eq(rampageReaderHighlights.userId, learner.id)).orderBy(desc(rampageReaderHighlights.createdAt)),
     db.select().from(rampageCertificates).where(eq(rampageCertificates.userId, learner.id)).orderBy(desc(rampageCertificates.issuedAt)),
+    db.select().from(rampageXpLedger).where(eq(rampageXpLedger.userId, learner.id)).orderBy(desc(rampageXpLedger.createdAt)),
   ]);
-  return { learner, progress, readerState, bookmarks, highlights, certificates };
+  const xp = xpLedger.reduce((total, entry) => total + entry.amount, 0);
+  return { learner, progress, readerState, bookmarks, highlights, certificates, xp, xpLedger };
 }
 
 export async function writeAuditEvent(userId: number, eventType: string, entityType?: string, entityId?: string, metadata: Record<string, unknown> = {}) {
@@ -100,4 +103,4 @@ export async function writeAuditEvent(userId: number, eventType: string, entityT
   await db.insert(rampageAuditEvents).values({ userId, eventType, entityType: entityType ?? null, entityId: entityId ?? null, metadata });
 }
 
-export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState };
+export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState, rampageXpLedger };
