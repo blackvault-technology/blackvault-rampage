@@ -138,4 +138,13 @@
 - [x] Add founder, mission, BlackVault Foundation, and affordability sections using user-provided facts and responsible credential wording.
 - [x] Validate branding, responsive layout, logo fallback implementation, tests/build; checkpoint save remains the final delivery action.
 - [x] Verify Hunter-logo fallback behavior by forcing a failing image request and visually confirming initials fallback on desktop/mobile; final tests and production build pass.
+
+## Continue: Premium Logo Rail, About Us, and Deep SEO
+- [x] Audit public routes, current logo rail, typography, metadata, robots, and sitemap foundations.
+- [x] Research and document a higher-quality public logo source and factual university/company provenance set; Iconify Simple Icons is used without secrets, with graceful initials fallbacks.
+- [x] Replace the post-hero logo section with a premium blurred rail and optimized lazy loading/fallback behavior.
+- [x] Add a dedicated About Us page with BlackVault Foundation, founder, mission, and affordability narrative.
+- [x] Humanize public-facing copy and add deeper SPA-compatible technical SEO across public routes: route metadata, canonical URLs, social cards, robots directives, Organization/About/Course JSON-LD, and factual provenance framing. A deployment-domain sitemap remains hosting-specific.
+- [x] Validate responsive branding, logo fallbacks, route metadata, tests, and production build; checkpoint save remains the final delivery action.
+- [x] Force one Iconify logo request to fail, visually confirm initials fallback on desktop/mobile after the provider switch, restore the real source, and pass final tests/build.
 - [x] Validate sources, security, responsive routes, tests, and build; checkpoint save remains the final delivery action.
