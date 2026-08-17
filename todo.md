@@ -270,4 +270,4 @@
 - [x] Add accessible labels and live status messaging for sharing and progress controls.
 - [x] Add regression tests for certificate share URL construction and protected profile data.
 - [x] Validate tests, type checks, production build, responsive screenshots, and Vercel handoff readiness.
-- [ ] Save a publish-ready checkpoint and provide the user with the Vercel Publish handoff steps.
+- [x] Save a publish-ready checkpoint and provide the user with the Vercel Publish handoff steps.
