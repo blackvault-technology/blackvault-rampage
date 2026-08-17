@@ -413,4 +413,4 @@
 - [x] Make the API entrypoint self-contained or correctly bundled so extensionless server imports resolve in Vercel.
 - [x] Add regression coverage for the production API module-resolution path.
 - [x] Validate auth.me, auth.login, registration, Neon access, TypeScript, tests, and production build.
-- [ ] Save a recoverable module-resolution repair checkpoint and provide the updated version.
+- [x] Save a recoverable module-resolution repair checkpoint and provide the updated version.
