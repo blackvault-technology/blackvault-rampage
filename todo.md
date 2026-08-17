@@ -424,8 +424,8 @@
 
 
 ## Continue: Remove Vercel Collision and Push Fix
-- [ ] Audit tracked and generated `api/index.js` artifacts and Git history.
-- [ ] Remove same-stem generated output from the build pipeline and keep one deployable API source path.
-- [ ] Validate the exact repository file set, Vercel configuration, tests, TypeScript, and production build.
-- [ ] Push the verified fix to the connected GitHub repository.
+- [x] Audit tracked and generated `api/index.js` artifacts and Git history.
+- [x] Remove same-stem generated output from the build pipeline and keep one deployable API source path.
+- [x] Validate the exact repository file set, Vercel configuration, tests, TypeScript, and production build.
+- [x] Push the verified fix to the connected GitHub repository.
 - [ ] Save a recoverable checkpoint and provide the GitHub/publish handoff.
