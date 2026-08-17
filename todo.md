@@ -159,4 +159,14 @@
 - [x] Run security, dependency, type, build, responsive, and accessibility scans; fix discovered bugs. Application-level boundaries are hardened; dependency advisories are documented in SECURITY-AUDIT.md for controlled package maintenance.
 - [x] Save a new recoverable checkpoint after validation.
 - [x] Attempt a controlled dependency-graph upgrade; the refresh was blocked by the repository's pinned `wouter@3.7.1` patch mismatch, so advisories remain documented for a dedicated dependency-maintenance change.
+
+## Continue: Native-Style AI Academy Expansion
+- [x] Audit lesson-console overflow, existing loading/motion patterns, AI course catalog, logo rail requests, and mobile-app feasibility.
+- [x] Add smooth loading animations and hover/press feedback to left-navigation and right-context regions.
+- [x] Make lesson side regions stable components without independent scrolling while preserving mobile usability.
+- [x] Spotlight AI Systems and add three source-aligned AI courses with honest workload and curriculum metadata.
+- [x] Cache logo-rail responses/assets to avoid repeated provider requests and retain graceful fallbacks.
+- [x] Build or scope a native-style mobile app surface with shared learner concepts and no mock data. Responsive web app chrome is implemented; a separate Expo/native package was not created inside this web project.
+- [x] Run tests, type checking, production build, responsive screenshots, accessibility review, and interaction validation.
+- [x] Save a new recoverable checkpoint after validation.
 - [x] Remove generated duplicate PDF placeholder records so the resource index contains only canonical sources or explicitly authored records.
