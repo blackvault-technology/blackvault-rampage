@@ -148,3 +148,15 @@
 - [x] Validate responsive branding, logo fallbacks, route metadata, tests, and production build; checkpoint save remains the final delivery action.
 - [x] Force one Iconify logo request to fail, visually confirm initials fallback on desktop/mobile after the provider switch, restore the real source, and pass final tests/build.
 - [x] Validate sources, security, responsive routes, tests, and build; checkpoint save remains the final delivery action.
+
+## Continue: Premium Motion, Course Depth, and Lesson Workspace Security
+- [x] Audit current animation dependencies, course promises, lesson layout, and security surface.
+- [x] Add motion-safe premium animation components with reduced-motion support and no distracting loops.
+- [x] Refactor and validate the lesson workspace with code-visible structural improvements beyond motion wrappers, then verify desktop/mobile layout behavior for the left-nav / content / right-context console.
+- [x] Audit and update active course descriptions, durations, lesson metadata, and public promise copy so each active course demonstrably matches its verified curriculum and sources.
+- [x] Improve the lesson page into a stable left-navigation / content / right-context workspace across desktop and mobile.
+- [x] Refresh active course metadata and lesson depth so public promises match verified curriculum and source evidence.
+- [x] Run security, dependency, type, build, responsive, and accessibility scans; fix discovered bugs. Application-level boundaries are hardened; dependency advisories are documented in SECURITY-AUDIT.md for controlled package maintenance.
+- [x] Save a new recoverable checkpoint after validation.
+- [ ] Upgrade the dependency graph in a controlled maintenance pass and rerun the full validation suite.
+- [x] Remove generated duplicate PDF placeholder records so the resource index contains only canonical sources or explicitly authored records.

@@ -112,6 +112,11 @@ export const appRouter = router({
       if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
       const questions = chapterQuizBank[input.courseId] ?? [];
       if (!questions.length) throw new TRPCError({ code: "PRECONDITION_FAILED", message: "This lesson has no verified quiz yet." });
+      const expectedIds = new Set(questions.map((question) => question.id));
+      const answerIds = Object.keys(input.answers);
+      if (answerIds.length !== questions.length || answerIds.some((id) => !expectedIds.has(id)) || questions.some((question) => input.answers[question.id] === undefined || input.answers[question.id] >= question.options.length)) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "Submit exactly one valid answer for every checkpoint question." });
+      }
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
       const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
@@ -130,6 +135,11 @@ export const appRouter = router({
       const rule = getCourseRule(input.courseId);
       const questions = finalAssessmentBank[input.courseId] ?? [];
       if (!rule || questions.length !== rule.finalQuestionCount) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Assessment configuration is incomplete." });
+      const expectedIds = new Set(questions.map((question) => question.id));
+      const answerIds = Object.keys(input.answers);
+      if (answerIds.length !== questions.length || answerIds.some((id) => !expectedIds.has(id)) || questions.some((question) => input.answers[question.id] === undefined || input.answers[question.id] >= question.options.length)) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "Submit exactly one valid answer for every assessment question." });
+      }
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
       const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);

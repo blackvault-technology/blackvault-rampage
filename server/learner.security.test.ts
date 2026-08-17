@@ -40,4 +40,30 @@ describe("learner security boundaries", () => {
     expect(isAssessmentWithinWindow(startedAt, startedAt + 16 * 60 * 1000 + 1)).toBe(false);
     expect(isAssessmentWithinWindow(startedAt, startedAt - 6_000)).toBe(false);
   });
+
+  it("rejects incomplete lesson quiz payloads before touching the database", async () => {
+    const caller = appRouter.createCaller(createContext(authenticatedUser));
+    await expect(caller.learner.submitQuiz({
+      courseId: "networking-systems",
+      chapterId: "net-foundations",
+      lessonId: "net-internet",
+      answers: {},
+      startedAt: Date.now(),
+      tabSwitches: 0,
+      fullscreenExits: 0,
+    })).rejects.toMatchObject({ code: "BAD_REQUEST" });
+  });
+
+  it("rejects answer indexes outside the verified question options", async () => {
+    const caller = appRouter.createCaller(createContext(authenticatedUser));
+    await expect(caller.learner.submitQuiz({
+      courseId: "networking-systems",
+      chapterId: "net-foundations",
+      lessonId: "net-internet",
+      answers: { "net-q1": 99, "net-q2": 0, "net-q3": 0 },
+      startedAt: Date.now(),
+      tabSwitches: 0,
+      fullscreenExits: 0,
+    })).rejects.toMatchObject({ code: "BAD_REQUEST" });
+  });
 });
