@@ -191,6 +191,14 @@
 - [x] Reset confirmation and responsive first-name header polish are implemented and checkpointed.
 
 ## Continue: Auth Modal Controls and Legal Information
+
+## Continue: Vercel Readiness, Security, and UX Polish
+- [x] Audit Vercel project state, deployment configuration, required secrets, and repository sync.
+- [x] Run a focused security review and fix actionable deployment blockers. Fixed the remaining dialog-description accessibility warning and documented production dependency advisories in SECURITY-AUDIT.md.
+- [x] Polish deployment-critical UX, responsive states, metadata, and error surfaces.
+- [x] Validate tests, production build, runtime logs, responsive screenshots, and Vercel readiness through integration inspection. Nine tests pass; TypeScript and production build pass; chunk-size and pnpm configuration warnings remain documented.
+- [x] Save a deployment-ready checkpoint and provide the Vercel publish handoff.
+
 - [x] Audit auth-modal button states, footer links, route map, and legal-copy requirements.
 - [x] Polish auth-modal button hierarchy, loading/disabled states, errors, focus treatment, and hover/press feedback.
 - [x] Create human-readable Terms, Privacy, Cookie, and Acceptable Use pages with shared legal layout.
