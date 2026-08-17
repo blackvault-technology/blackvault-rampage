@@ -43,6 +43,13 @@
       "when": 1786981691987,
       "tag": "0005_dusty_black_crow",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1786993565751,
+      "tag": "0006_robust_hedge_knight",
+      "breakpoints": true
     }
   ]
 }

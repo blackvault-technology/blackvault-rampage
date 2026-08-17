@@ -429,3 +429,40 @@
 - [x] Validate the exact repository file set, Vercel configuration, tests, TypeScript, and production build.
 - [x] Push the verified fix to the connected GitHub repository.
 - [x] Save a recoverable checkpoint and provide the GitHub/publish handoff.
+
+
+## Continue: Working Verification Link Delivery
+- [ ] Audit verification-token creation, email adapter, environment configuration, and account UI states.
+- [ ] Configure a real transactional email delivery path and fail clearly when required credentials are absent.
+- [ ] Harden verification-link expiry, resend throttling, link construction, and success/error UX.
+- [ ] Add or update focused tests for delivery outcomes and verification completion.
+- [ ] Run tests, TypeScript, production build, and verification-flow validation.
+- [ ] Save a recoverable verification-delivery checkpoint and provide the updated version.
+
+
+## Continue: Neon Auth Mail Verification Delivery
+- [ ] Audit the Neon-backed verification token and current mail configuration.
+- [ ] Configure the transactional mail provider required to send verification links from production.
+- [ ] Connect verification, resend, expiry, and completion flows to Neon-backed auth state.
+- [ ] Add focused delivery and verification regression tests.
+- [ ] Run tests, TypeScript, production build, and auth-flow validation.
+- [ ] Save a recoverable Neon mail-delivery checkpoint and provide the updated version.
+
+
+## Continue: Full Neon-Connected UX and Interaction Polish
+- [x] Audit every button, menu item, card action, form, route, and data source for dead ends or mock behavior.
+- [x] Connect missing learner actions and persistence through Neon-backed tRPC procedures.
+- [x] Remove remaining mock, demo, placeholder, or silently disabled states; use honest loading and empty states.
+- [x] Polish responsive interaction feedback, focus states, accessibility, and error recovery across the ecosystem.
+- [x] Add or update tests for connected actions and real-data boundaries.
+- [x] Run tests, TypeScript, production build, Neon-backed smoke checks, and responsive browser validation.
+- [ ] Save a recoverable full-polish checkpoint and provide the updated version.
+
+
+## Continue: Full Polish and Neon-Connected Controls Only
+- [x] Audit buttons, menus, forms, cards, and data sources while excluding email-delivery work.
+- [x] Connect remaining learner interactions and persistence through Neon-backed tRPC procedures.
+- [x] Remove mock, demo, and misleading placeholder states; keep honest empty and loading states.
+- [x] Polish responsive, keyboard, focus, success, error, and disabled interaction states.
+- [x] Validate tests, TypeScript, production build, Neon-backed smoke paths, and responsive browser behavior.
+- [ ] Save a recoverable full-polish checkpoint and provide the updated version.

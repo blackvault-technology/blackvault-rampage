@@ -107,17 +107,18 @@ export async function getLearnerState(authOpenId: string) {
     console.warn("[Database] Learner preferences unavailable; using defaults:", error instanceof Error ? error.message : error);
     return [];
   });
-  const [progress, readerState, bookmarks, highlights, certificates, xpLedger, preferences] = await Promise.all([
+  const [progress, readerState, bookmarks, highlights, certificates, xpLedger, lessonState, preferences] = await Promise.all([
     db.select().from(rampageProgress).where(eq(rampageProgress.userId, learner.id)),
     db.select().from(rampageReaderState).where(eq(rampageReaderState.userId, learner.id)).orderBy(desc(rampageReaderState.updatedAt)),
     db.select().from(rampageReaderBookmarks).where(eq(rampageReaderBookmarks.userId, learner.id)).orderBy(desc(rampageReaderBookmarks.createdAt)),
     db.select().from(rampageReaderHighlights).where(eq(rampageReaderHighlights.userId, learner.id)).orderBy(desc(rampageReaderHighlights.createdAt)),
     db.select().from(rampageCertificates).where(eq(rampageCertificates.userId, learner.id)).orderBy(desc(rampageCertificates.issuedAt)),
     db.select().from(rampageXpLedger).where(eq(rampageXpLedger.userId, learner.id)),
+    db.select().from(rampageLessonState).where(eq(rampageLessonState.userId, learner.id)).orderBy(desc(rampageLessonState.updatedAt)),
     preferencesQuery,
   ]);
   const xp = xpLedger.reduce((total, entry) => total + entry.amount, 0);
-  return { learner, progress, readerState, bookmarks, highlights, certificates, xp, xpLedger, preferences: preferences[0] ?? null };
+  return { learner, progress, readerState, bookmarks, highlights, certificates, xp, xpLedger, lessonState, preferences: preferences[0] ?? null };
 }
 
 export async function writeAuditEvent(userId: number, eventType: string, entityType?: string, entityId?: string, metadata: Record<string, unknown> = {}) {

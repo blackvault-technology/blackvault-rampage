@@ -245,6 +245,14 @@ export const appRouter = router({
       await db.insert(rampageLessonState).values({ userId: learner.id, courseId: input.courseId, lessonId: input.lessonId, currentSecond: input.currentSecond, durationSecond: input.durationSecond }).onConflictDoUpdate({ target: [rampageLessonState.userId, rampageLessonState.courseId, rampageLessonState.lessonId], set: { currentSecond: input.currentSecond, durationSecond: input.durationSecond, updatedAt: new Date() } });
       return { success: true } as const;
     }),
+    saveLessonWorkflow: protectedProcedure.input(z.object({ courseId: z.string().min(1), lessonId: z.string().min(1), currentSecond: z.number().int().min(0), durationSecond: z.number().int().min(0), sourceComplete: z.boolean(), labComplete: z.boolean(), evidenceComplete: z.boolean(), evidenceNote: z.string().max(280) })).mutation(async ({ ctx, input }) => {
+      if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
+      await db.insert(rampageLessonState).values({ userId: learner.id, courseId: input.courseId, lessonId: input.lessonId, currentSecond: input.currentSecond, durationSecond: input.durationSecond, sourceComplete: input.sourceComplete ? 1 : 0, labComplete: input.labComplete ? 1 : 0, evidenceComplete: input.evidenceComplete ? 1 : 0, evidenceNote: input.evidenceNote.trim() || null }).onConflictDoUpdate({ target: [rampageLessonState.userId, rampageLessonState.courseId, rampageLessonState.lessonId], set: { currentSecond: input.currentSecond, durationSecond: input.durationSecond, sourceComplete: input.sourceComplete ? 1 : 0, labComplete: input.labComplete ? 1 : 0, evidenceComplete: input.evidenceComplete ? 1 : 0, evidenceNote: input.evidenceNote.trim() || null, updatedAt: new Date() } });
+      return { success: true } as const;
+    }),
     completeChapter: protectedProcedure.input(z.object({ courseId: z.string().min(1), chapterId: z.string().min(1), lessonIds: z.array(z.string().min(1)).min(1) })).mutation(async ({ ctx, input }) => {
       if (!isSupportedCourse(input.courseId)) throw new TRPCError({ code: "BAD_REQUEST", message: "Unsupported course" });
       const db = await getDb();

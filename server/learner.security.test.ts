@@ -29,10 +29,11 @@ describe("learner security boundaries", () => {
     await expect(caller.learner.issueCertificate({ courseId: "ai-systems" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
   });
 
-  it("rejects learner state, preferences, and profile reads for anonymous callers", async () => {
+  it("rejects learner state, preferences, workflow writes, and profile reads for anonymous callers", async () => {
     const caller = appRouter.createCaller(createContext(null));
     await expect(caller.learner.state()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.learner.savePreferences({ goal: "Build systems", weeklyTargetMinutes: 120, notificationsEnabled: false })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.learner.saveLessonWorkflow({ courseId: "networking-systems", lessonId: "net-internet", currentSecond: 30, durationSecond: 120, sourceComplete: true, labComplete: false, evidenceComplete: false, evidenceNote: "" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.auth.profile()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
   });
 

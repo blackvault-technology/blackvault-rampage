@@ -366,6 +366,10 @@ var rampageLessonState = pgTable(
     lessonId: text("lesson_id").notNull(),
     currentSecond: integer("current_second").notNull().default(0),
     durationSecond: integer("duration_second").notNull().default(0),
+    sourceComplete: integer("source_complete").notNull().default(0),
+    labComplete: integer("lab_complete").notNull().default(0),
+    evidenceComplete: integer("evidence_complete").notNull().default(0),
+    evidenceNote: text("evidence_note"),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
   },
   (table) => ({ pk: primaryKey({ columns: [table.userId, table.courseId, table.lessonId] }), userIndex: index("rampage_lesson_state_user_idx").on(table.userId, table.updatedAt) })
@@ -466,17 +470,18 @@ async function getLearnerState(authOpenId) {
     console.warn("[Database] Learner preferences unavailable; using defaults:", error instanceof Error ? error.message : error);
     return [];
   });
-  const [progress, readerState, bookmarks, highlights, certificates, xpLedger, preferences] = await Promise.all([
+  const [progress, readerState, bookmarks, highlights, certificates, xpLedger, lessonState, preferences] = await Promise.all([
     db.select().from(rampageProgress).where(eq(rampageProgress.userId, learner.id)),
     db.select().from(rampageReaderState).where(eq(rampageReaderState.userId, learner.id)).orderBy(desc(rampageReaderState.updatedAt)),
     db.select().from(rampageReaderBookmarks).where(eq(rampageReaderBookmarks.userId, learner.id)).orderBy(desc(rampageReaderBookmarks.createdAt)),
     db.select().from(rampageReaderHighlights).where(eq(rampageReaderHighlights.userId, learner.id)).orderBy(desc(rampageReaderHighlights.createdAt)),
     db.select().from(rampageCertificates).where(eq(rampageCertificates.userId, learner.id)).orderBy(desc(rampageCertificates.issuedAt)),
     db.select().from(rampageXpLedger).where(eq(rampageXpLedger.userId, learner.id)),
+    db.select().from(rampageLessonState).where(eq(rampageLessonState.userId, learner.id)).orderBy(desc(rampageLessonState.updatedAt)),
     preferencesQuery
   ]);
   const xp = xpLedger.reduce((total, entry) => total + entry.amount, 0);
-  return { learner, progress, readerState, bookmarks, highlights, certificates, xp, xpLedger, preferences: preferences[0] ?? null };
+  return { learner, progress, readerState, bookmarks, highlights, certificates, xp, xpLedger, lessonState, preferences: preferences[0] ?? null };
 }
 async function writeAuditEvent(userId, eventType, entityType, entityId, metadata = {}) {
   const db = await getDb();
@@ -885,6 +890,14 @@ var appRouter = router({
       if (!db) throw new TRPCError3({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
       const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
       await db.insert(rampageLessonState).values({ userId: learner.id, courseId: input.courseId, lessonId: input.lessonId, currentSecond: input.currentSecond, durationSecond: input.durationSecond }).onConflictDoUpdate({ target: [rampageLessonState.userId, rampageLessonState.courseId, rampageLessonState.lessonId], set: { currentSecond: input.currentSecond, durationSecond: input.durationSecond, updatedAt: /* @__PURE__ */ new Date() } });
+      return { success: true };
+    }),
+    saveLessonWorkflow: protectedProcedure.input(z2.object({ courseId: z2.string().min(1), lessonId: z2.string().min(1), currentSecond: z2.number().int().min(0), durationSecond: z2.number().int().min(0), sourceComplete: z2.boolean(), labComplete: z2.boolean(), evidenceComplete: z2.boolean(), evidenceNote: z2.string().max(280) })).mutation(async ({ ctx, input }) => {
+      if (!isSupportedCourse(input.courseId)) throw new TRPCError3({ code: "BAD_REQUEST", message: "Unsupported course" });
+      const db = await getDb();
+      if (!db) throw new TRPCError3({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
+      await db.insert(rampageLessonState).values({ userId: learner.id, courseId: input.courseId, lessonId: input.lessonId, currentSecond: input.currentSecond, durationSecond: input.durationSecond, sourceComplete: input.sourceComplete ? 1 : 0, labComplete: input.labComplete ? 1 : 0, evidenceComplete: input.evidenceComplete ? 1 : 0, evidenceNote: input.evidenceNote.trim() || null }).onConflictDoUpdate({ target: [rampageLessonState.userId, rampageLessonState.courseId, rampageLessonState.lessonId], set: { currentSecond: input.currentSecond, durationSecond: input.durationSecond, sourceComplete: input.sourceComplete ? 1 : 0, labComplete: input.labComplete ? 1 : 0, evidenceComplete: input.evidenceComplete ? 1 : 0, evidenceNote: input.evidenceNote.trim() || null, updatedAt: /* @__PURE__ */ new Date() } });
       return { success: true };
     }),
     completeChapter: protectedProcedure.input(z2.object({ courseId: z2.string().min(1), chapterId: z2.string().min(1), lessonIds: z2.array(z2.string().min(1)).min(1) })).mutation(async ({ ctx, input }) => {
