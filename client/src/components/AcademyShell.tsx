@@ -7,7 +7,7 @@ import { AuthLauncher, AuthModal } from "@/components/AuthModal";
 import { useAuthModal } from "@/hooks/useAuthModal";
 
 export function Brand() {
-  return <Link href="/"><div className="brand"><span className="brand-mark" aria-hidden="true"><i /></span><div><span>BLACKVAULT</span><small>TECHNOLOGY</small></div><strong className="rampage-lockup"><i>/</i><b>RAMPAGE</b><small>OPEN LEARNING SYSTEM</small></strong></div></Link>;
+  return <Link href="/"><div className="brand"><img className="brand-logo" src="https://github.com/blackvault-technology/blackvault-rampage/blob/main/rampage-symbol_0c3dbff7.webp?raw=true" alt="BlackVault Rampage symbol" width={31} height={31} decoding="async" /><div><span>BLACKVAULT</span><small>TECHNOLOGY</small></div><strong className="rampage-lockup"><i>/</i><b>RAMPAGE</b><small>OPEN LEARNING SYSTEM</small></strong></div></Link>;
 }
 
 function isActive(location: string, href: string) {

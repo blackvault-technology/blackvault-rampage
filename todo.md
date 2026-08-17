@@ -363,3 +363,10 @@
 - [x] Run tests, type checks, production build, route checks, responsive screenshots, and fresh error-log review.
 - [x] Save a corrected checkpoint and provide the republish and browser-inspection handoff.
 
+
+
+## Continue: User-Provided BlackVault Logo
+- [x] Replace the shared BlackVault logo mark with the provided GitHub-hosted Rampage symbol URL.
+- [x] Validate logo rendering, sizing, contrast, and responsive header behavior.
+- [x] Run TypeScript, production build, and responsive screenshot checks.
+- [ ] Save a recoverable branding checkpoint and provide the updated project version.
