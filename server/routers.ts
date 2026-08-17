@@ -4,12 +4,13 @@ import { systemRouter } from "./_core/systemRouter";
 import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { createHash, randomUUID } from "node:crypto";
+import { createHash, randomBytes, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
 import {
   eq,
   and,
   getDb,
   getLearnerState,
+  getUserByEmail,
   getOrCreateRampageUser,
   rampageCertificates,
   rampageProgress,
@@ -21,9 +22,29 @@ import {
 import { COURSE_LESSON_COUNTS, buildAttemptIntegrity, getCourseRule, isAssessmentWithinWindow, isSupportedCourse } from "@shared/courseRules";
 import { chapterQuizBank, finalAssessmentBank } from "@shared/courseAssessments";
 import { desc, sql } from "drizzle-orm";
-import { rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger } from "./db";
+import { rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger, users } from "./db";
+import { sdk } from "./_core/sdk";
 
 const courseIdInput = z.object({ courseId: z.string().min(1).max(120) });
+
+function normalizeEmail(email: string) {
+  return email.trim().toLowerCase();
+}
+
+function passwordDigest(password: string, salt: Buffer) {
+  return scryptSync(password, salt, 64).toString("hex");
+}
+
+function verifyPassword(password: string, saltHex: string, hashHex: string) {
+  const expected = Buffer.from(hashHex, "hex");
+  const actual = Buffer.from(passwordDigest(password, Buffer.from(saltHex, "hex")), "hex");
+  return expected.length === actual.length && timingSafeEqual(expected, actual);
+}
+
+async function setSessionCookie(ctx: { req: any; res: any }, user: { openId: string; name: string | null }) {
+  const token = await sdk.createSessionToken(user.openId, { name: user.name ?? "Rampage learner" });
+  ctx.res.cookie(COOKIE_NAME, token, { ...getSessionCookieOptions(ctx.req), maxAge: 1000 * 60 * 60 * 24 * 30 });
+}
 
 async function awardXp(db: NonNullable<Awaited<ReturnType<typeof getDb>>>, userId: number, eventKey: string, amount: number, sourceType: string, sourceId: string, courseId: string, metadata: Record<string, unknown> = {}) {
   const inserted = await db.insert(rampageXpLedger).values({ userId, eventKey, amount, sourceType, sourceId, courseId, metadata }).onConflictDoNothing({ target: [rampageXpLedger.userId, rampageXpLedger.eventKey] }).returning({ amount: rampageXpLedger.amount });
@@ -34,6 +55,26 @@ export const appRouter = router({
   system: systemRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
+    register: publicProcedure.input(z.object({ name: z.string().trim().min(2).max(80), email: z.string().email().max(320), password: z.string().min(10).max(128) })).mutation(async ({ ctx, input }) => {
+      const email = normalizeEmail(input.email);
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      if (await getUserByEmail(email)) throw new TRPCError({ code: "CONFLICT", message: "An account with that email already exists" });
+      const salt = randomBytes(16);
+      const openId = `local_${randomUUID()}`;
+      const [user] = await db.insert(users).values({ openId, name: input.name.trim(), email, loginMethod: "password", passwordHash: passwordDigest(input.password, salt), passwordSalt: salt.toString("hex") }).returning();
+      if (!user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Unable to create account" });
+      await setSessionCookie(ctx, user);
+      return user;
+    }),
+    login: publicProcedure.input(z.object({ email: z.string().email().max(320), password: z.string().min(1).max(128) })).mutation(async ({ ctx, input }) => {
+      const user = await getUserByEmail(normalizeEmail(input.email));
+      if (!user?.passwordHash || !user.passwordSalt || !verifyPassword(input.password, user.passwordSalt, user.passwordHash)) throw new TRPCError({ code: "UNAUTHORIZED", message: "Invalid email or password" });
+      const db = await getDb();
+      if (db) await db.update(users).set({ lastSignedIn: new Date(), updatedAt: new Date() }).where(eq(users.id, user.id));
+      await setSessionCookie(ctx, user);
+      return user;
+    }),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });

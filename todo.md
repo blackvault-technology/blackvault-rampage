@@ -173,6 +173,13 @@
 
 ## Continue: AI Course Interactivity and Offline Mobile Shell
 - [x] Audit the three AI course lesson inventories, quiz-bank contracts, progress procedures, mobile shell, and PWA entry points.
+
+## Continue: GitHub Sync, Auth Decoupling, and Vercel Preparation
+- [x] Audit repository remotes, authentication code, deployment scripts, environment contracts, and Vercel compatibility.
+- [x] Remove Manus OAuth-specific frontend and server dependencies while preserving a secure, explicit authentication strategy. Replaced provider login with local email/password accounts, scrypt-derived credentials, and signed first-party sessions.
+- [x] Validate full application behavior, security boundaries, production build, and deployment configuration after auth changes. TypeScript, 9 Vitest tests, build, and source-reference scan pass.
+- [ ] Synchronize the validated codebase to the connected GitHub repository without overwriting unrelated remote work.
+- [ ] Save a recoverable checkpoint and document the Vercel publishing steps and required secrets.
 - [x] Deepen the three AI courses with source-aligned lesson objectives, resource context, and interactive quiz coverage.
 - [x] Wire quiz start, one-question flow, scoring feedback, and persisted progress for the three AI courses through server-verified contracts.
 - [x] Polish mobile bottom navigation transitions, active indicators, focus states, and safe-area behavior.

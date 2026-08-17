@@ -16,6 +16,7 @@ import Paths from "./pages/Paths";
 import MyLearning from "@/pages/MyLearning";
 import Assessment from "@/pages/Assessment";
 import About from "@/pages/About";
+import Login from "@/pages/Login";
 import { courses } from "@/data/catalog";
 import { useLocation } from "wouter";
 
@@ -45,6 +46,6 @@ function RouteSeo() {
   }, [location]);
   return null;
 }
-function Router() { return <><RouteSeo /><Switch><Route path="/" component={Home} /><Route path="/resources" component={Resources} /><Route path="/paths" component={Paths} /><Route path="/learn" component={MyLearning} /><Route path="/about" component={About} />
+function Router() { return <><RouteSeo /><Switch><Route path="/" component={Home} /><Route path="/resources" component={Resources} /><Route path="/paths" component={Paths} /><Route path="/learn" component={MyLearning} /><Route path="/about" component={About} /><Route path="/login" component={Login} />
 <Route path="/paths/:pathId" component={Paths} /><Route path="/resources/read/:resourceId" component={ResourceReader} /><Route path="/course/:courseId" component={Course} /><Route path="/course/:courseId/lesson/:lessonId" component={Lesson} /><Route path="/course/:courseId/assessment" component={Assessment} /><Route path="/certificate/:courseId" component={Certificate} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch></>; }
 export default function App() { return <ErrorBoundary><ThemeProvider defaultTheme="dark"><TooltipProvider><Toaster theme="dark" /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>; }

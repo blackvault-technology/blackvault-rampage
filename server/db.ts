@@ -62,6 +62,13 @@ export async function upsertUser(user: InsertUser): Promise<void> {
   });
 }
 
+export async function getUserByEmail(email: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.email, email.toLowerCase())).limit(1);
+  return result[0];
+}
+
 export async function getUserByOpenId(openId: string) {
   const db = await getDb();
   if (!db) return undefined;
@@ -103,4 +110,4 @@ export async function writeAuditEvent(userId: number, eventType: string, entityT
   await db.insert(rampageAuditEvents).values({ userId, eventType, entityType: entityType ?? null, entityId: entityId ?? null, metadata });
 }
 
-export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState, rampageXpLedger };
+export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState, rampageXpLedger, users };
