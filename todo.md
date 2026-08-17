@@ -432,20 +432,20 @@
 
 
 ## Continue: Working Verification Link Delivery
-- [ ] Audit verification-token creation, email adapter, environment configuration, and account UI states.
+- [x] Audit verification-token creation, email adapter, environment configuration, and account UI states.
 - [ ] Configure a real transactional email delivery path and fail clearly when required credentials are absent.
-- [ ] Harden verification-link expiry, resend throttling, link construction, and success/error UX.
-- [ ] Add or update focused tests for delivery outcomes and verification completion.
-- [ ] Run tests, TypeScript, production build, and verification-flow validation.
+- [x] Harden verification-link expiry, resend throttling, link construction, and success/error UX.
+- [x] Add or update focused tests for delivery outcomes and verification completion.
+- [x] Run tests, TypeScript, production build, and verification-flow validation.
 - [ ] Save a recoverable verification-delivery checkpoint and provide the updated version.
 
 
 ## Continue: Neon Auth Mail Verification Delivery
-- [ ] Audit the Neon-backed verification token and current mail configuration.
+- [x] Audit the Neon-backed verification token and current mail configuration.
 - [ ] Configure the transactional mail provider required to send verification links from production.
-- [ ] Connect verification, resend, expiry, and completion flows to Neon-backed auth state.
-- [ ] Add focused delivery and verification regression tests.
-- [ ] Run tests, TypeScript, production build, and auth-flow validation.
+- [x] Connect verification, resend, expiry, and completion flows to Neon-backed auth state.
+- [x] Add focused delivery and verification regression tests.
+- [x] Run tests, TypeScript, production build, and auth-flow validation.
 - [ ] Save a recoverable Neon mail-delivery checkpoint and provide the updated version.
 
 

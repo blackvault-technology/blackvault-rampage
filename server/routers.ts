@@ -4,7 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { createHash, randomBytes, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
+import { createHash, randomBytes, randomInt, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
 import {
   eq,
   and,
@@ -26,6 +26,7 @@ import { chapterQuizBank, finalAssessmentBank } from "@shared/courseAssessments"
 import { desc, sql } from "drizzle-orm";
 import { localAuthTokens, rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger, userTable } from "./db";
 import { sdk } from "./_core/sdk";
+import { getRequestOrigin, passwordResetMessage, sendTransactionalEmail, verificationMessage } from "./email";
 
 const courseIdInput = z.object({ courseId: z.string().min(1).max(120) });
 
@@ -57,7 +58,7 @@ function verifyPassword(password: string, saltHex: string, hashHex: string) {
 }
 
 function createOneTimeCode() {
-  return String(Math.floor(100000 + Math.random() * 900000));
+  return String(randomInt(100000, 1000000));
 }
 
 function hashToken(token: string) {
@@ -67,9 +68,20 @@ function hashToken(token: string) {
 async function issueAuthCode(userId: number, purpose: "verify_email" | "reset_password") {
   const db = await getDb();
   if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+  const [recent] = await db.select({ id: localAuthTokens.id }).from(localAuthTokens).where(and(eq(localAuthTokens.userId, userId), eq(localAuthTokens.purpose, purpose), sql`${localAuthTokens.consumedAt} IS NULL`, sql`${localAuthTokens.createdAt} > now() - interval '60 seconds'`)).orderBy(desc(localAuthTokens.createdAt)).limit(1);
+  if (recent) throw new TRPCError({ code: "TOO_MANY_REQUESTS", message: "Please wait a minute before requesting another code." });
+  await db.update(localAuthTokens).set({ consumedAt: new Date() }).where(and(eq(localAuthTokens.userId, userId), eq(localAuthTokens.purpose, purpose), sql`${localAuthTokens.consumedAt} IS NULL`));
   const code = createOneTimeCode();
   await db.insert(localAuthTokens).values({ userId, tokenHash: hashToken(code), purpose, expiresAt: new Date(Date.now() + 15 * 60 * 1000) });
   return code;
+}
+
+async function deliverAuthCode(ctx: { req: any }, user: { email: string | null }, code: string, purpose: "verify_email" | "reset_password") {
+  if (!user.email) return { delivered: false as const, reason: "missing_email" as const };
+  const origin = getRequestOrigin(ctx.req);
+  const message = purpose === "verify_email" ? verificationMessage(origin, user.email, code) : passwordResetMessage(origin, user.email, code);
+  const delivery = await sendTransactionalEmail(message);
+  return delivery.enabled ? { delivered: true as const, reason: "sent" as const } : { delivered: false as const, reason: delivery.reason };
 }
 
 async function setSessionCookie(ctx: { req: any; res: any }, user: { openId: string; name: string | null }) {
@@ -97,7 +109,7 @@ export const appRouter = router({
       const [user] = await db.insert(userTable).values({ openId, name: input.name.trim(), email, loginMethod: "password", passwordHash: passwordDigest(input.password, salt), passwordSalt: salt.toString("hex") }).returning();
       if (!user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Unable to create account" });
       const verificationCode = await issueAuthCode(user.id, "verify_email");
-      const delivery = { delivered: false as const, reason: "disabled" as const };
+      const delivery = await deliverAuthCode(ctx, user, verificationCode, "verify_email");
       await setSessionCookie(ctx, user);
       return { ...user, delivery, developmentVerificationCode: process.env.NODE_ENV === "development" ? verificationCode : undefined };
     }),
@@ -106,7 +118,7 @@ export const appRouter = router({
       if (!user?.email) throw new TRPCError({ code: "BAD_REQUEST", message: "Add an email address before requesting verification." });
       if (user.emailVerifiedAt) return { sent: false, alreadyVerified: true as const };
       const code = await issueAuthCode(user.id, "verify_email");
-      const delivery = { delivered: false as const, reason: "disabled" as const };
+      const delivery = await deliverAuthCode(ctx, user, code, "verify_email");
       return { sent: true, alreadyVerified: false as const, delivery, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
     }),
     verifyEmail: publicProcedure.input(z.object({ email: z.string().email().max(320), code: z.string().regex(/^\d{6}$/) })).mutation(async ({ input }) => {
@@ -120,11 +132,11 @@ export const appRouter = router({
       await db.update(userTable).set({ emailVerifiedAt: new Date(), updatedAt: new Date() }).where(eq(userTable.id, user.id));
       return { success: true as const };
     }),
-    requestPasswordReset: publicProcedure.input(z.object({ email: z.string().email().max(320) })).mutation(async ({ input }) => {
+    requestPasswordReset: publicProcedure.input(z.object({ email: z.string().email().max(320) })).mutation(async ({ ctx, input }) => {
       const user = await getUserByEmail(normalizeEmail(input.email));
       if (!user) return { sent: true as const };
       const code = await issueAuthCode(user.id, "reset_password");
-      const delivery = { delivered: false as const, reason: "disabled" as const };
+      const delivery = await deliverAuthCode(ctx, user, code, "reset_password");
       return { sent: true as const, delivery, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
     }),
     resetPassword: publicProcedure.input(z.object({ email: z.string().email().max(320), code: z.string().regex(/^\d{6}$/), password: z.string().min(10).max(128) })).mutation(async ({ input }) => {

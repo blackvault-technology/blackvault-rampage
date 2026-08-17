@@ -185,7 +185,7 @@ var systemRouter = router({
 // server/routers.ts
 import { TRPCError as TRPCError3 } from "@trpc/server";
 import { z as z2 } from "zod";
-import { createHash, randomBytes, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
+import { createHash, randomBytes, randomInt, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
 
 // server/db.ts
 import { and, desc, eq } from "drizzle-orm";
@@ -627,7 +627,7 @@ var finalAssessmentBank = {
 };
 
 // server/routers.ts
-import { sql } from "drizzle-orm";
+import { desc as desc2, sql } from "drizzle-orm";
 
 // shared/_core/errors.ts
 var HttpError = class extends Error {
@@ -684,6 +684,70 @@ var LocalSessionSDK = class {
 };
 var sdk = new LocalSessionSDK();
 
+// server/email.ts
+function getEmailDeliveryStatus(config) {
+  return config.apiKey?.trim() && config.from?.trim() ? { enabled: true, reason: "configured" } : { enabled: false, reason: "missing_credentials" };
+}
+function getEmailDeliveryConfig() {
+  return {
+    apiKey: process.env.RESEND_API_KEY ?? "",
+    from: process.env.EMAIL_FROM ?? ""
+  };
+}
+function getRequestOrigin(req) {
+  const forwardedProto = req.headers?.["x-forwarded-proto"];
+  const forwardedHost = req.headers?.["x-forwarded-host"];
+  const protocol = (Array.isArray(forwardedProto) ? forwardedProto[0] : forwardedProto) ?? req.protocol ?? "http";
+  const host = (Array.isArray(forwardedHost) ? forwardedHost[0] : forwardedHost) ?? req.get?.("host") ?? "localhost:3000";
+  return `${protocol.split(",")[0].trim()}://${host.split(",")[0].trim()}`;
+}
+function buildVerificationLink(origin, email, code) {
+  const url = new URL("/verify", origin);
+  url.searchParams.set("email", email);
+  url.searchParams.set("code", code);
+  return url.toString();
+}
+async function sendTransactionalEmail(message) {
+  const config = getEmailDeliveryConfig();
+  const status = getEmailDeliveryStatus(config);
+  if (!status.enabled) return status;
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${config.apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ from: config.from, to: [message.to], subject: message.subject, html: message.html, text: message.text })
+  });
+  if (!response.ok) {
+    const detail = await response.text().catch(() => "");
+    throw new Error(`Transactional email delivery failed (${response.status})${detail ? `: ${detail.slice(0, 160)}` : ""}`);
+  }
+  return status;
+}
+function verificationMessage(origin, email, code) {
+  const link = buildVerificationLink(origin, email, code);
+  return {
+    to: email,
+    subject: "Verify your BlackVault Rampage account",
+    html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#0a1d3a"><p>Your Rampage account is ready for verification.</p><p><a href="${link}">Verify your email address</a></p><p>This link expires in 15 minutes. If you did not create this account, you can ignore this message.</p></div>`,
+    text: `Verify your BlackVault Rampage account: ${link}
+
+This link expires in 15 minutes. If you did not create this account, you can ignore this message.`
+  };
+}
+function passwordResetMessage(origin, email, code) {
+  const link = buildVerificationLink(origin, email, code).replace("/verify", "/reset-password");
+  return {
+    to: email,
+    subject: "Reset your BlackVault Rampage password",
+    html: `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#0a1d3a"><p>A password reset was requested for your Rampage account.</p><p><a href="${link}">Continue to password recovery</a></p><p>This link expires in 15 minutes. If you did not request this, you can ignore this message.</p></div>`,
+    text: `Reset your BlackVault Rampage password: ${link}
+
+This link expires in 15 minutes. If you did not request this, you can ignore this message.`
+  };
+}
+
 // server/routers.ts
 var courseIdInput = z2.object({ courseId: z2.string().min(1).max(120) });
 function normalizeEmail(email) {
@@ -710,7 +774,7 @@ function verifyPassword(password, saltHex, hashHex) {
   return expected.length === actual.length && timingSafeEqual(expected, actual);
 }
 function createOneTimeCode() {
-  return String(Math.floor(1e5 + Math.random() * 9e5));
+  return String(randomInt(1e5, 1e6));
 }
 function hashToken(token) {
   return createHash("sha256").update(token).digest("hex");
@@ -718,9 +782,19 @@ function hashToken(token) {
 async function issueAuthCode(userId, purpose) {
   const db = await getDb();
   if (!db) throw new TRPCError3({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+  const [recent] = await db.select({ id: localAuthTokens.id }).from(localAuthTokens).where(and(eq(localAuthTokens.userId, userId), eq(localAuthTokens.purpose, purpose), sql`${localAuthTokens.consumedAt} IS NULL`, sql`${localAuthTokens.createdAt} > now() - interval '60 seconds'`)).orderBy(desc2(localAuthTokens.createdAt)).limit(1);
+  if (recent) throw new TRPCError3({ code: "TOO_MANY_REQUESTS", message: "Please wait a minute before requesting another code." });
+  await db.update(localAuthTokens).set({ consumedAt: /* @__PURE__ */ new Date() }).where(and(eq(localAuthTokens.userId, userId), eq(localAuthTokens.purpose, purpose), sql`${localAuthTokens.consumedAt} IS NULL`));
   const code = createOneTimeCode();
   await db.insert(localAuthTokens).values({ userId, tokenHash: hashToken(code), purpose, expiresAt: new Date(Date.now() + 15 * 60 * 1e3) });
   return code;
+}
+async function deliverAuthCode(ctx, user, code, purpose) {
+  if (!user.email) return { delivered: false, reason: "missing_email" };
+  const origin = getRequestOrigin(ctx.req);
+  const message = purpose === "verify_email" ? verificationMessage(origin, user.email, code) : passwordResetMessage(origin, user.email, code);
+  const delivery = await sendTransactionalEmail(message);
+  return delivery.enabled ? { delivered: true, reason: "sent" } : { delivered: false, reason: delivery.reason };
 }
 async function setSessionCookie(ctx, user) {
   const token = await sdk.createSessionToken(user.openId, { name: user.name ?? "Rampage learner" });
@@ -745,7 +819,7 @@ var appRouter = router({
       const [user] = await db.insert(users).values({ openId, name: input.name.trim(), email, loginMethod: "password", passwordHash: passwordDigest(input.password, salt), passwordSalt: salt.toString("hex") }).returning();
       if (!user) throw new TRPCError3({ code: "INTERNAL_SERVER_ERROR", message: "Unable to create account" });
       const verificationCode = await issueAuthCode(user.id, "verify_email");
-      const delivery = { delivered: false, reason: "disabled" };
+      const delivery = await deliverAuthCode(ctx, user, verificationCode, "verify_email");
       await setSessionCookie(ctx, user);
       return { ...user, delivery, developmentVerificationCode: process.env.NODE_ENV === "development" ? verificationCode : void 0 };
     }),
@@ -754,7 +828,7 @@ var appRouter = router({
       if (!user?.email) throw new TRPCError3({ code: "BAD_REQUEST", message: "Add an email address before requesting verification." });
       if (user.emailVerifiedAt) return { sent: false, alreadyVerified: true };
       const code = await issueAuthCode(user.id, "verify_email");
-      const delivery = { delivered: false, reason: "disabled" };
+      const delivery = await deliverAuthCode(ctx, user, code, "verify_email");
       return { sent: true, alreadyVerified: false, delivery, developmentCode: process.env.NODE_ENV === "development" ? code : void 0 };
     }),
     verifyEmail: publicProcedure.input(z2.object({ email: z2.string().email().max(320), code: z2.string().regex(/^\d{6}$/) })).mutation(async ({ input }) => {
@@ -768,11 +842,11 @@ var appRouter = router({
       await db.update(users).set({ emailVerifiedAt: /* @__PURE__ */ new Date(), updatedAt: /* @__PURE__ */ new Date() }).where(eq(users.id, user.id));
       return { success: true };
     }),
-    requestPasswordReset: publicProcedure.input(z2.object({ email: z2.string().email().max(320) })).mutation(async ({ input }) => {
+    requestPasswordReset: publicProcedure.input(z2.object({ email: z2.string().email().max(320) })).mutation(async ({ ctx, input }) => {
       const user = await getUserByEmail(normalizeEmail(input.email));
       if (!user) return { sent: true };
       const code = await issueAuthCode(user.id, "reset_password");
-      const delivery = { delivered: false, reason: "disabled" };
+      const delivery = await deliverAuthCode(ctx, user, code, "reset_password");
       return { sent: true, delivery, developmentCode: process.env.NODE_ENV === "development" ? code : void 0 };
     }),
     resetPassword: publicProcedure.input(z2.object({ email: z2.string().email().max(320), code: z2.string().regex(/^\d{6}$/), password: z2.string().min(10).max(128) })).mutation(async ({ input }) => {

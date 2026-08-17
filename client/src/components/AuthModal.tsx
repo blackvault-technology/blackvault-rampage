@@ -88,7 +88,9 @@ export function AuthModal({ open, onOpenChange, redirect = "/learn" }: AuthModal
         setMessage(
           result.developmentVerificationCode
             ? `Account created. Development code: ${result.developmentVerificationCode}`
-            : "Account created. Use the verification code available in this session.",
+            : result.delivery?.delivered
+              ? "Account created. A verification link is on its way to your inbox."
+              : "Account created. Verification email delivery is not configured yet; request a code when delivery is enabled.",
         );
         setMode("verify");
         return;
@@ -100,8 +102,15 @@ export function AuthModal({ open, onOpenChange, redirect = "/learn" }: AuthModal
         return;
       }
       if (!code) {
-        await requestReset.mutateAsync({ email });
+        const result = await requestReset.mutateAsync({ email });
         setResetRequested(true);
+        setMessage(
+          result.developmentCode
+            ? `Development reset code: ${result.developmentCode}`
+            : result.delivery?.delivered
+              ? "Recovery link sent. Check your inbox to continue."
+              : "Recovery request recorded, but transactional email is not configured yet.",
+        );
         return;
       }
       await reset.mutateAsync({ email, code, password });
@@ -157,7 +166,7 @@ export function AuthModal({ open, onOpenChange, redirect = "/learn" }: AuthModal
               <div className="auth-inbox-icon"><CheckCircle2 size={28} /></div>
               <p className="auth-inbox-kicker">RECOVERY REQUESTED</p>
               <h3>Recovery request recorded.</h3>
-              <p>Email delivery is disabled in this deployment. If you have a valid six-digit recovery code, enter it here to choose a new password.</p>
+              <p>{message || "If a matching account exists, we will send a short-lived recovery link. If delivery is not configured yet, the request remains recorded without revealing account details."}</p>
               <button type="button" className="auth-text-action" onClick={() => { setResetRequested(false); setCode(""); }}>Enter a reset code <ArrowRight size={15} /></button>
               <button type="button" className="auth-secondary-action" onClick={() => { setResetRequested(false); setCode(""); }}>Use a different email</button>
             </div>
@@ -178,7 +187,7 @@ export function AuthModal({ open, onOpenChange, redirect = "/learn" }: AuthModal
             <button type="button" onClick={() => switchMode("recovery")}>Forgot password?</button>
             <button type="button" onClick={() => switchMode("verify")}>Have a verification code?</button>
           </div>
-          <p className="auth-note">No external identity provider or email service is required. Your learner record stays tied to this first-party account.</p>
+          <p className="auth-note">Your learner record stays tied to this first-party account. Verification and recovery links are sent only when transactional email is configured.</p>
           <p className="auth-legal-copy">By continuing, you agree to the <a href="/terms">Terms</a> and acknowledge the <a href="/privacy">Privacy</a> and <a href="/acceptable-use">Acceptable Use</a> policies.</p>
         </section>
       </DialogContent>

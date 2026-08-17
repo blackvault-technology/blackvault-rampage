@@ -7,8 +7,8 @@ import { trpc } from "@/lib/trpc";
 
 export default function Verify() {
   const [, navigate] = useLocation();
-  const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
+  const [email, setEmail] = useState(() => new URLSearchParams(window.location.search).get("email") ?? "");
+  const [code, setCode] = useState(() => new URLSearchParams(window.location.search).get("code")?.replace(/\D/g, "").slice(0, 6) ?? "");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const verify = trpc.auth.verifyEmail.useMutation({
@@ -18,7 +18,7 @@ export default function Verify() {
     },
   });
   const resend = trpc.auth.requestVerification.useMutation({
-    onSuccess: result => setMessage(result.developmentCode ? `Development verification code: ${result.developmentCode}` : "Email delivery is disabled; request a code from the current development session."),
+    onSuccess: result => setMessage(result.developmentCode ? `Development verification code: ${result.developmentCode}` : result.delivery?.delivered ? "Verification link sent. Check your inbox, then enter the code if needed." : "Verification request recorded, but transactional email is not configured yet."),
   });
   async function submit(event: React.FormEvent) {
     event.preventDefault();
@@ -43,7 +43,7 @@ export default function Verify() {
           {message && <p className="auth-success" role="status">{message}</p>}
           <Button type="submit" disabled={verify.isPending} className="auth-submit">{verify.isPending ? "Checking code…" : "Verify account"}<ArrowRight size={16} /></Button>
         </form>
-        <button className="auth-back" onClick={() => resend.mutate()} disabled={resend.isPending}>Request a development code</button>
+        <button className="auth-back" onClick={() => resend.mutate()} disabled={resend.isPending}>{resend.isPending ? "Requesting…" : "Request a verification link"}</button>
         <Link href="/login" className="auth-back">Back to account access</Link>
       </section>
     </main>
