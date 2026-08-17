@@ -456,7 +456,7 @@
 - [x] Polish responsive interaction feedback, focus states, accessibility, and error recovery across the ecosystem.
 - [x] Add or update tests for connected actions and real-data boundaries.
 - [x] Run tests, TypeScript, production build, Neon-backed smoke checks, and responsive browser validation.
-- [ ] Save a recoverable full-polish checkpoint and provide the updated version.
+- [x] Save a recoverable full-polish checkpoint and provide the updated version.
 
 
 ## Continue: Full Polish and Neon-Connected Controls Only
@@ -465,4 +465,11 @@
 - [x] Remove mock, demo, and misleading placeholder states; keep honest empty and loading states.
 - [x] Polish responsive, keyboard, focus, success, error, and disabled interaction states.
 - [x] Validate tests, TypeScript, production build, Neon-backed smoke paths, and responsive browser behavior.
-- [ ] Save a recoverable full-polish checkpoint and provide the updated version.
+- [x] Save a recoverable full-polish checkpoint and provide the updated version.
+
+
+## Continue: Remove Learner Preferences Fallback Warning
+- [x] Audit the Neon learner-preferences table and migration state.
+- [x] Apply the additive schema change and verify the account/preferences query uses real Neon data without fallback warnings.
+- [x] Run focused tests, TypeScript, production build, and account smoke validation.
+- [x] Save a recoverable checkpoint after the warning is resolved.
