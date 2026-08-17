@@ -286,3 +286,10 @@
 - [x] Save a publish-ready checkpoint and provide exact Vercel Publish handoff steps.
 - [x] Use Resend as the default free-tier transactional email adapter, with a development-safe fallback when production credentials are absent.
 - [x] Defer verified `RESEND_API_KEY` and `EMAIL_FROM` until the user supplies a sender/API key; production-safe development fallback and deployment instructions remain active.
+
+## Continue: Error Repair and Vercel Publish Readiness
+- [x] Inspect runtime logs, source status, dependencies, build output, and deployment configuration for current errors.
+- [x] Reproduce and fix all recoverable source, runtime, routing, data, and accessibility errors found during inspection.
+- [x] Add regression coverage for each repaired error or boundary.
+- [x] Run full tests, TypeScript validation, production build, and responsive smoke validation.
+- [x] Save a fresh recoverable checkpoint and provide exact Vercel Publish instructions.
