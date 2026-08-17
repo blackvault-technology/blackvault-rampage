@@ -398,4 +398,4 @@
 - [x] Validate registration, login, auth.me, logout, verification, password recovery, and protected-route persistence end to end.
 - [x] Add or update focused tests for Neon-backed auth failure and success paths.
 - [x] Run tests, TypeScript, production build, and live-style API smoke checks.
-- [ ] Save a recoverable Neon auth checkpoint and provide the updated version.
+- [x] Save a recoverable Neon auth checkpoint and provide the updated version.
