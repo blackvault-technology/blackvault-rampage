@@ -59,3 +59,17 @@
 - [x] Validate representative desktop/mobile routes, tests, production build, and save a polished checkpoint.
 - [x] Add explicit simplified learner-flow cues across course, lesson, assessment, and certificate pages.
 - [x] Verify the authenticated learner journey in code-visible UI states, including persistence and certificate eligibility boundaries; full OAuth-session replay remains a manual verification step because no authenticated browser session was available.
+
+## Continue: Udemy-Style Course Workspace Upgrade
+- [x] Audit the current course, lesson, video, progress, quiz, and next-lesson architecture.
+- [x] Design a smart course workspace with persistent navigation, media-first lesson layout, and clear progress states.
+- [x] Add verified video playback where lesson metadata contains real video sources, with source-first fallback for reading/lab lessons.
+- [x] Improve next-lesson, chapter completion, quiz, timeline, and certificate handoff cues across multiple courses.
+- [x] Validate desktop/mobile flows, tests, production build, and save a new checkpoint.
+
+## Continue: Full Ecosystem Polish Pass
+- [x] Audit the full learner surface area across home, catalog, course, lesson, My Learning, resources, assessment, and certificate routes.
+- [x] Refine shared navigation, progress indicators, and workspace hierarchy for a coherent Udemy-style flow.
+- [x] Polish media-first video and source-led lesson states across multiple courses without inventing content.
+- [x] Review dashboard, assessment, certificate, empty, loading, and mobile states for compatibility with the workspace polish; no new backend or certificate behavior was required in this pass.
+- [x] Validate representative routes, tests, production build, and save the full polish checkpoint.
