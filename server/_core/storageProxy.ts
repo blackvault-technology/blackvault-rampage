@@ -10,7 +10,8 @@ export function registerStorageProxy(app: Express) {
     }
 
     if (!ENV.forgeApiUrl || !ENV.forgeApiKey) {
-      res.status(500).send("Storage proxy not configured");
+      res.set("Cache-Control", "no-store");
+      res.status(404).json({ error: "Optional asset unavailable" });
       return;
     }
 
@@ -28,13 +29,13 @@ export function registerStorageProxy(app: Express) {
       if (!forgeResp.ok) {
         const body = await forgeResp.text().catch(() => "");
         console.error(`[StorageProxy] forge error: ${forgeResp.status} ${body}`);
-        res.status(502).send("Storage backend error");
+        res.status(404).json({ error: "Optional asset unavailable" });
         return;
       }
 
       const { url } = (await forgeResp.json()) as { url: string };
       if (!url) {
-        res.status(502).send("Empty signed URL from backend");
+        res.status(404).json({ error: "Optional asset unavailable" });
         return;
       }
 
@@ -42,7 +43,7 @@ export function registerStorageProxy(app: Express) {
       res.redirect(307, url);
     } catch (err) {
       console.error("[StorageProxy] failed:", err);
-      res.status(502).send("Storage proxy error");
+      res.status(404).json({ error: "Optional asset unavailable" });
     }
   });
 }

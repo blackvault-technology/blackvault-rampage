@@ -1,4 +1,4 @@
-const CACHE_NAME = "rampage-shell-v1";
+const CACHE_NAME = "rampage-shell-v2";
 const APP_SHELL = ["/", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -16,25 +16,44 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const request = event.request;
   const url = new URL(request.url);
-  if (request.method !== "GET" || url.origin !== self.location.origin || url.pathname.startsWith("/api/") || url.pathname.includes("oauth")) return;
+  if (
+    request.method !== "GET" ||
+    url.origin !== self.location.origin ||
+    url.pathname.startsWith("/api/") ||
+    url.pathname.startsWith("/manus-storage/") ||
+    url.pathname === "/manifest.webmanifest" ||
+    url.pathname.includes("oauth")
+  ) return;
 
   if (request.mode === "navigate") {
-    event.respondWith(fetch(request).then((response) => {
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then((cache) => cache.put("/", copy));
-      return response;
-    }).catch(() => caches.match("/").then((cached) => {
-      if (cached) return cached;
-      return new Response("Offline", { status: 503, headers: { "Content-Type": "text/plain" } });
-    })));
+    event.respondWith(
+      fetch(request).then((response) => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put("/", copy));
+        }
+        return response;
+      }).catch(() => caches.match("/").then((cached) => {
+        if (cached) return cached;
+        return new Response("Offline", { status: 503, headers: { "Content-Type": "text/plain" } });
+      }))
+    );
     return;
   }
 
-  event.respondWith(caches.match(request).then((cached) => cached || fetch(request).then((response) => {
-    if (response.ok && (url.pathname.startsWith("/assets/") || url.pathname.startsWith("/manus-storage/"))) {
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-    }
-    return response;
-  })));
+  event.respondWith(
+    caches.match(request).then((cached) => cached || fetch(request).then((response) => {
+      if (response.ok && url.pathname.startsWith("/assets/")) {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+      }
+      return response;
+    }).catch(() => cached || new Response("", { status: 504 })))
+  );
 });
+
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") self.skipWaiting();
+});
+
+/* Public shell only: authenticated/API requests intentionally bypass this worker. */

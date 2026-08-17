@@ -6,8 +6,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { AuthLauncher, AuthModal } from "@/components/AuthModal";
 import { useAuthModal } from "@/hooks/useAuthModal";
 
-const symbol = "/manus-storage/rampage-symbol_0c3dbff7.png";
-export function Brand() { return <Link href="/"><div className="brand"><img src={symbol} alt="BlackVault starburst" /><div><span>BLACKVAULT</span><small>TECHNOLOGY</small></div><strong className="rampage-lockup"><i>/</i><b>RAMPAGE</b><small>OPEN LEARNING SYSTEM</small></strong></div></Link>; }
+export function Brand() { return <Link href="/"><div className="brand"><span className="brand-mark" aria-hidden="true"><i /></span><div><span>BLACKVAULT</span><small>TECHNOLOGY</small></div><strong className="rampage-lockup"><i>/</i><b>RAMPAGE</b><small>OPEN LEARNING SYSTEM</small></strong></div></Link>; }
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();

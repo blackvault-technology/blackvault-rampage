@@ -329,3 +329,37 @@
 - [x] Validate SPA routes, API entrypoint, deployment artifact, tests, type checks, and production build.
 - [x] Save a corrected checkpoint and provide republish and browser-review instructions.
 
+
+## Continue: Vercel Deployment Verification
+- [ ] Verify the corrected checkpoint, live deployment response, and current Vercel project state.
+- [ ] Fix any remaining production routing, environment, runtime, or browser-visible issues.
+- [ ] Run deployment artifact, API, SPA-route, test, type, build, and browser validation.
+- [ ] Save the next publish-ready checkpoint and provide the republish and browser-review handoff.
+
+
+## Continue: Motion System and UX Expansion
+- [ ] Audit current animation dependencies, landing/logo rail, shared shell, course surfaces, profile, and reduced-motion behavior.
+- [ ] Define an accessible motion language and ten-plus concrete UX improvements with performance boundaries.
+- [ ] Add shared motion primitives and landing-page choreography with reduced-motion fallbacks.
+- [ ] Animate the logo rail with smooth, pauseable, touch-friendly motion and graceful loading states.
+- [ ] Improve header navigation feedback, active states, and mobile menu transitions.
+- [ ] Add course-card hover/focus depth, clear metadata hierarchy, and bookmark/intent affordances.
+- [ ] Add scroll-reveal treatment for course, resource, faculty, and mission sections.
+- [ ] Add polished CTA press, hover, and loading feedback across public pages.
+- [ ] Improve lesson workspace entry, phase transitions, and sidebar feedback.
+- [ ] Improve profile progress-card transitions, filter feedback, and goal-setting interactions.
+- [ ] Improve certificate sharing feedback and public verification result transitions.
+- [ ] Improve mobile bottom navigation transitions and active indicators.
+- [ ] Add reduced-motion and keyboard/focus regression coverage for motion surfaces.
+- [ ] Run tests, type checks, production build, responsive screenshots, and performance/accessibility smoke validation.
+- [ ] Save a recoverable checkpoint and provide the publish handoff.
+
+
+## Continue: Production Error Repair and Motion Polish
+- [x] Audit the reported Vercel API 500 responses, storage asset failures, dialog accessibility warning, analytics failure, and service-worker fetch rejection.
+- [x] Repair production API and storage handling with safe serverless compatibility and JSON error responses.
+- [x] Fix dialog accessibility, analytics failure handling, service-worker offline behavior, and remaining runtime errors.
+- [x] Continue Framer Motion, GSAP/Anime.js, animated logo rail, and reduced-motion polish.
+- [x] Run tests, type checks, production build, route checks, responsive screenshots, and fresh error-log review.
+- [x] Save a corrected checkpoint and provide the republish and browser-inspection handoff.
+

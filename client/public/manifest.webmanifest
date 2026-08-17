@@ -7,10 +7,6 @@
   "display": "standalone",
   "background_color": "#f4f0e8",
   "theme_color": "#101923",
-  "icons": [
-    { "src": "/manus-storage/rampage-symbol_0c3dbff7.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "/manus-storage/rampage-symbol_0c3dbff7.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
-  ],
   "shortcuts": [
     { "name": "My learning", "short_name": "Learn", "url": "/learn" },
     { "name": "Course catalog", "short_name": "Courses", "url": "/#catalog" }
