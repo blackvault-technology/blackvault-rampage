@@ -29,6 +29,12 @@ describe("learner security boundaries", () => {
     await expect(caller.learner.issueCertificate({ courseId: "ai-systems" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
   });
 
+  it("rejects learner state and profile reads for anonymous callers", async () => {
+    const caller = appRouter.createCaller(createContext(null));
+    await expect(caller.learner.state()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.auth.profile()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+  });
+
   it("rejects unsupported certificate courses before database access", async () => {
     const caller = appRouter.createCaller(createContext(authenticatedUser));
     await expect(caller.learner.issueCertificate({ courseId: "not-a-real-course" })).rejects.toMatchObject({ code: "BAD_REQUEST" });

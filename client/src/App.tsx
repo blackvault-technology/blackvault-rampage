@@ -23,6 +23,10 @@ import Account from "@/pages/Account";
 import { Terms, Privacy, Cookies, AcceptableUse } from "@/pages/Legal";
 import { courses } from "@/data/catalog";
 import { useLocation } from "wouter";
+import { ArrowRight, LockKeyhole } from "lucide-react";
+import { Shell } from "@/components/AcademyShell";
+import { AuthLauncher } from "@/components/AuthModal";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 function RouteSeo() {
   const [location] = useLocation();
@@ -54,6 +58,18 @@ function RouteSeo() {
   }, [location]);
   return null;
 }
-function Router() { return <><RouteSeo /><Switch><Route path="/" component={Home} /><Route path="/resources" component={Resources} /><Route path="/paths" component={Paths} /><Route path="/learn" component={MyLearning} /><Route path="/about" component={About} /><Route path="/terms" component={Terms} /><Route path="/privacy" component={Privacy} /><Route path="/cookies" component={Cookies} /><Route path="/acceptable-use" component={AcceptableUse} /><Route path="/login" component={Login} /><Route path="/verify" component={Verify} /><Route path="/reset-password" component={ResetPassword} /><Route path="/account" component={Account} /><Route path="/settings" component={Account} />
-<Route path="/paths/:pathId" component={Paths} /><Route path="/resources/read/:resourceId" component={ResourceReader} /><Route path="/course/:courseId" component={Course} /><Route path="/course/:courseId/lesson/:lessonId" component={Lesson} /><Route path="/course/:courseId/assessment" component={Assessment} /><Route path="/certificate/:courseId" component={Certificate} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch></>; }
+function AccountRequired({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth();
+  if (loading) {
+    return <Shell><main className="account-gate account-gate--loading"><div className="account-gate-card"><span className="signal-dot" /><p>Checking your learner record…</p></div></main></Shell>;
+  }
+  if (!user) {
+    return <Shell><main className="account-gate"><div className="account-gate-card"><div className="account-gate-icon"><LockKeyhole size={22} /></div><p className="eyebrow"><span className="signal-dot" /> RAMPAGE / ACCOUNT REQUIRED</p><h1>Make the work<br /><em>yours.</em></h1><p className="account-gate-copy">Create a free Rampage account before you enter the learning workspace. It keeps progress, reading state, assessment attempts, and certificates tied to one learner record.</p><AuthLauncher redirect={typeof window === "undefined" ? "/learn" : window.location.pathname}><span>Create or sign in</span><ArrowRight size={16} /></AuthLauncher><small>Public course previews and the resource index remain open. The learning record is not.</small></div></main></Shell>;
+  }
+  return <>{children}</>;
+}
+
+function Router() { return <><RouteSeo /><Switch><Route path="/" component={Home} /><Route path="/resources" component={Resources} /><Route path="/paths" component={Paths} /><Route path="/learn"><AccountRequired><MyLearning /></AccountRequired></Route><Route path="/about" component={About} /><Route path="/terms" component={Terms} /><Route path="/privacy" component={Privacy} /><Route path="/cookies" component={Cookies} /><Route path="/acceptable-use" component={AcceptableUse} /><Route path="/login" component={Login} /><Route path="/verify" component={Verify} /><Route path="/reset-password" component={ResetPassword} /><Route path="/account"><AccountRequired><Account /></AccountRequired></Route><Route path="/settings"><AccountRequired><Account /></AccountRequired></Route>
+	<Route path="/paths/:pathId" component={Paths} /><Route path="/resources/read/:resourceId"><AccountRequired><ResourceReader /></AccountRequired></Route><Route path="/course/:courseId"><AccountRequired><Course /></AccountRequired></Route><Route path="/course/:courseId/lesson/:lessonId"><AccountRequired><Lesson /></AccountRequired></Route><Route path="/course/:courseId/assessment"><AccountRequired><Assessment /></AccountRequired></Route><Route path="/certificate/:courseId"><AccountRequired><Certificate /></AccountRequired></Route><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch></>; }
+
 export default function App() { return <ErrorBoundary><ThemeProvider defaultTheme="dark"><TooltipProvider><Toaster theme="dark" /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>; }

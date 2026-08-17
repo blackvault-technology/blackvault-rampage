@@ -243,3 +243,13 @@
 - [x] Add installable PWA manifest, service-worker registration, and offline-ready status UX without caching authenticated responses unsafely.
 - [x] Run tests, type checking, production build, responsive screenshots, accessibility review, and offline/PWA validation.
 - [x] Save a new recoverable checkpoint after validation.
+
+## Continue: Account-Required Learner Journey, Profile, and Human Landing
+- [x] Audit and define the exact learner routes and actions that require a first-party account while preserving public discovery, legal, and provenance pages.
+- [x] Remove anonymous/local-only fallbacks from protected learner progress, reading state, lesson completion, and assessment entry points; route learners into the auth modal with return context.
+- [x] Upgrade the account/profile page with a clearer identity header, verification status, learning metrics, progress snapshot, certificate states, security actions, and responsive empty/loading/error states.
+- [x] Humanize landing-page copy and hierarchy so the academy feels authored, specific, and useful rather than generically AI-generated.
+- [x] Add or update regression tests for protected learner boundaries and profile/account contracts.
+- [x] Validate protected flows, profile interactions, landing responsiveness, accessibility, tests, type checks, and production build.
+- [ ] Save a recoverable checkpoint after the account, profile, and landing upgrade.
+
