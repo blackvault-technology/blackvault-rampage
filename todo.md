@@ -50,3 +50,12 @@
 - [x] Add local timeline resume with last position, continue lesson, and cross-device-safe fallback messaging.
 - [x] Validate every active course route, source link, embed, duration, quiz, assessment, certificate gate, responsive state, and security boundary.
 - [x] Save the rebuilt course-system checkpoint and report implementation limits and next steps.
+
+## Continue: Premium UI/UX and Course Design Polish
+- [x] Audit current academy, course, lesson, assessment, certificate, and My Learning screens for hierarchy, friction, and responsive polish.
+- [x] Refine the Swiss technical-manual visual system with stronger geometry, signal colors, typography, spacing, and state treatment.
+- [x] Improve course storytelling with clearer module arcs, lesson intent, evidence checkpoints, and next-step guidance.
+- [x] Simplify learner flows while preserving authenticated persistence and server-verified certification.
+- [x] Validate representative desktop/mobile routes, tests, production build, and save a polished checkpoint.
+- [x] Add explicit simplified learner-flow cues across course, lesson, assessment, and certificate pages.
+- [x] Verify the authenticated learner journey in code-visible UI states, including persistence and certificate eligibility boundaries; full OAuth-session replay remains a manual verification step because no authenticated browser session was available.
