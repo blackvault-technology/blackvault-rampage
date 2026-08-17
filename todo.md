@@ -420,4 +420,4 @@
 - [x] Remove the conflicting `api/index.js` and `api/index.ts` path names while preserving the bundled serverless entrypoint.
 - [x] Update the production build and Vercel routing to use one canonical API function path.
 - [x] Validate auth JSON routing, bundle importability, tests, TypeScript, and production build.
-- [ ] Save a recoverable collision-repair checkpoint and provide the updated version.
+- [x] Save a recoverable collision-repair checkpoint and provide the updated version.
