@@ -426,3 +426,71 @@ footer { border-top:1px solid var(--rv-line); padding:38px clamp(22px,6vw,88px);
 .progress-matrix-phase .mini-track { margin-top:.55rem; }
 @media (max-width:700px) { .progress-matrix-head { flex-direction:column; } .progress-matrix-phases { grid-template-columns:1fr 1fr; } }
 @media (max-width:480px) { .progress-matrix-phases { grid-template-columns:1fr; } }
+
+/* Foundation provenance + systems-readiness landing sections */
+.provenance-section,
+.company-section,
+.foundation-section { position: relative; overflow: hidden; }
+.provenance-section { background: var(--cream); color: var(--navy); padding: 7rem clamp(1.25rem, 5vw, 6rem); }
+.provenance-head,
+.company-head { display: grid; grid-template-columns: minmax(0, 1fr) 13rem; gap: 3rem; align-items: end; margin: 2.2rem 0 3rem; }
+.provenance-head h2,
+.company-head h2 { margin: 0; font-size: clamp(3rem, 7vw, 7.5rem); line-height: .88; letter-spacing: -.075em; text-transform: uppercase; }
+.provenance-head h2 i,
+.company-head h2 i { color: var(--orange); font-style: normal; }
+.provenance-head p,
+.company-head p { max-width: 40rem; margin: 1.4rem 0 0; font-size: 1.05rem; line-height: 1.65; color: rgba(6,26,59,.72); }
+.provenance-mark,
+.company-signal { align-self: start; justify-self: end; border-left: 1px solid rgba(6,26,59,.28); padding-left: 1.25rem; color: var(--orange); font: 700 .68rem/1.3 'JetBrains Mono',monospace; letter-spacing: .15em; }
+.provenance-mark span { font-size: 2rem; color: var(--lime); }
+.logo-grid { display: grid; gap: .8rem; }
+.faculty-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.company-section { background: var(--navy); color: var(--cream); padding: 7rem clamp(1.25rem, 5vw, 6rem); }
+.company-section .section-index { color: var(--lime); }
+.company-head p { color: rgba(244,240,230,.7); }
+.company-head h2 i { color: var(--lime); }
+.company-signal { border-color: rgba(244,240,230,.28); color: var(--lime); display: flex; gap: .65rem; align-items: flex-start; }
+.logo-tile,
+.company-tile { min-height: 12rem; padding: 1.15rem; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(6,26,59,.18); background: rgba(255,255,255,.38); transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+.logo-tile:hover { transform: translateY(-4px); border-color: var(--orange); background: #fffaf2; }
+.company-tile { min-height: 10rem; border-color: rgba(244,240,230,.2); background: rgba(244,240,230,.045); }
+.company-tile:hover { transform: translateY(-4px); border-color: var(--lime); background: rgba(182,255,92,.09); }
+.logo-frame,
+.company-logo-frame { height: 4.6rem; display: grid; place-items: center; border-bottom: 1px solid currentColor; opacity: .9; }
+.logo-frame { color: rgba(6,26,59,.65); }
+.company-logo-frame { color: rgba(244,240,230,.75); }
+.partner-logo { max-width: 8rem; max-height: 3.4rem; width: auto; height: auto; object-fit: contain; mix-blend-mode: multiply; }
+.company-logo-frame .partner-logo { mix-blend-mode: screen; filter: grayscale(1) brightness(1.8); }
+.logo-fallback-text { display: none; font: 800 1.6rem/1 'JetBrains Mono',monospace; letter-spacing: .08em; }
+.logo-fallback .logo-fallback-text { display: inline-block; }
+.logo-tile strong,
+.company-tile strong { margin-top: 1rem; font-size: .9rem; letter-spacing: .02em; }
+.logo-tile small,
+.company-tile small { margin-top: .35rem; font: .65rem/1.3 'JetBrains Mono',monospace; text-transform: uppercase; letter-spacing: .1em; opacity: .62; }
+.foundation-section { background: var(--orange); color: var(--navy); padding: 6rem clamp(1.25rem, 5vw, 6rem); display: grid; grid-template-columns: 11rem minmax(0, 1fr) minmax(18rem, 25rem); gap: 3rem; align-items: start; }
+.foundation-stamp { display: flex; gap: .55rem; align-items: flex-start; font: 800 .68rem/1.2 'JetBrains Mono',monospace; letter-spacing: .12em; }
+.foundation-copy h2 { margin: 1.5rem 0 1.2rem; font-size: clamp(3rem, 6vw, 6rem); line-height: .9; letter-spacing: -.07em; text-transform: uppercase; }
+.foundation-copy h2 i { color: var(--cream); font-style: normal; }
+.foundation-copy p { max-width: 42rem; font-size: 1.15rem; line-height: 1.6; }
+.foundation-values { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 2rem; }
+.foundation-values span { padding: .55rem .7rem; border: 1px solid rgba(6,26,59,.35); font: 700 .65rem/1 'JetBrains Mono',monospace; letter-spacing: .14em; }
+.founder-card { padding: 1.5rem; border: 1px solid rgba(6,26,59,.32); background: rgba(244,240,230,.82); box-shadow: 10px 10px 0 rgba(6,26,59,.18); }
+.founder-kicker { margin-bottom: 2rem; font: 700 .65rem/1 'JetBrains Mono',monospace; letter-spacing: .15em; }
+.founder-card strong { display: block; font-size: 1.55rem; letter-spacing: -.04em; }
+.founder-card > span { display: block; margin-top: .35rem; font: .7rem/1.2 'JetBrains Mono',monospace; text-transform: uppercase; letter-spacing: .1em; opacity: .7; }
+.founder-card p { margin: 1.25rem 0 1.5rem; font-size: .82rem; line-height: 1.55; opacity: .75; }
+.foundation-section .text-cta { color: var(--navy); }
+@media (max-width: 900px) {
+  .faculty-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .provenance-head, .company-head { grid-template-columns: 1fr; gap: 1.5rem; }
+  .provenance-mark, .company-signal { justify-self: start; }
+  .foundation-section { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (max-width: 560px) {
+  .provenance-section, .company-section, .foundation-section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .faculty-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+  .logo-tile, .company-tile { min-height: 10rem; padding: .8rem; }
+  .logo-tile strong, .company-tile strong { font-size: .74rem; }
+  .logo-tile small, .company-tile small { font-size: .56rem; }
+  .partner-logo { max-width: 6rem; max-height: 2.7rem; }
+}

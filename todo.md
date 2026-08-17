@@ -129,5 +129,13 @@
 - [x] Deliver ten complementary upgrades with implementation evidence: (1) six-chapter Networking map, (2) twelve verified Networking lessons, (3) source-backed video links, (4) interactive lab briefs, (5) Networking chapter quizzes, (6) Networking final assessment bank, (7) server-reviewed incorrect-answer explanations, (8) scorecard share action, (9) detailed My Learning progress matrix, and (10) earned badge grid.
 - [x] Visually verify Networking course pages, My Learning progress/badges, and the correct course assessment gate on desktop and mobile; authenticated post-score/share replay remains a manual QA boundary.
 - [x] Document the learner-state fields powering progress and badges: `progress`, `readerState`, `bookmarks`, `highlights`, `certificates`, `xp`, and `xpLedger`; course/chapter detail is derived from persisted lesson completion and catalog structure.
-- [ ] Save a new recoverable checkpoint for the Networking Systems, My Learning badge/progress, and scorecard/share expansion after the resolved QA pass.
+- [x] Save a new recoverable checkpoint for the Networking Systems, My Learning badge/progress, and scorecard/share expansion after the resolved QA pass.
+
+## Continue: BlackVault Foundation Brand and Provenance Landing Sections
+- [x] Audit the landing page, current logo/brand assets, and Hunter logo endpoint behavior.
+- [x] Add premium faculty/resource provenance section with lazy, async Hunter logo loading and initials fallbacks.
+- [x] Add a carefully framed top-tech-company preparation showcase without implying endorsements or hiring guarantees.
+- [x] Add founder, mission, BlackVault Foundation, and affordability sections using user-provided facts and responsible credential wording.
+- [x] Validate branding, responsive layout, logo fallback implementation, tests/build; checkpoint save remains the final delivery action.
+- [x] Verify Hunter-logo fallback behavior by forcing a failing image request and visually confirming initials fallback on desktop/mobile; final tests and production build pass.
 - [x] Validate sources, security, responsive routes, tests, and build; checkpoint save remains the final delivery action.
