@@ -30,6 +30,8 @@ export default function Lesson() {
   const [quizAnswers, setQuizAnswers] = useState<Record<string, number>>({});
   const [quizResult, setQuizResult] = useState<{ score: number; passed: boolean } | null>(null);
   const [quizStartedAt] = useState(() => Date.now());
+  const [quizTabSwitches, setQuizTabSwitches] = useState(0);
+  const [quizFullscreenExits, setQuizFullscreenExits] = useState(0);
   const quizQuestions = chapterQuizBank[course.id] ?? [];
   const flatLessons = useMemo(() => course.phases.flatMap((item) => item.lessons.map((lessonItem) => ({ ...lessonItem, phaseId: item.id, phaseTitle: item.title }))), [course]);
   const lessonIndex = flatLessons.findIndex((item) => item.id === lesson.id);
@@ -42,6 +44,13 @@ export default function Lesson() {
   const timelineStatus = currentSecond > 0 ? "RESUME POINT READY" : "NOT STARTED YET";
   const checkpointStatus = quizResult?.passed ? "CHECKPOINT PASSED" : quizResult ? "REVIEW REQUIRED" : `${Object.keys(quizAnswers).length}/${quizQuestions.length || 0} ANSWERED`;
   useEffect(() => { localStorage.setItem(`rampage-work-${progressKey}`, JSON.stringify(work)); }, [progressKey, work]);
+  useEffect(() => {
+    const onVisibility = () => { if (document.visibilityState === "hidden") setQuizTabSwitches((value) => value + 1); };
+    const onFullscreen = () => { if (!document.fullscreenElement) setQuizFullscreenExits((value) => value + 1); };
+    document.addEventListener("visibilitychange", onVisibility);
+    document.addEventListener("fullscreenchange", onFullscreen);
+    return () => { document.removeEventListener("visibilitychange", onVisibility); document.removeEventListener("fullscreenchange", onFullscreen); };
+  }, []);
   useEffect(() => { localStorage.setItem(`rampage-timeline-${progressKey}`, String(currentSecond)); }, [progressKey, currentSecond]);
   const saveProgressPosition = async (value: number) => {
     setCurrentSecond(value);
@@ -55,7 +64,7 @@ export default function Lesson() {
     if (quizQuestions.length === 0 || Object.keys(quizAnswers).length < quizQuestions.length) { toast.error("Answer every checkpoint question first."); return; }
     if (!isAuthenticated) { toast.error("Sign in to submit a scored quiz and sync your result."); return; }
     try {
-      const result = await submitQuiz.mutateAsync({ courseId: course.id, chapterId: phase.id, lessonId: lesson.id, answers: quizAnswers, startedAt: quizStartedAt, tabSwitches: 0, fullscreenExits: 0 });
+      const result = await submitQuiz.mutateAsync({ courseId: course.id, chapterId: phase.id, lessonId: lesson.id, answers: quizAnswers, startedAt: quizStartedAt, tabSwitches: quizTabSwitches, fullscreenExits: quizFullscreenExits });
       setQuizResult({ score: result.score, passed: result.passed });
       toast[result.passed ? "success" : "error"](result.passed ? "Checkpoint passed." : "Review the source and try again.");
     } catch { toast.error("The quiz could not be submitted. Try again when you are online."); }

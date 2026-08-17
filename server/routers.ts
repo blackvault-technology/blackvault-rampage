@@ -18,7 +18,7 @@ import {
   rampageReaderState,
   writeAuditEvent,
 } from "./db";
-import { COURSE_LESSON_COUNTS, buildAttemptIntegrity, getCourseRule, isSupportedCourse } from "@shared/courseRules";
+import { COURSE_LESSON_COUNTS, buildAttemptIntegrity, getCourseRule, isAssessmentWithinWindow, isSupportedCourse } from "@shared/courseRules";
 import { chapterQuizBank, finalAssessmentBank } from "@shared/courseAssessments";
 import { desc, sql } from "drizzle-orm";
 import { rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger } from "./db";
@@ -119,6 +119,7 @@ export const appRouter = router({
       const score = Math.round((questions.filter(question => input.answers[question.id] === question.answer).length / questions.length) * 100);
       const passed = score >= 80 ? 1 : 0;
       const submittedAt = Date.now();
+      if (!isAssessmentWithinWindow(input.startedAt, submittedAt, 5 * 60)) throw new TRPCError({ code: "TIMEOUT", message: "Knowledge-check window expired. Review the lesson source before retrying." });
       await db.insert(rampageQuizAttempts).values({ userId: learner.id, courseId: input.courseId, chapterId: input.chapterId, lessonId: input.lessonId, attemptNumber: previous.length + 1, score, passed, answers: input.answers, integrity: buildAttemptIntegrity({ startedAt: input.startedAt, submittedAt, tabSwitches: input.tabSwitches, fullscreenExits: input.fullscreenExits, questionOrder: questions.map(question => question.id) }), startedAt: new Date(input.startedAt), submittedAt: new Date(submittedAt) });
       const xpAwarded = passed ? await awardXp(db, learner.id, `quiz-pass:${input.courseId}:${input.lessonId}`, 25, "quiz_pass", input.lessonId, input.courseId, { score }) : 0;
       await writeAuditEvent(learner.id, "quiz_submitted", "lesson", input.lessonId, { courseId: input.courseId, score, passed, xpAwarded });
@@ -138,9 +139,7 @@ export const appRouter = router({
       const score = Math.round((questions.filter(question => input.answers[question.id] === question.answer).length / questions.length) * 100);
       const passed = score >= rule.passScore ? 1 : 0;
       const submittedAt = Date.now();
-      const elapsedSeconds = Math.floor((submittedAt - input.startedAt) / 1000);
-      if (input.startedAt > submittedAt + 5_000) throw new TRPCError({ code: "BAD_REQUEST", message: "Assessment start time is invalid." });
-      if (elapsedSeconds > 16 * 60) throw new TRPCError({ code: "TIMEOUT", message: "Assessment time window expired. Review the course before retrying." });
+      if (!isAssessmentWithinWindow(input.startedAt, submittedAt)) throw new TRPCError({ code: "TIMEOUT", message: "Assessment time window expired or start time is invalid. Review the course before retrying." });
       await db.insert(rampageAssessmentAttempts).values({ userId: learner.id, courseId: input.courseId, attemptNumber: previous.length + 1, score, passed, answers: input.answers, questionOrder: questions.map(question => question.id), integrity: buildAttemptIntegrity({ startedAt: input.startedAt, submittedAt, tabSwitches: input.tabSwitches, fullscreenExits: input.fullscreenExits, questionOrder: questions.map(question => question.id) }), startedAt: new Date(input.startedAt), submittedAt: new Date(submittedAt) });
       const xpAwarded = passed ? await awardXp(db, learner.id, `final-pass:${input.courseId}`, 200, "final_assessment_pass", input.courseId, input.courseId, { score, attemptNumber: previous.length + 1 }) : 0;
       await writeAuditEvent(learner.id, "final_assessment_submitted", "course", input.courseId, { score, passed, xpAwarded, attemptNumber: previous.length + 1 });

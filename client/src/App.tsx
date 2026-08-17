@@ -15,6 +15,7 @@ import Certificate from "./pages/Certificate";
 import Paths from "./pages/Paths";
 import MyLearning from "@/pages/MyLearning";
 import Assessment from "@/pages/Assessment";
+import { courses } from "@/data/catalog";
 import { useLocation } from "wouter";
 
 function RouteSeo() {
@@ -32,8 +33,12 @@ function RouteSeo() {
     document.title = `Rampage — ${section}`;
     const setMeta = (name: string, content: string) => { let tag = document.querySelector(`meta[name="${name}"]`); if (!tag) { tag = document.createElement("meta"); tag.setAttribute("name", name); document.head.appendChild(tag); } tag.setAttribute("content", content); };
     setMeta("description", description);
+    const setProperty = (property: string, content: string) => { let tag = document.querySelector(`meta[property="${property}"]`); if (!tag) { tag = document.createElement("meta"); tag.setAttribute("property", property); document.head.appendChild(tag); } tag.setAttribute("content", content); };
+    setProperty("og:title", `Rampage — ${section}`); setProperty("og:description", description); setProperty("og:type", cleanPath.includes("course") ? "article" : "website"); setProperty("og:url", `${window.location.origin}${cleanPath}`);
+    setMeta("twitter:card", "summary"); setMeta("twitter:title", `Rampage — ${section}`); setMeta("twitter:description", description);
     const canonical = document.querySelector('link[rel="canonical"]') || document.createElement("link"); canonical.setAttribute("rel", "canonical"); canonical.setAttribute("href", `${window.location.origin}${cleanPath}`); if (!canonical.parentNode) document.head.appendChild(canonical);
-    const ld = { "@context": "https://schema.org", "@type": "WebSite", name: "BlackVault Rampage", description, url: window.location.origin };
+    const courseId = cleanPath.match(/^\/course\/([^/]+)/)?.[1]; const course = courseId ? courses.find((item) => item.id === courseId) : undefined;
+    const ld = course ? { "@context": "https://schema.org", "@type": "Course", name: course.title, description: course.subtitle, provider: { "@type": "Organization", name: "BlackVault Rampage" }, url: `${window.location.origin}${cleanPath}` } : { "@context": "https://schema.org", "@type": "WebSite", name: "BlackVault Rampage", description, url: window.location.origin };
     let script = document.getElementById("rampage-structured-data") as HTMLScriptElement | null; if (!script) { script = document.createElement("script"); script.id = "rampage-structured-data"; script.type = "application/ld+json"; document.head.appendChild(script); } script.textContent = JSON.stringify(ld);
   }, [location]);
   return null;

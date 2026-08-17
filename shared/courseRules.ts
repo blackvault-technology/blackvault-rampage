@@ -19,6 +19,11 @@ export function getCourseRule(courseId: string) {
   return isSupportedCourse(courseId) ? COURSE_RULES[courseId] : undefined;
 }
 
+export function isAssessmentWithinWindow(startedAt: number, submittedAt: number, maxSeconds = 16 * 60, clockSkewMs = 5_000) {
+  if (startedAt > submittedAt + clockSkewMs) return false;
+  return submittedAt - startedAt <= maxSeconds * 1000;
+}
+
 export function buildAttemptIntegrity(input: { startedAt: number; submittedAt: number; tabSwitches: number; fullscreenExits: number; questionOrder: string[] }) {
   return {
     startedAt: new Date(input.startedAt).toISOString(),

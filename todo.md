@@ -99,8 +99,12 @@
 - [x] Save a new recoverable checkpoint after the validated mm:ss and duration-based timeline changes.
 
 ## Continue: Gamified Secure Assessment and SEO Upgrade
-- [ ] Audit assessment, quiz, progress, SEO metadata, sitemap/robots, and repository readiness.
-- [ ] Design a non-monetary learning XP system with secure server-verified awards and transparent learner states.
-- [ ] Upgrade quizzes and final tests with full-screen timed UX, integrity signals, anti-cheat logging, and clear failure/retry handling without claiming impossible prevention.
-- [ ] Add learning UX upgrades and SEO foundations for scalable multi-course discovery.
-- [ ] Validate tests, build, responsive assessment routes, and GitHub/Vercel readiness; save a checkpoint.
+- [x] Audit assessment, quiz, progress, SEO metadata, sitemap/robots, and repository readiness.
+- [x] Design a non-monetary learning XP system with secure server-verified awards and transparent learner states.
+- [x] Upgrade quizzes and final tests with full-screen timed UX, integrity signals, anti-cheat logging, and clear failure/retry handling without claiming impossible prevention.
+- [x] Add learning UX upgrades and SEO foundations for scalable multi-course discovery.
+- [x] Validate tests, build, and responsive assessment routes. GitHub repository creation was attempted but blocked by the connected token’s repository-creation permission; Vercel deployment was not claimed.
+- [x] Save the validated XP, secure assessment, SEO, and learner-UX checkpoint.
+- [x] Extend lesson quizzes with a bounded five-minute server window plus visibility/fullscreen integrity signals; final assessments retain the stronger fifteen-minute certificate-gated controls.
+- [x] Add stronger SPA-compatible multi-course SEO foundations: route-aware titles/descriptions/canonicals, Open Graph/Twitter metadata, robots.txt, and course-level JSON-LD. A deployment-domain sitemap remains a hosting configuration step.
+- [ ] Save a recoverable checkpoint after resolving the XP, quiz-security, and SEO gaps.

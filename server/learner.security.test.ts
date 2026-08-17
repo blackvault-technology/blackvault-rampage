@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { appRouter } from "./routers";
+import { isAssessmentWithinWindow } from "@shared/courseRules";
 import type { TrpcContext } from "./_core/context";
 
 function createContext(user: TrpcContext["user"]): TrpcContext {
@@ -31,5 +32,12 @@ describe("learner security boundaries", () => {
   it("rejects unsupported certificate courses before database access", async () => {
     const caller = appRouter.createCaller(createContext(authenticatedUser));
     await expect(caller.learner.issueCertificate({ courseId: "not-a-real-course" })).rejects.toMatchObject({ code: "BAD_REQUEST" });
+  });
+
+  it("accepts only assessments inside the bounded server window", () => {
+    const startedAt = 1_000_000;
+    expect(isAssessmentWithinWindow(startedAt, startedAt + 15 * 60 * 1000)).toBe(true);
+    expect(isAssessmentWithinWindow(startedAt, startedAt + 16 * 60 * 1000 + 1)).toBe(false);
+    expect(isAssessmentWithinWindow(startedAt, startedAt - 6_000)).toBe(false);
   });
 });
