@@ -331,28 +331,28 @@
 
 
 ## Continue: Vercel Deployment Verification
-- [ ] Verify the corrected checkpoint, live deployment response, and current Vercel project state.
-- [ ] Fix any remaining production routing, environment, runtime, or browser-visible issues.
-- [ ] Run deployment artifact, API, SPA-route, test, type, build, and browser validation.
-- [ ] Save the next publish-ready checkpoint and provide the republish and browser-review handoff.
+- [x] Verify the corrected checkpoint, live deployment response, and current Vercel project state.
+- [x] Fix any remaining production routing, environment, runtime, or browser-visible issues.
+- [x] Run deployment artifact, API, SPA-route, test, type, build, and browser validation.
+- [x] Save the next publish-ready checkpoint and provide the republish and browser-review handoff.
 
 
 ## Continue: Motion System and UX Expansion
-- [ ] Audit current animation dependencies, landing/logo rail, shared shell, course surfaces, profile, and reduced-motion behavior.
-- [ ] Define an accessible motion language and ten-plus concrete UX improvements with performance boundaries.
-- [ ] Add shared motion primitives and landing-page choreography with reduced-motion fallbacks.
-- [ ] Animate the logo rail with smooth, pauseable, touch-friendly motion and graceful loading states.
-- [ ] Improve header navigation feedback, active states, and mobile menu transitions.
-- [ ] Add course-card hover/focus depth, clear metadata hierarchy, and bookmark/intent affordances.
-- [ ] Add scroll-reveal treatment for course, resource, faculty, and mission sections.
-- [ ] Add polished CTA press, hover, and loading feedback across public pages.
-- [ ] Improve lesson workspace entry, phase transitions, and sidebar feedback.
-- [ ] Improve profile progress-card transitions, filter feedback, and goal-setting interactions.
-- [ ] Improve certificate sharing feedback and public verification result transitions.
-- [ ] Improve mobile bottom navigation transitions and active indicators.
-- [ ] Add reduced-motion and keyboard/focus regression coverage for motion surfaces.
-- [ ] Run tests, type checks, production build, responsive screenshots, and performance/accessibility smoke validation.
-- [ ] Save a recoverable checkpoint and provide the publish handoff.
+- [x] Audit current animation dependencies, landing/logo rail, shared shell, course surfaces, profile, and reduced-motion behavior.
+- [x] Define an accessible motion language and ten-plus concrete UX improvements with performance boundaries.
+- [x] Add shared motion primitives and landing-page choreography with reduced-motion fallbacks.
+- [x] Animate the logo rail with smooth, pauseable, touch-friendly motion and graceful loading states.
+- [x] Improve header navigation feedback, active states, and mobile menu transitions.
+- [x] Add course-card hover/focus depth, clear metadata hierarchy, and bookmark/intent affordances.
+- [x] Add scroll-reveal treatment for course, resource, faculty, and mission sections.
+- [x] Add polished CTA press, hover, and loading feedback across public pages.
+- [x] Improve lesson workspace entry, phase transitions, and sidebar feedback.
+- [x] Improve profile progress-card transitions, filter feedback, and goal-setting interactions.
+- [x] Improve certificate sharing feedback and public verification result transitions.
+- [x] Improve mobile bottom navigation transitions and active indicators.
+- [x] Add reduced-motion and keyboard/focus regression coverage for motion surfaces.
+- [x] Run tests, type checks, production build, responsive screenshots, and performance/accessibility smoke validation.
+- [x] Save a recoverable checkpoint and provide the publish handoff.
 
 
 ## Continue: Production Error Repair and Motion Polish

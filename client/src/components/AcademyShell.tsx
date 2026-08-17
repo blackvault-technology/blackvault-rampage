@@ -6,7 +6,15 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { AuthLauncher, AuthModal } from "@/components/AuthModal";
 import { useAuthModal } from "@/hooks/useAuthModal";
 
-export function Brand() { return <Link href="/"><div className="brand"><span className="brand-mark" aria-hidden="true"><i /></span><div><span>BLACKVAULT</span><small>TECHNOLOGY</small></div><strong className="rampage-lockup"><i>/</i><b>RAMPAGE</b><small>OPEN LEARNING SYSTEM</small></strong></div></Link>; }
+export function Brand() {
+  return <Link href="/"><div className="brand"><span className="brand-mark" aria-hidden="true"><i /></span><div><span>BLACKVAULT</span><small>TECHNOLOGY</small></div><strong className="rampage-lockup"><i>/</i><b>RAMPAGE</b><small>OPEN LEARNING SYSTEM</small></strong></div></Link>;
+}
+
+function isActive(location: string, href: string) {
+  if (href === "/") return location === "/";
+  if (href === "/#catalog") return location === "/" && typeof window !== "undefined" && window.location.hash === "#catalog";
+  return location === href || location.startsWith(`${href}/`);
+}
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -17,8 +25,17 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
   const matches = useMemo(() => courses.flatMap((course) => course.phases.flatMap((phase) => phase.lessons.map((lesson) => ({ ...lesson, courseId: course.id, courseTitle: course.title })))).filter((item) => item.title.toLowerCase().includes(query.toLowerCase())).slice(0, 7), [query]);
   useEffect(() => setOpen(false), [location]);
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); setSearchOpen(true); }
+      if (event.key === "Escape") { setSearchOpen(false); setOpen(false); }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+  const navItems = [["/", "Academy"], ["/learn", "My learning"], ["/paths", "Guided paths"], ["/resources", "Resource library"], ["/about", "About"], ["/#catalog", "Courses"]] as const;
   return <div className="academy-shell">
-    <header className="topbar"><Brand /><nav className={open ? "nav-links is-open" : "nav-links"}><Link href="/">Academy</Link><Link href="/learn">My learning</Link><Link href="/paths">Guided paths</Link><Link href="/resources">Resource library</Link><Link href="/about">About</Link><Link href="/#catalog">Courses</Link><button className="search-trigger" onClick={() => setSearchOpen(true)}><Search size={15} /> Search <kbd>⌘ K</kbd></button></nav><div className="top-actions"><button className="icon-button" onClick={() => setSearchOpen(true)} aria-label="Search"><Search size={18} /></button>{user ? <div className="header-account"><Link href="/account" className="header-account-link"><UserRound size={16} /><span className="header-account-name" title={user.name || user.email || "Account"}>{(user.name || user.email || "Account").trim().split(/\s+/)[0]}</span></Link><button className="header-signout" onClick={() => logout()}>Sign out</button></div> : <AuthLauncher redirect={location}><span className="header-auth-label">Sign in</span><UserRound size={16} /></AuthLauncher>}<button className="menu-button" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X size={21} /> : <Menu size={21} />}</button><a className="github-link" href="https://github.com/new" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a></div></header>
+    <header className="topbar"><Brand /><nav className={open ? "nav-links is-open" : "nav-links"} aria-label="Primary navigation">{navItems.map(([href, label]) => <Link key={href} href={href} className={isActive(location, href) ? "is-active" : ""} aria-current={isActive(location, href) ? "page" : undefined}>{label}</Link>)}<button className="search-trigger" onClick={() => setSearchOpen(true)}><Search size={15} /> Search <kbd>⌘ K</kbd></button></nav><div className="top-actions"><button className="icon-button" onClick={() => setSearchOpen(true)} aria-label="Search"><Search size={18} /></button>{user ? <div className="header-account"><Link href="/account" className="header-account-link"><UserRound size={16} /><span className="header-account-name" title={user.name || user.email || "Account"}>{(user.name || user.email || "Account").trim().split(/\s+/)[0]}</span></Link><button className="header-signout" onClick={() => logout()}>Sign out</button></div> : <AuthLauncher redirect={location}><span className="header-auth-label">Sign in</span><UserRound size={16} /></AuthLauncher>}<button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Toggle navigation">{open ? <X size={21} /> : <Menu size={21} />}</button><a className="github-link" href="https://github.com/new" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a></div></header>
     {children}
     <nav className="mobile-app-nav" aria-label="Mobile app navigation"><Link href="/" aria-current={location === "/" ? "page" : undefined} className={location === "/" ? "is-active" : ""}><Home size={17} /><span>Home</span></Link><Link href="/learn" aria-current={location === "/learn" || location.startsWith("/course/") ? "page" : undefined} className={location === "/learn" || location.startsWith("/course/") ? "is-active" : ""}><BookOpen size={17} /><span>Learn</span></Link><Link href="/paths" aria-current={location.startsWith("/paths") ? "page" : undefined} className={location.startsWith("/paths") ? "is-active" : ""}><Compass size={17} /><span>Paths</span></Link>{user ? <Link href="/account" aria-current={location.startsWith("/account") ? "page" : undefined} className={location.startsWith("/account") ? "is-active" : ""}><UserRound size={17} /><span>Account</span></Link> : <AuthLauncher redirect={location}><UserRound size={17} /><span>Account</span></AuthLauncher>}</nav>
     <footer><Brand /><div className="footer-links"><Link href="/">Academy</Link><Link href="/learn">My learning</Link><Link href="/paths">Guided paths</Link><Link href="/resources">Resources</Link><Link href="/about">About</Link><Link href="/terms">Terms</Link><Link href="/privacy">Privacy</Link><Link href="/cookies">Cookies</Link><Link href="/acceptable-use">Acceptable use</Link><a href="https://github.com/" target="_blank" rel="noreferrer">Open source</a><Link href="/#catalog">Explore courses <ArrowUpRight size={13} /></Link></div><p>© 2026 BLACKVAULT TECHNOLOGY. BUILD WITH INTENT.</p></footer>
@@ -26,4 +43,3 @@ export function Shell({ children }: { children: React.ReactNode }) {
     <AuthModal open={authModal.open} onOpenChange={authModal.setOpen} redirect={authModal.redirect} />
   </div>;
 }
-

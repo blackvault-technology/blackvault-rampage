@@ -924,3 +924,42 @@ footer { border-top:1px solid var(--rv-line); padding:38px clamp(22px,6vw,88px);
 .brand-mark i { display:block; width:9px; height:9px; border-radius:2px; background:var(--rv-navy, var(--navy)); }
 .brand-mark + div, .brand-mark ~ div { transform:rotate(0deg); }
 @media (prefers-reduced-motion: no-preference) { .brand-mark { transition:transform 180ms cubic-bezier(.23,1,.32,1); } .brand:hover .brand-mark { transform:rotate(45deg) scale(1.05); } }
+
+/* Motion system / UX expansion: transform + opacity only, with quiet fallbacks. */
+.motion-pressable { will-change: transform; }
+.nav-links a { position: relative; transition: color .18s var(--ease-out), opacity .18s var(--ease-out); }
+.nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -.42rem; height: 2px; transform: scaleX(0); transform-origin: left; background: var(--lime); transition: transform .2s var(--ease-out); }
+.nav-links a:hover, .nav-links a:focus-visible, .nav-links a.is-active { color: var(--cream); }
+.nav-links a:hover::after, .nav-links a:focus-visible::after, .nav-links a.is-active::after { transform: scaleX(1); }
+.nav-links.is-open { animation: shell-nav-in .22s var(--ease-out) both; }
+@keyframes shell-nav-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.primary-cta, .text-cta, .github-link, .header-account-link, .search-trigger, .mobile-app-nav a { transition: transform .16s var(--ease-out), color .16s var(--ease-out), background-color .16s var(--ease-out), border-color .16s var(--ease-out), opacity .16s var(--ease-out); }
+.primary-cta:hover, .text-cta:hover, .github-link:hover, .header-account-link:hover { transform: translateY(-2px); }
+.primary-cta:active, .text-cta:active, .github-link:active, .search-trigger:active, .menu-button:active, .mobile-app-nav a:active { transform: scale(.97); }
+.course-card { position: relative; overflow: hidden; isolation: isolate; transition: transform .24s var(--ease-out), border-color .24s var(--ease-out), background-color .24s var(--ease-out), box-shadow .24s var(--ease-out); }
+.course-card::after { content: "OPEN PATH ↗"; position: absolute; right: 1.2rem; top: 3.65rem; padding: .28rem .38rem; color: var(--lime); border: 1px solid rgba(182,255,92,.28); background: rgba(182,255,92,.06); font: 700 .52rem 'JetBrains Mono', monospace; letter-spacing: .08em; opacity: 0; transform: translateY(5px); transition: opacity .2s var(--ease-out), transform .2s var(--ease-out); pointer-events: none; }
+.course-card:hover, .course-card:focus-visible { transform: translateY(-7px); border-color: rgba(182,255,92,.48); box-shadow: 0 20px 45px rgba(0,0,0,.22); }
+.course-card:hover::after, .course-card:focus-visible::after { opacity: 1; transform: translateY(0); }
+.logo-rail { position: relative; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.logo-rail::before, .logo-rail::after { content: ""; position: absolute; z-index: 2; top: 0; bottom: 0; width: 4rem; pointer-events: none; }
+.logo-rail::before { left: 0; background: linear-gradient(90deg, var(--navy), transparent); }
+.logo-rail::after { right: 0; background: linear-gradient(270deg, var(--navy), transparent); }
+.logo-rail-track { will-change: transform; }
+.rail-item { transition: opacity .18s var(--ease-out), transform .18s var(--ease-out), border-color .18s var(--ease-out); }
+.rail-item:hover, .rail-item:focus-within { opacity: 1; transform: translateY(-2px); }
+.lesson-card, .phase-section, .profile-course-card, .certificate-share-panel, .verification-card, .preferences-panel { transition: transform .22s var(--ease-out), border-color .22s var(--ease-out), box-shadow .22s var(--ease-out); }
+.lesson-card:hover, .lesson-card:focus-visible, .profile-course-card:hover, .verification-card:hover { transform: translateY(-3px); border-color: rgba(182,255,92,.35); box-shadow: 0 16px 36px rgba(0,0,0,.16); }
+.search-overlay { animation: overlay-in .2s var(--ease-out) both; }
+.search-modal { animation: modal-in .24s var(--ease-out) both; }
+@keyframes overlay-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-in { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.mobile-app-nav a { position: relative; }
+.mobile-app-nav a::after { content: ""; position: absolute; left: 50%; bottom: .32rem; width: .28rem; height: .28rem; border-radius: 50%; background: var(--lime); transform: translateX(-50%) scale(0); transition: transform .18s var(--ease-out); }
+.mobile-app-nav a.is-active::after { transform: translateX(-50%) scale(1); }
+.mobile-app-nav a.is-active svg { filter: drop-shadow(0 0 8px rgba(182,255,92,.42)); }
+@media (prefers-reduced-motion: reduce) {
+  .motion-pressable, .nav-links.is-open, .search-overlay, .search-modal { animation: none; transition: none; }
+  .nav-links a::after, .mobile-app-nav a::after { transition: none; }
+  .primary-cta:hover, .text-cta:hover, .github-link:hover, .header-account-link:hover, .course-card:hover, .course-card:focus-visible, .lesson-card:hover, .lesson-card:focus-visible, .profile-course-card:hover, .verification-card:hover, .rail-item:hover, .rail-item:focus-within { transform: none; }
+  .course-card::after { display: none; }
+}
