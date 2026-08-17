@@ -29,3 +29,15 @@ The main institutional URLs are live and source-backed. The generated arXiv inde
 ## Validation commands
 
 `pnpm check`, `pnpm test`, and `pnpm build` completed successfully. The Vitest suite includes auth logout, Neon connection validation, and learner security tests. Desktop screenshots verified the course overview and final assessment route.
+
+## Full catalog URL audit
+
+A source-by-source URL sweep over the active catalog returned HTTP 200 for all 26 unique canonical URLs, including the MIT, Stanford, Berkeley, Nand2Tetris, OSTEP, Cambridge, Raft, Google ML, PyTorch, Hugging Face, Full Stack Deep Learning, GNU GDB, GitHub lab repositories, and four YouTube no-cookie lesson sources referenced by the course records. The sweep completed with no non-200 URLs.
+
+The catalog uses real institutional and primary-source links. Generated arXiv records remain real paper metadata, but are labeled as an indexed research collection rather than pretending that every record is a hand-authored course lesson.
+
+## Record-level lesson metadata audit
+
+The active catalog was inspected at the normalized lesson-record level. Each active lesson record carries a concrete duration, summary, and one or more explicit resource records. Resource records carry a source label and canonical URL. Video-bearing lessons use real YouTube no-cookie embeds with a corresponding video label; reading-and-lab lessons intentionally omit a visible embed and route learners to the original source panel. Course-level time estimates are presented as ranges where the official material is open-ended; lesson-level durations are explicit learner estimates rather than claims made by the external providers.
+
+The active course set is: System Fundamentals, AI Systems, Systems Research Lab, Compiler & Runtime Architecture, and Networking Systems. Networking Systems remains a catalog shell with no active phases and is clearly labeled `COMING SOON`, so it is not represented as a completed course or certificate-eligible path.

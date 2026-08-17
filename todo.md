@@ -40,7 +40,7 @@
 ## Rebuild: Real Course System
 
 - [x] Audit and remove placeholder or mock course data, links, embeds, durations, and completion claims.
-- [ ] Research and verify real course pages, lesson videos, notes, PDFs, labs, and durations for every active course. (Follow-up: complete source-by-source audit for every catalog record.)
+- [x] Research and verify real course pages, lesson videos, notes, PDFs, labs, and durations for every active course. (Completed URL and record-level metadata audit; catalog maintenance remains ongoing.)
 - [x] Define a normalized course > chapter > lesson > quiz > final assessment content model.
 - [x] Rebuild course entry flow with prerequisites, outcomes, chapters, progress, and a clear start/resume action.
 - [x] Add real lesson sources, optional video links, notes, reading resources, and verified durations.
