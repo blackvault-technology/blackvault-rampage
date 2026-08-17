@@ -179,4 +179,4 @@
 - [x] Implement offline lesson caching with explicit cache versioning, stale fallback behavior, and cache invalidation.
 - [x] Add installable PWA manifest, service-worker registration, and offline-ready status UX without caching authenticated responses unsafely.
 - [x] Run tests, type checking, production build, responsive screenshots, accessibility review, and offline/PWA validation.
-- [ ] Save a new recoverable checkpoint after validation.
+- [x] Save a new recoverable checkpoint after validation.
