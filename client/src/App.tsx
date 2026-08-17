@@ -12,6 +12,7 @@ import Lesson from "./pages/Lesson";
 import Resources from "./pages/Resources";
 import ResourceReader from "./pages/ResourceReader";
 import Certificate from "./pages/Certificate";
+import CertificateVerify from "./pages/CertificateVerify";
 import Paths from "./pages/Paths";
 import MyLearning from "@/pages/MyLearning";
 import Assessment from "@/pages/Assessment";
@@ -42,6 +43,7 @@ function RouteSeo() {
       "/privacy": "Privacy Notice",
       "/cookies": "Cookie Notice",
       "/acceptable-use": "Acceptable Use",
+      "/certificate/verify": "Certificate Verification",
     };
     const section = pageNames[cleanPath] || (cleanPath.includes("assessment") ? "Final Assessment" : cleanPath.includes("certificate") ? "Digital Certificate" : cleanPath.includes("lesson") ? "Lesson Workspace" : cleanPath.includes("course") ? "Course Overview" : "Academy");
     const description = cleanPath.includes("assessment") ? "A timed, server-scored Rampage learning assessment with transparent integrity signals." : cleanPath.includes("resources") ? "A structured reading room for verified technical papers, books, and institutional sources." : cleanPath === "/about" ? "Meet BlackVault Foundation, the people and principles behind BlackVault Rampage’s structured approach to technical learning." : cleanPath.includes("course") ? "A source-backed BlackVault Rampage course with guided lessons, labs, and real technical resources." : "BlackVault Rampage is a source-first technical academy for building systems fluency through guided courses and real resources.";
@@ -70,6 +72,6 @@ function AccountRequired({ children }: { children: React.ReactNode }) {
 }
 
 function Router() { return <><RouteSeo /><Switch><Route path="/" component={Home} /><Route path="/resources" component={Resources} /><Route path="/paths" component={Paths} /><Route path="/learn"><AccountRequired><MyLearning /></AccountRequired></Route><Route path="/about" component={About} /><Route path="/terms" component={Terms} /><Route path="/privacy" component={Privacy} /><Route path="/cookies" component={Cookies} /><Route path="/acceptable-use" component={AcceptableUse} /><Route path="/login" component={Login} /><Route path="/verify" component={Verify} /><Route path="/reset-password" component={ResetPassword} /><Route path="/account"><AccountRequired><Account /></AccountRequired></Route><Route path="/settings"><AccountRequired><Account /></AccountRequired></Route>
-	<Route path="/paths/:pathId" component={Paths} /><Route path="/resources/read/:resourceId"><AccountRequired><ResourceReader /></AccountRequired></Route><Route path="/course/:courseId"><AccountRequired><Course /></AccountRequired></Route><Route path="/course/:courseId/lesson/:lessonId"><AccountRequired><Lesson /></AccountRequired></Route><Route path="/course/:courseId/assessment"><AccountRequired><Assessment /></AccountRequired></Route><Route path="/certificate/:courseId"><AccountRequired><Certificate /></AccountRequired></Route><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch></>; }
+	<Route path="/paths/:pathId" component={Paths} /><Route path="/resources/read/:resourceId"><AccountRequired><ResourceReader /></AccountRequired></Route><Route path="/course/:courseId"><AccountRequired><Course /></AccountRequired></Route><Route path="/course/:courseId/lesson/:lessonId"><AccountRequired><Lesson /></AccountRequired></Route><Route path="/course/:courseId/assessment"><AccountRequired><Assessment /></AccountRequired></Route><Route path="/certificate/verify/:recordId" component={CertificateVerify} /><Route path="/certificate/verify" component={CertificateVerify} /><Route path="/certificate/:courseId"><AccountRequired><Certificate /></AccountRequired></Route><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch></>; }
 
 export default function App() { return <ErrorBoundary><ThemeProvider defaultTheme="dark"><TooltipProvider><Toaster theme="dark" /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>; }

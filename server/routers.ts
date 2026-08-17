@@ -18,6 +18,7 @@ import {
   rampageReaderBookmarks,
   rampageReaderHighlights,
   rampageReaderState,
+  rampageLearnerPreferences,
   writeAuditEvent,
 } from "./db";
 import { COURSE_LESSON_COUNTS, buildAttemptIntegrity, getCourseRule, isAssessmentWithinWindow, isSupportedCourse } from "@shared/courseRules";
@@ -25,6 +26,7 @@ import { chapterQuizBank, finalAssessmentBank } from "@shared/courseAssessments"
 import { desc, sql } from "drizzle-orm";
 import { localAuthTokens, rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger, userTable } from "./db";
 import { sdk } from "./_core/sdk";
+import { sendAuthCodeEmail } from "./email";
 
 const courseIdInput = z.object({ courseId: z.string().min(1).max(120) });
 
@@ -82,15 +84,17 @@ export const appRouter = router({
       const [user] = await db.insert(userTable).values({ openId, name: input.name.trim(), email, loginMethod: "password", passwordHash: passwordDigest(input.password, salt), passwordSalt: salt.toString("hex") }).returning();
       if (!user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Unable to create account" });
       const verificationCode = await issueAuthCode(user.id, "verify_email");
+      const delivery = user.email ? await sendAuthCodeEmail(user.email, "verify_email", verificationCode) : { delivered: false as const, reason: "not_configured" as const };
       await setSessionCookie(ctx, user);
-      return { ...user, developmentVerificationCode: process.env.NODE_ENV === "development" ? verificationCode : undefined };
+      return { ...user, delivery, developmentVerificationCode: process.env.NODE_ENV === "development" ? verificationCode : undefined };
     }),
     requestVerification: protectedProcedure.mutation(async ({ ctx }) => {
       const user = await getUserById(ctx.user.id);
       if (!user?.email) throw new TRPCError({ code: "BAD_REQUEST", message: "Add an email address before requesting verification." });
       if (user.emailVerifiedAt) return { sent: false, alreadyVerified: true as const };
       const code = await issueAuthCode(user.id, "verify_email");
-      return { sent: true, alreadyVerified: false as const, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
+      const delivery = await sendAuthCodeEmail(user.email, "verify_email", code);
+      return { sent: true, alreadyVerified: false as const, delivery, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
     }),
     verifyEmail: publicProcedure.input(z.object({ email: z.string().email().max(320), code: z.string().regex(/^\d{6}$/) })).mutation(async ({ input }) => {
       const user = await getUserByEmail(normalizeEmail(input.email));
@@ -107,7 +111,8 @@ export const appRouter = router({
       const user = await getUserByEmail(normalizeEmail(input.email));
       if (!user) return { sent: true as const };
       const code = await issueAuthCode(user.id, "reset_password");
-      return { sent: true as const, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
+      const delivery = user.email ? await sendAuthCodeEmail(user.email, "reset_password", code) : { delivered: false as const, reason: "not_configured" as const };
+      return { sent: true as const, delivery, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
     }),
     resetPassword: publicProcedure.input(z.object({ email: z.string().email().max(320), code: z.string().regex(/^\d{6}$/), password: z.string().min(10).max(128) })).mutation(async ({ input }) => {
       const user = await getUserByEmail(normalizeEmail(input.email));
@@ -148,6 +153,14 @@ export const appRouter = router({
 
   learner: router({
     state: protectedProcedure.query(async ({ ctx }) => getLearnerState(ctx.user.openId)),
+    savePreferences: protectedProcedure.input(z.object({ goal: z.string().trim().min(3).max(160), weeklyTargetMinutes: z.number().int().min(15).max(2400), notificationsEnabled: z.boolean() })).mutation(async ({ ctx, input }) => {
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const learner = await getOrCreateRampageUser(ctx.user.openId, ctx.user.name, ctx.user.email);
+      const [preferences] = await db.insert(rampageLearnerPreferences).values({ userId: learner.id, goal: input.goal, weeklyTargetMinutes: input.weeklyTargetMinutes, notificationsEnabled: input.notificationsEnabled ? 1 : 0 }).onConflictDoUpdate({ target: rampageLearnerPreferences.userId, set: { goal: input.goal, weeklyTargetMinutes: input.weeklyTargetMinutes, notificationsEnabled: input.notificationsEnabled ? 1 : 0, updatedAt: new Date() } }).returning();
+      await writeAuditEvent(learner.id, "learner_preferences_updated", "learner", String(learner.id), { weeklyTargetMinutes: input.weeklyTargetMinutes, notificationsEnabled: input.notificationsEnabled });
+      return preferences;
+    }),
     dashboard: protectedProcedure.query(async ({ ctx }) => {
       const state = await getLearnerState(ctx.user.openId);
       return {
@@ -159,6 +172,7 @@ export const appRouter = router({
         readerState: state.readerState,
         bookmarks: state.bookmarks,
         highlights: state.highlights,
+        preferences: state.preferences,
       };
     }),
     completeLesson: protectedProcedure.input(z.object({ courseId: z.string().min(1), lessonId: z.string().min(1) })).mutation(async ({ ctx, input }) => {
@@ -289,11 +303,22 @@ export const appRouter = router({
       const existing = await db.select().from(rampageCertificates).where(and(eq(rampageCertificates.userId, learner.id), eq(rampageCertificates.courseId, input.courseId))).limit(1);
       if (existing[0]) return existing[0];
       const certificateId = `RMP-${new Date().getUTCFullYear()}-${randomUUID().slice(0, 8).toUpperCase()}`;
+      const publicRecordId = `RMPV-${new Date().getUTCFullYear()}-${randomBytes(10).toString("hex").toUpperCase()}`;
       const completionHash = createHash("sha256").update(`${learner.id}:${input.courseId}:${completed.length}:${process.env.JWT_SECRET ?? "rampage"}`).digest("hex");
-      await db.insert(rampageCertificates).values({ certificateId, userId: learner.id, courseId: input.courseId, completionHash, metadata: { learnerName: learner.name, lessonCount: completed.length, nonAccredited: true } });
+      await db.insert(rampageCertificates).values({ certificateId, publicRecordId, userId: learner.id, courseId: input.courseId, completionHash, metadata: { learnerName: learner.name, lessonCount: completed.length, nonAccredited: true } });
       await writeAuditEvent(learner.id, "certificate_issued", "course", input.courseId, { certificateId });
       const issued = await db.select().from(rampageCertificates).where(eq(rampageCertificates.certificateId, certificateId)).limit(1);
       return issued[0];
+    }),
+  }),
+  certificate: router({
+    verify: publicProcedure.input(z.object({ recordId: z.string().trim().regex(/^RMPV-\d{4}-[A-F0-9]{20}$/i) })).query(async ({ input }) => {
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database unavailable" });
+      const [certificate] = await db.select({ certificateId: rampageCertificates.certificateId, publicRecordId: rampageCertificates.publicRecordId, courseId: rampageCertificates.courseId, issuedAt: rampageCertificates.issuedAt, metadata: rampageCertificates.metadata }).from(rampageCertificates).where(eq(rampageCertificates.publicRecordId, input.recordId.toUpperCase())).limit(1);
+      if (!certificate) throw new TRPCError({ code: "NOT_FOUND", message: "Certificate record not found." });
+      const metadata = (certificate.metadata && typeof certificate.metadata === "object" ? certificate.metadata : {}) as Record<string, unknown>;
+      return { certificateId: certificate.certificateId, publicRecordId: certificate.publicRecordId, courseId: certificate.courseId, issuedAt: certificate.issuedAt, learnerName: typeof metadata.learnerName === "string" ? metadata.learnerName : "Rampage learner", lessonCount: typeof metadata.lessonCount === "number" ? metadata.lessonCount : null, nonAccredited: metadata.nonAccredited === true };
     }),
   }),
 });

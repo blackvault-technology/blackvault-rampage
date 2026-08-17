@@ -16,6 +16,7 @@ import {
   rampageXpLedger,
   rampageUsers,
   localAuthTokens,
+  rampageLearnerPreferences,
   users as authUsers,
 } from "../drizzle/schema";
 import { ENV } from "./_core/env";
@@ -102,16 +103,17 @@ export async function getLearnerState(authOpenId: string) {
   const learner = await getOrCreateRampageUser(authOpenId);
   const db = await getDb();
   if (!db) throw new Error("Neon database is not configured");
-  const [progress, readerState, bookmarks, highlights, certificates, xpLedger] = await Promise.all([
+  const [progress, readerState, bookmarks, highlights, certificates, xpLedger, preferences] = await Promise.all([
     db.select().from(rampageProgress).where(eq(rampageProgress.userId, learner.id)),
     db.select().from(rampageReaderState).where(eq(rampageReaderState.userId, learner.id)).orderBy(desc(rampageReaderState.updatedAt)),
     db.select().from(rampageReaderBookmarks).where(eq(rampageReaderBookmarks.userId, learner.id)).orderBy(desc(rampageReaderBookmarks.createdAt)),
     db.select().from(rampageReaderHighlights).where(eq(rampageReaderHighlights.userId, learner.id)).orderBy(desc(rampageReaderHighlights.createdAt)),
     db.select().from(rampageCertificates).where(eq(rampageCertificates.userId, learner.id)).orderBy(desc(rampageCertificates.issuedAt)),
     db.select().from(rampageXpLedger).where(eq(rampageXpLedger.userId, learner.id)).orderBy(desc(rampageXpLedger.createdAt)),
+    db.select().from(rampageLearnerPreferences).where(eq(rampageLearnerPreferences.userId, learner.id)).limit(1),
   ]);
   const xp = xpLedger.reduce((total, entry) => total + entry.amount, 0);
-  return { learner, progress, readerState, bookmarks, highlights, certificates, xp, xpLedger };
+  return { learner, progress, readerState, bookmarks, highlights, certificates, xp, xpLedger, preferences: preferences[0] ?? null };
 }
 
 export async function writeAuditEvent(userId: number, eventType: string, entityType?: string, entityId?: string, metadata: Record<string, unknown> = {}) {
@@ -120,4 +122,4 @@ export async function writeAuditEvent(userId: number, eventType: string, entityT
   await db.insert(rampageAuditEvents).values({ userId, eventType, entityType: entityType ?? null, entityId: entityId ?? null, metadata });
 }
 
-export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState, rampageXpLedger, authUsers as userTable };
+export { and, eq, rampageAssessmentAttempts, rampageChapterCompletions, rampageCertificates, rampageLearnerPreferences, rampageLessonState, rampageProgress, rampageQuizAttempts, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState, rampageXpLedger, authUsers as userTable };

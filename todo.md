@@ -271,3 +271,18 @@
 - [x] Add regression tests for certificate share URL construction and protected profile data.
 - [x] Validate tests, type checks, production build, responsive screenshots, and Vercel handoff readiness.
 - [x] Save a publish-ready checkpoint and provide the user with the Vercel Publish handoff steps.
+
+## Continue: Verification, Learner Goals, Notifications, and Production Email
+- [x] Audit certificate records, learner schema, auth-token flows, and deployment configuration.
+- [x] Choose an email delivery approach and document the required production secrets without exposing credentials.
+- [x] Add a privacy-safe public certificate verification route using a non-guessable record ID.
+- [x] Add server-side verification lookup that reveals only safe certificate metadata.
+- [x] Add learner goal and weekly target fields with authenticated server validation.
+- [x] Add optional notification preferences with explicit opt-in semantics.
+- [x] Add profile controls for goals, weekly targets, and notification preferences.
+- [x] Connect verification and password-recovery flows to the Resend adapter with development-safe behavior.
+- [x] Add regression tests for public verification privacy, notification boundaries, and email configuration fallback.
+- [x] Validate security boundaries, tests, type checks, production build, responsive QA, and Vercel readiness.
+- [x] Save a publish-ready checkpoint and provide exact Vercel Publish handoff steps.
+- [x] Use Resend as the default free-tier transactional email adapter, with a development-safe fallback when production credentials are absent.
+- [ ] Add verified `RESEND_API_KEY` and `EMAIL_FROM` through secure project settings to enable production email delivery; development fallback is intentionally active until then.

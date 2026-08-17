@@ -103,6 +103,7 @@ export const rampageCertificates = pgTable(
   {
     id: bigserial("id", { mode: "number" }).primaryKey(),
     certificateId: text("certificate_id").notNull(),
+    publicRecordId: text("public_record_id").notNull(),
     userId: bigint("user_id", { mode: "number" }).notNull(),
     courseId: text("course_id").notNull(),
     issuedAt: timestamp("issued_at", { withTimezone: true }).notNull().defaultNow(),
@@ -111,6 +112,7 @@ export const rampageCertificates = pgTable(
   },
   table => ({
     certificateUnique: uniqueIndex("rampage_certificates_certificate_id_unique").on(table.certificateId),
+    publicRecordUnique: uniqueIndex("rampage_certificates_public_record_id_unique").on(table.publicRecordId),
     userCourseUnique: uniqueIndex("rampage_certificates_user_course_unique").on(table.userId, table.courseId),
   }),
 );
@@ -167,6 +169,19 @@ export const rampageXpLedger = pgTable(
 );
 
 export type RampageXpLedger = typeof rampageXpLedger.$inferSelect;
+
+export const rampageLearnerPreferences = pgTable(
+  "rampage_learner_preferences",
+  {
+    userId: bigint("user_id", { mode: "number" }).primaryKey(),
+    goal: text("goal").notNull().default("Build a durable systems practice"),
+    weeklyTargetMinutes: integer("weekly_target_minutes").notNull().default(120),
+    notificationsEnabled: integer("notifications_enabled").notNull().default(0),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+);
+
+export type RampageLearnerPreferences = typeof rampageLearnerPreferences.$inferSelect;
 
 export const rampageLessonState = pgTable(
   "rampage_lesson_state",

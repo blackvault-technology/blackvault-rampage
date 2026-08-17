@@ -29,10 +29,16 @@ describe("learner security boundaries", () => {
     await expect(caller.learner.issueCertificate({ courseId: "ai-systems" })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
   });
 
-  it("rejects learner state and profile reads for anonymous callers", async () => {
+  it("rejects learner state, preferences, and profile reads for anonymous callers", async () => {
     const caller = appRouter.createCaller(createContext(null));
     await expect(caller.learner.state()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.learner.savePreferences({ goal: "Build systems", weeklyTargetMinutes: 120, notificationsEnabled: false })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
     await expect(caller.auth.profile()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+  });
+
+  it("rejects malformed public certificate record IDs", async () => {
+    const caller = appRouter.createCaller(createContext(null));
+    await expect(caller.certificate.verify({ recordId: "RMP-2026-1234" })).rejects.toMatchObject({ code: "BAD_REQUEST" });
   });
 
   it("rejects unsupported certificate courses before database access", async () => {
