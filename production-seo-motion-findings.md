@@ -19,3 +19,8 @@ After the runtime title edit, the local preview reports the hydrated title `Blac
 ## Supplied production console evidence
 
 The user-provided report records repeated HTTP 500 responses for `GET /api/trpc/auth.me` and `POST /api/trpc/auth.login` on `https://edurampage.vercel.app`, followed by an invalid-JSON parse error in the client. It also records a Radix dialog warning for missing `Description`/`aria-describedby`. The local auth.me smoke check now returns `[{'result':{'data':{'json':null}}}]`, which is a valid JSON envelope.
+
+
+## Repeated Auth JSON Failure — definitive production diagnosis
+
+On 2026-08-17, `https://edurampage.vercel.app/api/trpc/auth.me?batch=1` still returned HTTP 500 with `content-type: text/plain` and `FUNCTION_INVOCATION_FAILED`. The connected Vercel project is `rampage`; its latest deployment for commit `49190f8c97cc5b5fc739be19cc0d3f187bc1c424` is READY at `rampage-efmoo9iq2-webcrafterreal-9806s-projects.vercel.app`, while the project reports `live: false`. The configured domains include `edurampage.vercel.app`, but that alias is still serving an older failed deployment. The code-level root cause has already been repaired in `api/index.ts` by importing Express before constructing the app. The remaining production action is to publish/promote the latest READY checkpoint from the Management UI, then re-test the custom alias.
