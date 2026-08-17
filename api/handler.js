@@ -1,4 +1,4 @@
-// api/index.ts
+// server/vercel-api.ts
 import express from "express";
 import path from "node:path";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
@@ -1040,7 +1040,7 @@ function registerStorageProxy(app2) {
   });
 }
 
-// api/index.ts
+// server/vercel-api.ts
 var app = express();
 var staticPath = path.resolve(process.cwd(), "dist", "public");
 app.use(express.json({ limit: "50mb" }));
@@ -1057,7 +1057,7 @@ app.use(express.static(staticPath));
 app.use((_req, res) => {
   res.sendFile(path.join(staticPath, "index.html"));
 });
-var index_default = app;
+var vercel_api_default = app;
 export {
-  index_default as default
+  vercel_api_default as default
 };

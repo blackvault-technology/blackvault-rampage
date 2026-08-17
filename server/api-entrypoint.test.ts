@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import apiApp from "../api/index";
+import apiApp from "./vercel-api";
 
 describe("Vercel API entrypoint", () => {
   it("loads the Express serverless application without throwing", () => {

@@ -421,3 +421,11 @@
 - [x] Update the production build and Vercel routing to use one canonical API function path.
 - [x] Validate auth JSON routing, bundle importability, tests, TypeScript, and production build.
 - [x] Save a recoverable collision-repair checkpoint and provide the updated version.
+
+
+## Continue: Remove Vercel Collision and Push Fix
+- [ ] Audit tracked and generated `api/index.js` artifacts and Git history.
+- [ ] Remove same-stem generated output from the build pipeline and keep one deployable API source path.
+- [ ] Validate the exact repository file set, Vercel configuration, tests, TypeScript, and production build.
+- [ ] Push the verified fix to the connected GitHub repository.
+- [ ] Save a recoverable checkpoint and provide the GitHub/publish handoff.
