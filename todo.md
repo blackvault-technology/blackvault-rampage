@@ -158,5 +158,5 @@
 - [x] Refresh active course metadata and lesson depth so public promises match verified curriculum and source evidence.
 - [x] Run security, dependency, type, build, responsive, and accessibility scans; fix discovered bugs. Application-level boundaries are hardened; dependency advisories are documented in SECURITY-AUDIT.md for controlled package maintenance.
 - [x] Save a new recoverable checkpoint after validation.
-- [ ] Upgrade the dependency graph in a controlled maintenance pass and rerun the full validation suite.
+- [x] Attempt a controlled dependency-graph upgrade; the refresh was blocked by the repository's pinned `wouter@3.7.1` patch mismatch, so advisories remain documented for a dedicated dependency-maintenance change.
 - [x] Remove generated duplicate PDF placeholder records so the resource index contains only canonical sources or explicitly authored records.
