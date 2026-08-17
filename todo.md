@@ -293,3 +293,9 @@
 - [x] Add regression coverage for each repaired error or boundary.
 - [x] Run full tests, TypeScript validation, production build, and responsive smoke validation.
 - [x] Save a fresh recoverable checkpoint and provide exact Vercel Publish instructions.
+
+## Continue: Live Vercel Production Error Repair
+- [x] Inspect the live Vercel page, attached production output, runtime logs, and deployment configuration.
+- [x] Trace the production-only failure to its source and implement the smallest safe fix.
+- [x] Run regression tests, production build, and live-route smoke validation.
+- [x] Save a corrected checkpoint and provide the exact Vercel republish handoff.

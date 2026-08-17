@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm build",
+  "builds": [
+    {
+      "src": "api/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/api/trpc/(.*)", "dest": "/api/index.ts" },
+    { "src": "/manus-storage/(.*)", "dest": "/api/index.ts" },
+    { "src": "/(.*)", "dest": "/api/index.ts" }
+  ]
+}

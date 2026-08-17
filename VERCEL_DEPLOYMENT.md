@@ -5,9 +5,9 @@ BlackVault Rampage is validated as a Node/Express application with a Vite client
 ## Import
 
 1. Import the `blackvault-technology/blackvault-rampage` repository into Vercel.
-2. Set the framework preset to **Other** or **Vite**, with the repository root as the project root.
-3. Use `pnpm install --frozen-lockfile` for installation and `pnpm build` for the build command.
-4. The current production command is `node dist/index.js`; choose a Node server deployment target that supports the Express entry point. If Vercel reports that the long-running Express bootstrap is not a valid serverless entry, use the built-in Manus WebDev hosting target or create a dedicated serverless adapter before publishing.
+2. Set the framework preset to **Other**, with the repository root as the project root.
+3. Use `pnpm install --frozen-lockfile` for installation. The committed `vercel.json` invokes `pnpm build`, registers `api/index.ts` as the Node serverless entrypoint, routes tRPC/storage/SPA requests through it, and serves the Vite output from `dist/public`.
+4. Do not configure `dist/index.js` as a static output or homepage. The previous deployment served that server bundle as HTML because the Express bootstrap was not registered as a Vercel function; the committed serverless adapter fixes that production routing mismatch.
 
 ## Required environment variables
 
