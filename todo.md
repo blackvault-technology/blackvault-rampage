@@ -73,3 +73,17 @@
 - [x] Polish media-first video and source-led lesson states across multiple courses without inventing content.
 - [x] Review dashboard, assessment, certificate, empty, loading, and mobile states for compatibility with the workspace polish; no new backend or certificate behavior was required in this pass.
 - [x] Validate representative routes, tests, production build, and save the full polish checkpoint.
+
+## Continue: Full Lesson Page Upgrade
+- [x] Audit lesson-page hierarchy, metadata, navigation, media, source, lab, quiz, and completion friction.
+- [x] Upgrade lesson workspace navigation with stronger chapter context, previous/next movement, and progress visibility.
+- [x] Polish video, reading-room, lab, evidence, timeline, quiz, and completion states using only real lesson data.
+- [x] Improve responsive lesson layouts and handoffs into chapter completion, assessment, and certification.
+- [x] Validate representative video and reading lessons on desktop/mobile, run tests/build, and save a checkpoint.
+- [x] Fix lesson quiz submission so the handler is invoked and verify its state transitions.
+- [x] Replace the generic lab fallback with clearly labeled course-authored instructions tied to lesson metadata.
+- [x] Add explicit state-aware lesson-end handoffs into final assessment and certificate eligibility.
+- [x] Save a recoverable checkpoint after the corrected lesson-page validation.
+- [x] Review lesson quiz pass/fail/retry rendering branches in the lesson UI; automated server tests pass, while interactive browser replay remains a manual QA recommendation.
+- [x] Add and verify an explicit certificate-eligibility cue at the final lesson handoff: pass the final assessment to unlock the Rampage digital certificate.
+- [x] Save a new checkpoint after resolving the final lesson-page validation gaps.
