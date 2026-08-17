@@ -405,4 +405,4 @@
 - [x] Reproduce the exact current production response and identify which deployment URL is actually serving it.
 - [x] Inspect current Vercel deployment logs and routing for any remaining serverless invocation failure.
 - [x] Apply and validate the smallest durable repair for the published auth endpoint.
-- [ ] Save a recoverable checkpoint after confirming the exact endpoint returns JSON.
+- [x] Save a recoverable checkpoint after confirming the exact endpoint returns JSON.
