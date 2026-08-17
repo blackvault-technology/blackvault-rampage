@@ -1,0 +1,99 @@
+import { and, desc, eq } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/neon-http";
+import { neon } from "@neondatabase/serverless";
+import {
+  InsertUser,
+  rampageAuditEvents,
+  rampageCertificates,
+  rampageProgress,
+  rampageReaderBookmarks,
+  rampageReaderHighlights,
+  rampageReaderState,
+  rampageUsers,
+  users,
+} from "../drizzle/schema";
+import { ENV } from "./_core/env";
+
+let _db: ReturnType<typeof drizzle> | null = null;
+
+export async function getDb() {
+  if (!_db && process.env.NEON_DATABASE_URL) {
+    try {
+      _db = drizzle(neon(process.env.NEON_DATABASE_URL));
+    } catch (error) {
+      console.warn("[Database] Failed to connect:", error);
+      _db = null;
+    }
+  }
+  return _db;
+}
+
+export async function upsertUser(user: InsertUser): Promise<void> {
+  if (!user.openId) throw new Error("User openId is required for upsert");
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot upsert user: Neon database not available");
+    return;
+  }
+
+  const role = user.role ?? (user.openId === ENV.ownerOpenId ? "admin" : "user");
+  await db.insert(users).values({
+    openId: user.openId,
+    name: user.name ?? null,
+    email: user.email ?? null,
+    loginMethod: user.loginMethod ?? null,
+    role,
+    lastSignedIn: user.lastSignedIn ?? new Date(),
+  }).onConflictDoUpdate({
+    target: users.openId,
+    set: {
+      name: user.name ?? null,
+      email: user.email ?? null,
+      loginMethod: user.loginMethod ?? null,
+      role,
+      lastSignedIn: user.lastSignedIn ?? new Date(),
+      updatedAt: new Date(),
+    },
+  });
+}
+
+export async function getUserByOpenId(openId: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
+  return result[0];
+}
+
+export async function getOrCreateRampageUser(authOpenId: string, name?: string | null, email?: string | null) {
+  const db = await getDb();
+  if (!db) throw new Error("Neon database is not configured");
+  await db.insert(rampageUsers).values({ authOpenId, name: name ?? null, email: email ?? null }).onConflictDoUpdate({
+    target: rampageUsers.authOpenId,
+    set: { name: name ?? null, email: email ?? null, updatedAt: new Date() },
+  });
+  const rows = await db.select().from(rampageUsers).where(eq(rampageUsers.authOpenId, authOpenId)).limit(1);
+  if (!rows[0]) throw new Error("Unable to resolve Rampage learner");
+  return rows[0];
+}
+
+export async function getLearnerState(authOpenId: string) {
+  const learner = await getOrCreateRampageUser(authOpenId);
+  const db = await getDb();
+  if (!db) throw new Error("Neon database is not configured");
+  const [progress, readerState, bookmarks, highlights, certificates] = await Promise.all([
+    db.select().from(rampageProgress).where(eq(rampageProgress.userId, learner.id)),
+    db.select().from(rampageReaderState).where(eq(rampageReaderState.userId, learner.id)).orderBy(desc(rampageReaderState.updatedAt)),
+    db.select().from(rampageReaderBookmarks).where(eq(rampageReaderBookmarks.userId, learner.id)).orderBy(desc(rampageReaderBookmarks.createdAt)),
+    db.select().from(rampageReaderHighlights).where(eq(rampageReaderHighlights.userId, learner.id)).orderBy(desc(rampageReaderHighlights.createdAt)),
+    db.select().from(rampageCertificates).where(eq(rampageCertificates.userId, learner.id)).orderBy(desc(rampageCertificates.issuedAt)),
+  ]);
+  return { learner, progress, readerState, bookmarks, highlights, certificates };
+}
+
+export async function writeAuditEvent(userId: number, eventType: string, entityType?: string, entityId?: string, metadata: Record<string, unknown> = {}) {
+  const db = await getDb();
+  if (!db) return;
+  await db.insert(rampageAuditEvents).values({ userId, eventType, entityType: entityType ?? null, entityId: entityId ?? null, metadata });
+}
+
+export { and, eq, rampageCertificates, rampageProgress, rampageReaderBookmarks, rampageReaderHighlights, rampageReaderState };

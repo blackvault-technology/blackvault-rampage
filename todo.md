@@ -25,3 +25,14 @@
 - [x] Add deeper onboarding and course-level UX inspired by modern learning platforms without copying their interfaces.
 - [x] Validate lesson routes, source links, local progress, responsive layouts, and production build.
 - [x] Save the major learning-flow checkpoint and report the result.
+
+## Major Update: Neon Full-Stack + UX Polish
+- [x] Audit the current frontend, auth readiness, project structure, and UX bug surface.
+- [x] Upgrade the static project to full-stack capability without using a built-in AI backend.
+- [x] Define Neon-backed user, progress, reading-state, certificate, and audit data models.
+- [x] Implement authenticated account flow and protect certificate issuance behind login.
+- [x] Persist course progress, reader bookmarks, highlights, notes, and resume state in Neon.
+- [x] Implement server-verified certificate eligibility and certificate records after course completion.
+- [x] Apply a targeted UX and micro-interaction polish pass across onboarding, navigation, lessons, resources, reader, My Learning, and certificates.
+- [x] Test auth gates, protected procedure boundaries, certificate rules, responsive behavior, visual states, and production build; document authenticated-session limitations.
+- [x] Save the full-stack UX upgrade checkpoint and report the result.
