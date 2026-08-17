@@ -389,3 +389,13 @@
 - [x] Add canonical metadata, Open Graph/Twitter cards, structured data, robots.txt, and sitemap.xml for public routes.
 - [x] Validate local production-like HTML, crawler files, auth API responses, animations, tests, TypeScript, and production build.
 - [x] Save a recoverable combined repair checkpoint and provide the updated project version.
+
+
+## Continue: Live Neon-Backed Auth Repair
+- [x] Inspect the live deployment configuration, Neon environment names, schema availability, and serverless auth entrypoint.
+- [x] Reproduce the live auth.me/auth.login 500 responses and capture the first database or runtime exception.
+- [x] Repair Neon connection handling, auth schema readiness, session cookies, and JSON-safe API error responses.
+- [x] Validate registration, login, auth.me, logout, verification, password recovery, and protected-route persistence end to end.
+- [x] Add or update focused tests for Neon-backed auth failure and success paths.
+- [x] Run tests, TypeScript, production build, and live-style API smoke checks.
+- [ ] Save a recoverable Neon auth checkpoint and provide the updated version.
