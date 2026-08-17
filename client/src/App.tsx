@@ -20,6 +20,7 @@ import Login from "@/pages/Login";
 import Verify from "@/pages/Verify";
 import ResetPassword from "@/pages/ResetPassword";
 import Account from "@/pages/Account";
+import { Terms, Privacy, Cookies, AcceptableUse } from "@/pages/Legal";
 import { courses } from "@/data/catalog";
 import { useLocation } from "wouter";
 
@@ -33,6 +34,10 @@ function RouteSeo() {
       "/paths": "Learning Paths",
       "/learn": "My Learning",
       "/about": "About BlackVault Foundation",
+      "/terms": "Terms of Use",
+      "/privacy": "Privacy Notice",
+      "/cookies": "Cookie Notice",
+      "/acceptable-use": "Acceptable Use",
     };
     const section = pageNames[cleanPath] || (cleanPath.includes("assessment") ? "Final Assessment" : cleanPath.includes("certificate") ? "Digital Certificate" : cleanPath.includes("lesson") ? "Lesson Workspace" : cleanPath.includes("course") ? "Course Overview" : "Academy");
     const description = cleanPath.includes("assessment") ? "A timed, server-scored Rampage learning assessment with transparent integrity signals." : cleanPath.includes("resources") ? "A structured reading room for verified technical papers, books, and institutional sources." : cleanPath === "/about" ? "Meet BlackVault Foundation, the people and principles behind BlackVault Rampage’s structured approach to technical learning." : cleanPath.includes("course") ? "A source-backed BlackVault Rampage course with guided lessons, labs, and real technical resources." : "BlackVault Rampage is a source-first technical academy for building systems fluency through guided courses and real resources.";
@@ -49,6 +54,6 @@ function RouteSeo() {
   }, [location]);
   return null;
 }
-function Router() { return <><RouteSeo /><Switch><Route path="/" component={Home} /><Route path="/resources" component={Resources} /><Route path="/paths" component={Paths} /><Route path="/learn" component={MyLearning} /><Route path="/about" component={About} /><Route path="/login" component={Login} /><Route path="/verify" component={Verify} /><Route path="/reset-password" component={ResetPassword} /><Route path="/account" component={Account} /><Route path="/settings" component={Account} />
+function Router() { return <><RouteSeo /><Switch><Route path="/" component={Home} /><Route path="/resources" component={Resources} /><Route path="/paths" component={Paths} /><Route path="/learn" component={MyLearning} /><Route path="/about" component={About} /><Route path="/terms" component={Terms} /><Route path="/privacy" component={Privacy} /><Route path="/cookies" component={Cookies} /><Route path="/acceptable-use" component={AcceptableUse} /><Route path="/login" component={Login} /><Route path="/verify" component={Verify} /><Route path="/reset-password" component={ResetPassword} /><Route path="/account" component={Account} /><Route path="/settings" component={Account} />
 <Route path="/paths/:pathId" component={Paths} /><Route path="/resources/read/:resourceId" component={ResourceReader} /><Route path="/course/:courseId" component={Course} /><Route path="/course/:courseId/lesson/:lessonId" component={Lesson} /><Route path="/course/:courseId/assessment" component={Assessment} /><Route path="/certificate/:courseId" component={Certificate} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch></>; }
 export default function App() { return <ErrorBoundary><ThemeProvider defaultTheme="dark"><TooltipProvider><Toaster theme="dark" /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>; }

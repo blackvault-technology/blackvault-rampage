@@ -188,6 +188,16 @@
 - [x] The modal authentication replacement and header account actions are implemented and checkpointed.
 
 ## Continue: Reset Confirmation and Responsive Header Polish
+- [x] Reset confirmation and responsive first-name header polish are implemented and checkpointed.
+
+## Continue: Auth Modal Controls and Legal Information
+- [x] Audit auth-modal button states, footer links, route map, and legal-copy requirements.
+- [x] Polish auth-modal button hierarchy, loading/disabled states, errors, focus treatment, and hover/press feedback.
+- [x] Create human-readable Terms, Privacy, Cookie, and Acceptable Use pages with shared legal layout.
+- [x] Register legal routes and link them from auth modals, footer, and responsive navigation.
+- [x] Run tests, type checking, production build, responsive screenshots, and legal-route validation.
+- [x] Save a new recoverable checkpoint after validation.
+
 - [x] Audit auth-modal reset states and responsive header account markup.
 - [x] Implement an animated “check your inbox” success state after password-reset requests.
 - [x] Polish the responsive header so signed-in learners see only their first name in compact layouts.
