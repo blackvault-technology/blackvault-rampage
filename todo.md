@@ -299,3 +299,19 @@
 - [x] Trace the production-only failure to its source and implement the smallest safe fix.
 - [x] Run regression tests, production build, and live-route smoke validation.
 - [x] Save a corrected checkpoint and provide the exact Vercel republish handoff.
+
+## Continue: Production Email Secret and Republish Cleanup
+- [x] Audit public-facing email/setup language and server-only Resend configuration.
+- [x] Remove the unused `RESEND_API_KEY` and `EMAIL_FROM` requirement from project setup.
+- [x] Remove production-secret setup language from public-facing website surfaces while retaining private deployment documentation.
+- [x] Validate email configuration, tests, TypeScript, production build, and responsive smoke behavior.
+- [x] Save a publish-ready checkpoint and provide the republish handoff.
+
+
+## Continue: Remove Production Email System
+- [x] Remove the Resend adapter, email secret requirements, and production-email call sites without weakening auth boundaries.
+- [x] Remove Resend setup language from public and deployment-facing surfaces.
+- [x] Preserve and document the non-email verification and password-recovery fallback behavior.
+- [x] Run focused auth tests, TypeScript, production build, and responsive smoke validation.
+- [x] Save a republish-ready checkpoint and provide the Vercel handoff.
+

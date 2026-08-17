@@ -26,7 +26,6 @@ import { chapterQuizBank, finalAssessmentBank } from "@shared/courseAssessments"
 import { desc, sql } from "drizzle-orm";
 import { localAuthTokens, rampageAssessmentAttempts, rampageChapterCompletions, rampageLessonState, rampageQuizAttempts, rampageXpLedger, userTable } from "./db";
 import { sdk } from "./_core/sdk";
-import { sendAuthCodeEmail } from "./email";
 
 const courseIdInput = z.object({ courseId: z.string().min(1).max(120) });
 
@@ -84,7 +83,7 @@ export const appRouter = router({
       const [user] = await db.insert(userTable).values({ openId, name: input.name.trim(), email, loginMethod: "password", passwordHash: passwordDigest(input.password, salt), passwordSalt: salt.toString("hex") }).returning();
       if (!user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Unable to create account" });
       const verificationCode = await issueAuthCode(user.id, "verify_email");
-      const delivery = user.email ? await sendAuthCodeEmail(user.email, "verify_email", verificationCode) : { delivered: false as const, reason: "not_configured" as const };
+      const delivery = { delivered: false as const, reason: "disabled" as const };
       await setSessionCookie(ctx, user);
       return { ...user, delivery, developmentVerificationCode: process.env.NODE_ENV === "development" ? verificationCode : undefined };
     }),
@@ -93,7 +92,7 @@ export const appRouter = router({
       if (!user?.email) throw new TRPCError({ code: "BAD_REQUEST", message: "Add an email address before requesting verification." });
       if (user.emailVerifiedAt) return { sent: false, alreadyVerified: true as const };
       const code = await issueAuthCode(user.id, "verify_email");
-      const delivery = await sendAuthCodeEmail(user.email, "verify_email", code);
+      const delivery = { delivered: false as const, reason: "disabled" as const };
       return { sent: true, alreadyVerified: false as const, delivery, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
     }),
     verifyEmail: publicProcedure.input(z.object({ email: z.string().email().max(320), code: z.string().regex(/^\d{6}$/) })).mutation(async ({ input }) => {
@@ -111,7 +110,7 @@ export const appRouter = router({
       const user = await getUserByEmail(normalizeEmail(input.email));
       if (!user) return { sent: true as const };
       const code = await issueAuthCode(user.id, "reset_password");
-      const delivery = user.email ? await sendAuthCodeEmail(user.email, "reset_password", code) : { delivered: false as const, reason: "not_configured" as const };
+      const delivery = { delivered: false as const, reason: "disabled" as const };
       return { sent: true as const, delivery, developmentCode: process.env.NODE_ENV === "development" ? code : undefined };
     }),
     resetPassword: publicProcedure.input(z.object({ email: z.string().email().max(320), code: z.string().regex(/^\d{6}$/), password: z.string().min(10).max(128) })).mutation(async ({ input }) => {

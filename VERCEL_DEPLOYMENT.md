@@ -17,8 +17,6 @@ BlackVault Rampage is validated as a Node/Express application with a Vite client
 | `JWT_SECRET` | High-entropy secret used to sign first-party local sessions. |
 | `BUILT_IN_FORGE_API_URL` | Existing storage proxy base URL if the storage-backed resource features are enabled. |
 | `BUILT_IN_FORGE_API_KEY` | Server-side storage proxy credential if those features are enabled. |
-| `RESEND_API_KEY` | Optional server-side Resend key for verification and password-recovery email delivery. |
-| `EMAIL_FROM` | Optional verified sender address, for example `Rampage <learn@yourdomain.com>`. |
 
 Do **not** add Manus OAuth variables. The application now uses local email/password registration and login with scrypt-derived password credentials and signed first-party session cookies.
 
@@ -28,4 +26,4 @@ Run the additive Drizzle migration in `drizzle/0005_dusty_black_crow.sql` agains
 
 ## Validation
 
-Before publishing, run `pnpm exec tsc --noEmit`, `pnpm test`, and `pnpm build`. The current local-auth regression suite covers valid session round-trips and malformed/tampered session rejection. The email adapter intentionally falls back safely when `RESEND_API_KEY` or `EMAIL_FROM` is absent; production delivery remains disabled until both are configured. Review the deployment logs after the first preview and manually test registration, login, logout, protected learner progress, assessment submission, certificate eligibility, and offline app-shell loading.
+Before publishing, run `pnpm exec tsc --noEmit`, `pnpm test`, and `pnpm build`. The current local-auth regression suite covers valid session round-trips and malformed/tampered session rejection. Verification and password recovery use the server-issued short-lived code flow; no external email provider or email secret is required. Review the deployment logs after the first preview and manually test registration, login, logout, protected learner progress, assessment submission, certificate eligibility, and offline app-shell loading.

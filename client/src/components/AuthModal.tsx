@@ -29,7 +29,7 @@ type AuthModalProps = {
 const modeCopy: Record<AuthMode, { eyebrow: string; title: string; emphasis: string }> = {
   login: { eyebrow: "ACCOUNT ACCESS", title: "Keep your place.", emphasis: "Build the stack." },
   register: { eyebrow: "NEW LEARNER", title: "Start with intent.", emphasis: "Build the stack." },
-  verify: { eyebrow: "EMAIL VERIFICATION", title: "Confirm the signal.", emphasis: "Protect the record." },
+  verify: { eyebrow: "ACCOUNT VERIFICATION", title: "Confirm the signal.", emphasis: "Protect the record." },
   recovery: { eyebrow: "ACCOUNT RECOVERY", title: "Recover your record.", emphasis: "Find the way back." },
 };
 
@@ -88,7 +88,7 @@ export function AuthModal({ open, onOpenChange, redirect = "/learn" }: AuthModal
         setMessage(
           result.developmentVerificationCode
             ? `Account created. Development code: ${result.developmentVerificationCode}`
-            : "Account created. Check your email for the verification code.",
+            : "Account created. Use the verification code available in this session.",
         );
         setMode("verify");
         return;
@@ -143,7 +143,7 @@ export function AuthModal({ open, onOpenChange, redirect = "/learn" }: AuthModal
           <DialogTitle className="auth-dialog-title">{copy.title}<br /><em>{copy.emphasis}</em></DialogTitle>
           <DialogDescription id="auth-dialog-description" className="auth-dialog-copy">
             {mode === "verify"
-              ? "Enter the six-digit code sent to your email. Verification keeps certificates and account recovery tied to the right learner."
+              ? "Enter the six-digit code for this account. Verification keeps certificates and account recovery tied to the right learner."
               : "Save lesson progress, assessment attempts, reading state, and verified certificates in one first-party account."}
           </DialogDescription>
 
@@ -155,9 +155,9 @@ export function AuthModal({ open, onOpenChange, redirect = "/learn" }: AuthModal
           {mode === "recovery" && resetRequested ? (
             <div className="auth-inbox-success" role="status" aria-live="polite">
               <div className="auth-inbox-icon"><CheckCircle2 size={28} /></div>
-              <p className="auth-inbox-kicker">MESSAGE QUEUED</p>
-              <h3>Check your inbox.</h3>
-              <p>We sent reset instructions to <strong>{email}</strong>. Follow the secure link or enter the six-digit code from the message to choose a new password.</p>
+              <p className="auth-inbox-kicker">RECOVERY REQUESTED</p>
+              <h3>Recovery request recorded.</h3>
+              <p>Email delivery is disabled in this deployment. If you have a valid six-digit recovery code, enter it here to choose a new password.</p>
               <button type="button" className="auth-text-action" onClick={() => { setResetRequested(false); setCode(""); }}>Enter a reset code <ArrowRight size={15} /></button>
               <button type="button" className="auth-secondary-action" onClick={() => { setResetRequested(false); setCode(""); }}>Use a different email</button>
             </div>
@@ -178,7 +178,7 @@ export function AuthModal({ open, onOpenChange, redirect = "/learn" }: AuthModal
             <button type="button" onClick={() => switchMode("recovery")}>Forgot password?</button>
             <button type="button" onClick={() => switchMode("verify")}>Have a verification code?</button>
           </div>
-          <p className="auth-note">No external identity provider is required. Your learner record stays tied to this first-party account.</p>
+          <p className="auth-note">No external identity provider or email service is required. Your learner record stays tied to this first-party account.</p>
           <p className="auth-legal-copy">By continuing, you agree to the <a href="/terms">Terms</a> and acknowledge the <a href="/privacy">Privacy</a> and <a href="/acceptable-use">Acceptable Use</a> policies.</p>
         </section>
       </DialogContent>
