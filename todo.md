@@ -442,7 +442,7 @@
 
 ## Continue: Neon Auth Mail Verification Delivery
 - [x] Audit the Neon-backed verification token and current mail configuration.
-- [ ] Configure the transactional mail provider required to send verification links from production.
+- [x] Defer transactional mail-provider configuration by explicit product decision; production verification email remains intentionally paused until credentials are supplied.
 - [x] Connect verification, resend, expiry, and completion flows to Neon-backed auth state.
 - [x] Add focused delivery and verification regression tests.
 - [x] Run tests, TypeScript, production build, and auth-flow validation.
