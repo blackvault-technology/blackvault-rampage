@@ -21,7 +21,7 @@ import {
   Trophy,
 } from "lucide-react";
 import { Link, useRoute } from "wouter";
-import { courses, findLesson, findPhase, type Resource } from "@/data/catalog";
+import { courses, findLesson, findPhase, type CodeLab, type Resource } from "@/data/catalog";
 import { canStudyInline, classifyInlineSource, getVerifiedPractice, sourceHost } from "@/data/learningSources";
 import { Shell } from "@/components/AcademyShell";
 import { useProgress } from "@/hooks/useProgress";
@@ -42,6 +42,20 @@ function getWork(key: string): WorkState {
 function SourceBadge({ resource }: { resource: Resource }) {
   const type = classifyInlineSource(resource.url);
   return <span className={`embedded-source-badge embedded-source-badge--${type}`}>{type === "pdf" ? "PDF" : type === "web" ? "INLINE" : type === "repository" ? "REPO" : type === "video" ? "VIDEO" : "LINK"}</span>;
+}
+
+function CodeLabStudio({ codeLab }: { codeLab: CodeLab }) {
+  return <section className="code-lab-studio" aria-label={`${codeLab.provider} browser coding lab`}>
+    <header className="code-lab-studio__head">
+      <div><span className="aside-label"><Terminal size={13} /> BROWSER CODE LAB</span><h2>Make the idea executable.</h2><p>{codeLab.safetyNote}</p></div>
+      <span className="code-lab-provider">{codeLab.provider} / {codeLab.mode}</span>
+    </header>
+    <div className="code-lab-studio__grid">
+      <div className="code-lab-starter"><span className="aside-label">STARTER</span><pre><code>{codeLab.starter}</code></pre><p>{codeLab.prompt}</p></div>
+      {codeLab.embedUrl ? <iframe title={`${codeLab.label} for this lesson`} src={codeLab.embedUrl} loading="lazy" sandbox="allow-scripts allow-same-origin" allow="clipboard-read; clipboard-write" /> : <a className="complete-button" href="https://pyodide.org/en/stable/console.html" target="_blank" rel="noreferrer">Open browser lab <ExternalLink size={14} /></a>}
+    </div>
+    <small className="code-lab-note">Use the external lab for experiments. Submit your explanation, test evidence, or artifact through the lesson workflow below.</small>
+  </section>;
 }
 
 function SourceStudio({
@@ -227,6 +241,8 @@ export default function Lesson() {
         <div className="lesson-flow-strip"><span><b>01</b> STUDY</span><span><b>02</b> PRACTICE</span><span><b>03</b> EVIDENCE</span><strong>{stepCount === 3 ? "Ready to complete this lesson" : `${3 - stepCount} work step${3 - stepCount === 1 ? "" : "s"} before the lesson closes`}</strong></div>
 
         <SourceStudio lessonTitle={lesson.title} resources={lesson.resources} selectedResource={selectedSource} onSelect={chooseSource} onOpenOriginal={() => { if (!work.source) set({ source: true }); }} />
+
+        {lesson.codeLab && <CodeLabStudio codeLab={lesson.codeLab} />}
 
         <section className="study-resume-card">
           <div><span className="aside-label"><Clock3 size={13} /> CONTINUE FROM YOUR TIMELINE</span><h2>{currentSecond > 0 ? "Your study checkpoint is ready." : "Set a deliberate study checkpoint."}</h2><p>{isAuthenticated ? "This point syncs to your Rampage account and stays available locally." : "This point is saved privately in this browser. Sign in to carry it between devices."}</p></div>

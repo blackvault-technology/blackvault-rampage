@@ -518,3 +518,12 @@
 - [x] Expand all nine courses with complete lesson-level video, reading, practice, assessment, and proof-of-work data.
 - [x] Polish lesson pages for clean reading, watching, source access, progress, and mobile behavior.
 - [x] Run content-integrity tests, TypeScript, production build, responsive visual review, and save a recoverable checkpoint.
+
+## Continue: Deep Python Course and Code Labs
+- [x] Audit the JSON curriculum, lesson contracts, embed handling, and GitHub synchronization state for a new Python route.
+- [x] Research and verify authoritative Python lectures, documentation, books, labs, and browser-code embed options.
+- [x] Design a beginner-to-advanced Python route with 12–15 lessons, structured phases, quizzes, real labs, and proof-of-work.
+- [x] Add the Python route to the canonical JSON content model without fabricating ratings, testimonials, or unsupported claims.
+- [x] Implement safe code-embed presentation for Python labs and clearly distinguish external execution from Rampage progress tracking.
+- [x] Validate Python content integrity, source coverage, embeds, routes, responsive UX, tests, and production build.
+- [x] Save a recoverable Python-course checkpoint and synchronize the finished project to GitHub.

@@ -39,6 +39,21 @@ describe("verified Rampage curriculum sources", () => {
     }
   });
 
+  it("keeps the deep Python route beginner-to-advanced and browser-lab ready", () => {
+    const python = courses.find((course) => course.id === "python-engineering");
+    expect(python).toBeDefined();
+    expect(python?.status).toBe("DEEP COURSE");
+    expect(python?.phases).toHaveLength(5);
+    const lessons = python?.phases.flatMap((phase) => phase.lessons) ?? [];
+    expect(lessons).toHaveLength(15);
+    expect(lessons[0]?.title).toMatch(/program|python/i);
+    expect(lessons.at(-1)?.title).toMatch(/capstone/i);
+    expect(lessons.every((lesson) => lesson.lab?.brief && lesson.lab.deliverable)).toBe(true);
+    expect(lessons.every((lesson) => lesson.codeLab?.provider === "PYODIDE")).toBe(true);
+    expect(lessons.every((lesson) => lesson.codeLab?.embedUrl === "https://pyodide.org/en/stable/console.html")).toBe(true);
+    expect(lessons.every((lesson) => lesson.resources.length >= 2)).toBe(true);
+  });
+
   it("keeps all nine high-leverage skill routes structured, source-backed, and evidence-led", () => {
     expect(topSkillCourses).toHaveLength(9);
     for (const course of topSkillCourses) {

@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-08-18T08:31:38.961Z",
+  "schemaVersion": 3,
+  "generatedAt": "2026-08-18T09:30:22.663Z",
   "courses": [
     {
       "id": "systems-fundamentals",
@@ -3496,6 +3496,767 @@
           ]
         }
       ]
+    },
+    {
+      "id": "python-engineering",
+      "title": "Python Engineering",
+      "subtitle": "From first script to production-minded systems",
+      "eyebrow": "DEEP COURSE / PYTHON",
+      "description": "A serious Python route for learners who want more than syntax. Start with expressions and control flow, move through data modelling, testing, packaging, HTTP, asynchronous work, and the object model, then finish with a defensible capstone.",
+      "status": "DEEP COURSE",
+      "color": "blue",
+      "sourceLabel": "Harvard CS50P · MIT 6.0001 · Google · Python Docs",
+      "sourceUrl": "https://cs50.harvard.edu/python/",
+      "time": "24–36h guided lessons + 35–55h lab work",
+      "level": "Beginner → Advanced",
+      "phases": [
+        {
+          "id": "python-foundations",
+          "number": "00",
+          "title": "Python Foundations",
+          "description": "Move from expressions to deliberate programs. Learn the language’s basic shapes while building a mental model for execution.",
+          "project": "Ship a command-line utility",
+          "lessons": [
+            {
+              "id": "python-orientation",
+              "title": "A program is a small model of a problem",
+              "duration": "58 min",
+              "summary": "Set up a repeatable Python workflow, read expressions, and learn to turn a vague task into inputs, transformations, and outputs.",
+              "video": "https://www.youtube-nocookie.com/embed/JP7ITIXGpHk",
+              "videoLabel": "Harvard CS50P / functions and variables",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "MIT 6.0001",
+                  "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+                  "source": "MIT OpenCourseWare",
+                  "note": "Lecture videos, notes, problem sets, and programming assignments."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path."
+                }
+              ],
+              "lab": {
+                "title": "Input-to-output mapper",
+                "brief": "Build a command-line converter that accepts a value, validates it, transforms it, and prints a useful result.",
+                "deliverable": "A README with examples, edge cases, and one short design note.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "value = 21\nprint(value * 2)",
+                "prompt": "Rewrite the starter as a small converter with clear input and output."
+              }
+            },
+            {
+              "id": "python-control-flow",
+              "title": "Control flow is a decision record",
+              "duration": "64 min",
+              "summary": "Use Boolean expressions, branches, loops, and invariants to make program behavior explainable rather than accidental.",
+              "video": "https://www.youtube-nocookie.com/embed/nLRL_NcnK-4",
+              "videoLabel": "Harvard CS50P / control flow and loops",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Stanford Code in Place",
+                  "url": "https://codeinplace.stanford.edu/",
+                  "source": "Stanford",
+                  "note": "Python fundamentals and console-program practice."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path."
+                }
+              ],
+              "lab": {
+                "title": "Robust text menu",
+                "brief": "Implement a loop-driven terminal menu that handles invalid choices without crashing and exits predictably.",
+                "deliverable": "A runnable script plus a table of tested input paths.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "choice = 'start'\nprint(choice)",
+                "prompt": "Add a loop, at least three commands, and a deliberate exit path."
+              }
+            },
+            {
+              "id": "python-functions",
+              "title": "Functions are contracts",
+              "duration": "62 min",
+              "summary": "Design functions around responsibilities, parameters, return values, and testable boundaries.",
+              "video": "https://www.youtube-nocookie.com/embed/JP7ITIXGpHk",
+              "videoLabel": "Harvard CS50P / functions, arguments, and return values",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "MIT 6.0001",
+                  "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+                  "source": "MIT OpenCourseWare",
+                  "note": "Lecture videos, notes, problem sets, and programming assignments."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path.",
+                  "readingFocus": "Definitions, parameters, return values, and scope."
+                }
+              ],
+              "lab": {
+                "title": "Refactor a tangled script",
+                "brief": "Split a single procedural script into small functions with explicit inputs and outputs.",
+                "deliverable": "A before/after explanation and a function-level test checklist.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "def greet(name):\n    return f'Hello, {name}'\n\nprint(greet('Rampage'))",
+                "prompt": "Add validation and a second function without hiding state in globals."
+              }
+            }
+          ]
+        },
+        {
+          "id": "python-data-design",
+          "number": "01",
+          "title": "Data and Program Design",
+          "description": "Learn the core containers, file boundaries, and object models that make Python programs useful beyond toy examples.",
+          "project": "Build a searchable records tool",
+          "lessons": [
+            {
+              "id": "python-data-structures",
+              "title": "Choose the data shape before the algorithm",
+              "duration": "70 min",
+              "summary": "Work fluently with strings, lists, tuples, dictionaries, sets, comprehensions, and the trade-offs each shape implies.",
+              "video": "https://www.youtube-nocookie.com/embed/nLRL_NcnK-4",
+              "videoLabel": "Harvard CS50P / data structures",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Google's Python Class",
+                  "url": "https://developers.google.com/edu/python",
+                  "source": "Google",
+                  "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path."
+                }
+              ],
+              "lab": {
+                "title": "Evidence index",
+                "brief": "Create an in-memory index that groups records by a meaningful key and reports missing or duplicate data.",
+                "deliverable": "A small dataset, implementation, and complexity note.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "records = ['alpha', 'beta', 'alpha']\nprint(set(records))",
+                "prompt": "Turn the sample into a grouped record summary with deterministic output."
+              }
+            },
+            {
+              "id": "python-files-csv-json",
+              "title": "Files are interfaces",
+              "duration": "72 min",
+              "summary": "Read and write text, CSV, and JSON while treating file formats as explicit contracts with failure modes.",
+              "video": "https://www.youtube-nocookie.com/embed/JP7ITIXGpHk",
+              "videoLabel": "Harvard CS50P / file I/O",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Google's Python Class",
+                  "url": "https://developers.google.com/edu/python",
+                  "source": "Google",
+                  "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path."
+                }
+              ],
+              "lab": {
+                "title": "Audit-ready report",
+                "brief": "Read a JSON or CSV export, validate required fields, and produce a stable summary report.",
+                "deliverable": "A sample input, output report, and validation policy.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "import json\ndata = {'status': 'draft'}\nprint(json.dumps(data, indent=2))",
+                "prompt": "Add file-shaped data validation without assuming every field exists."
+              }
+            },
+            {
+              "id": "python-objects",
+              "title": "Objects make domain language executable",
+              "duration": "78 min",
+              "summary": "Model a small domain with classes, properties, methods, composition, and deliberate invariants.",
+              "video": "https://www.youtube-nocookie.com/embed/nLRL_NcnK-4",
+              "videoLabel": "Harvard CS50P / object-oriented programming",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "MIT 6.0001",
+                  "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+                  "source": "MIT OpenCourseWare",
+                  "note": "Lecture videos, notes, problem sets, and programming assignments."
+                },
+                {
+                  "type": "DOC",
+                  "label": "Python Data Model",
+                  "url": "https://docs.python.org/3/reference/datamodel.html",
+                  "source": "Python Software Foundation",
+                  "note": "Authoritative reference for objects, protocols, special methods, and identity."
+                }
+              ],
+              "lab": {
+                "title": "Resource catalogue model",
+                "brief": "Model resources, sources, and learner checkpoints with classes that protect valid state.",
+                "deliverable": "A class diagram, implementation, and three invariants written as tests or assertions.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "class Source:\n    def __init__(self, label):\n        self.label = label\n\nprint(Source('Python docs').label)",
+                "prompt": "Add a method that refuses an empty label and returns a stable display record."
+              }
+            }
+          ]
+        },
+        {
+          "id": "python-reliable-software",
+          "number": "02",
+          "title": "Reliable Software",
+          "description": "Turn working scripts into software you can change. Test behavior, handle errors, and package code so others can run it.",
+          "project": "Publish a tested Python package",
+          "lessons": [
+            {
+              "id": "python-errors-debugging",
+              "title": "Errors are evidence, not embarrassment",
+              "duration": "68 min",
+              "summary": "Read tracebacks, separate expected failures from defects, and design exception handling that preserves useful context.",
+              "video": "https://www.youtube-nocookie.com/embed/JP7ITIXGpHk",
+              "videoLabel": "Harvard CS50P / exceptions and debugging",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path.",
+                  "readingFocus": "Exceptions, traceback reading, and custom error boundaries."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Google's Python Class",
+                  "url": "https://developers.google.com/edu/python",
+                  "source": "Google",
+                  "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+                }
+              ],
+              "lab": {
+                "title": "Failure map",
+                "brief": "Take a deliberately fragile utility and document its failure modes before improving its error messages.",
+                "deliverable": "A failure matrix and a revised implementation with actionable errors.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "def parse_age(value):\n    return int(value)\n\nprint(parse_age('42'))",
+                "prompt": "Handle invalid input without swallowing the underlying meaning of the error."
+              }
+            },
+            {
+              "id": "python-testing",
+              "title": "Tests are executable claims",
+              "duration": "76 min",
+              "summary": "Write focused tests, use fixtures and parametrization, and choose boundaries that make failures easy to localize.",
+              "video": "https://www.youtube-nocookie.com/embed/nLRL_NcnK-4",
+              "videoLabel": "Harvard CS50P / unit testing",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "DOC",
+                  "label": "pytest documentation",
+                  "url": "https://docs.pytest.org/en/stable/",
+                  "source": "pytest",
+                  "note": "Testing framework documentation and fixture patterns."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "MIT 6.0001",
+                  "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+                  "source": "MIT OpenCourseWare",
+                  "note": "Lecture videos, notes, problem sets, and programming assignments."
+                }
+              ],
+              "lab": {
+                "title": "Test the contract",
+                "brief": "Build a pytest suite for the records tool, including valid cases, malformed data, and regression cases.",
+                "deliverable": "A test suite with readable names and a short coverage-risk memo.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "def add(a, b):\n    return a + b\n\nassert add(2, 3) == 5",
+                "prompt": "Add boundary assertions and describe what each assertion protects."
+              }
+            },
+            {
+              "id": "python-modules-packaging",
+              "title": "A package is a boundary around reuse",
+              "duration": "84 min",
+              "summary": "Organize modules, isolate environments, declare dependencies, and make a project installable without relying on a specific machine.",
+              "video": "https://www.youtube-nocookie.com/embed/JP7ITIXGpHk",
+              "videoLabel": "Google's Python Class / modules and packages",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Google's Python Class",
+                  "url": "https://developers.google.com/edu/python",
+                  "source": "Google",
+                  "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+                },
+                {
+                  "type": "DOC",
+                  "label": "Python Packaging User Guide",
+                  "url": "https://packaging.python.org/en/latest/",
+                  "source": "Python Packaging Authority",
+                  "note": "Official guidance for environments, packaging, publishing, and dependency management."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path."
+                }
+              ],
+              "lab": {
+                "title": "Installable utility",
+                "brief": "Convert a script into a small package with a command entry point, metadata, and a reproducible environment.",
+                "deliverable": "Project layout, pyproject.toml, install instructions, and a smoke test.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "from pathlib import Path\nprint(Path('.').resolve())",
+                "prompt": "Sketch the package boundary and identify which imports should be public."
+              }
+            }
+          ]
+        },
+        {
+          "id": "python-systems-services",
+          "number": "03",
+          "title": "Systems and Services",
+          "description": "Use Python to talk to the outside world: processes, HTTP, APIs, structured data, and asynchronous work.",
+          "project": "Build a resilient data service",
+          "lessons": [
+            {
+              "id": "python-processes-http",
+              "title": "The network is another failure boundary",
+              "duration": "86 min",
+              "summary": "Connect Python programs to processes and HTTP services while making timeouts, response validation, and retries explicit.",
+              "video": "https://www.youtube-nocookie.com/embed/nLRL_NcnK-4",
+              "videoLabel": "Google's Python Class / processes and HTTP",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Google's Python Class",
+                  "url": "https://developers.google.com/edu/python",
+                  "source": "Google",
+                  "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path."
+                }
+              ],
+              "lab": {
+                "title": "Source-backed fetcher",
+                "brief": "Build a command-line fetcher for an openly licensed public endpoint with timeouts and structured output.",
+                "deliverable": "A safe fetch script, sample response, and failure behavior documentation.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "from urllib.parse import urlparse\nprint(urlparse('https://example.com').hostname)",
+                "prompt": "Design the request boundary without embedding credentials or scraping restricted systems."
+              }
+            },
+            {
+              "id": "python-iterators-generators",
+              "title": "Make large work lazy",
+              "duration": "74 min",
+              "summary": "Use iterators, generators, context managers, and streaming transformations to keep memory and control flow visible.",
+              "video": "https://www.youtube-nocookie.com/embed/JP7ITIXGpHk",
+              "videoLabel": "MIT 6.0001 / computational problem solving",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT 6.0001",
+                  "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+                  "source": "MIT OpenCourseWare",
+                  "note": "Lecture videos, notes, problem sets, and programming assignments."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path.",
+                  "readingFocus": "Iterators, generators, context managers, and resource lifetime."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Google's Python Class",
+                  "url": "https://developers.google.com/edu/python",
+                  "source": "Google",
+                  "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+                }
+              ],
+              "lab": {
+                "title": "Streaming log analyzer",
+                "brief": "Process a line-oriented log stream lazily and emit a summary without loading the entire file into memory.",
+                "deliverable": "A generator-based pipeline and a memory-use explanation.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "def numbers():\n    yield from range(3)\n\nprint(list(numbers()))",
+                "prompt": "Turn the generator into a transformation pipeline with one filtering stage."
+              }
+            },
+            {
+              "id": "python-asyncio-concurrency",
+              "title": "Concurrency is coordination",
+              "duration": "92 min",
+              "summary": "Understand event loops, tasks, cancellation, backpressure, and when asynchronous I/O is the right tool.",
+              "video": "https://www.youtube-nocookie.com/embed/nLRL_NcnK-4",
+              "videoLabel": "Google's Python Class / processes and HTTP context",
+              "resources": [
+                {
+                  "type": "DOC",
+                  "label": "asyncio documentation",
+                  "url": "https://docs.python.org/3/library/asyncio.html",
+                  "source": "Python Software Foundation",
+                  "note": "Official asynchronous I/O library reference."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Google's Python Class",
+                  "url": "https://developers.google.com/edu/python",
+                  "source": "Google",
+                  "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+                }
+              ],
+              "lab": {
+                "title": "Bounded concurrent probe",
+                "brief": "Write an async exercise that schedules bounded work against a local or public test endpoint and records failures.",
+                "deliverable": "A cancellation-aware implementation and an explanation of the concurrency limit.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "import asyncio\n\nasync def main():\n    await asyncio.sleep(0)\n    return 'ready'\n\nprint(asyncio.run(main()))",
+                "prompt": "Add two tasks, preserve deterministic reporting, and handle cancellation explicitly."
+              }
+            }
+          ]
+        },
+        {
+          "id": "python-advanced-architecture",
+          "number": "04",
+          "title": "Advanced Python Architecture",
+          "description": "Finish by reasoning about the object model, performance, observability, and the choices that separate a script from a durable system.",
+          "project": "Ship and defend a production-minded Python service",
+          "lessons": [
+            {
+              "id": "python-data-model",
+              "title": "Protocols are the language beneath the syntax",
+              "duration": "90 min",
+              "summary": "Use special methods, descriptors, context managers, and protocols to understand how Python objects participate in the language.",
+              "video": "https://www.youtube-nocookie.com/embed/nLRL_NcnK-4",
+              "videoLabel": "Python documentation / object model study",
+              "resources": [
+                {
+                  "type": "DOC",
+                  "label": "Python Data Model",
+                  "url": "https://docs.python.org/3/reference/datamodel.html",
+                  "source": "Python Software Foundation",
+                  "note": "Authoritative reference for objects, protocols, special methods, and identity."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "MIT 6.0001",
+                  "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+                  "source": "MIT OpenCourseWare",
+                  "note": "Lecture videos, notes, problem sets, and programming assignments."
+                }
+              ],
+              "lab": {
+                "title": "Protocol-driven collection",
+                "brief": "Implement a small collection type that supports iteration, length, readable representation, and a safe context boundary.",
+                "deliverable": "A protocol table, implementation, and tests for each supported behavior.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "class Box:\n    def __init__(self, value):\n        self.value = value\n\nprint(Box(3).value)",
+                "prompt": "Add one special method and explain the user-facing behavior it unlocks."
+              }
+            },
+            {
+              "id": "python-performance-observability",
+              "title": "Measure before you optimize",
+              "duration": "88 min",
+              "summary": "Profile a real bottleneck, distinguish algorithmic from I/O cost, and add logs or metrics that make behavior inspectable.",
+              "video": "https://www.youtube-nocookie.com/embed/JP7ITIXGpHk",
+              "videoLabel": "MIT 6.0001 / computational reasoning",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT 6.0001",
+                  "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+                  "source": "MIT OpenCourseWare",
+                  "note": "Lecture videos, notes, problem sets, and programming assignments."
+                },
+                {
+                  "type": "DOC",
+                  "label": "The Python Tutorial",
+                  "url": "https://docs.python.org/3/tutorial/",
+                  "source": "Python Software Foundation",
+                  "note": "Official language tutorial and reference path.",
+                  "readingFocus": "Profiling, algorithmic cost, and evidence-led optimization."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Google's Python Class",
+                  "url": "https://developers.google.com/edu/python",
+                  "source": "Google",
+                  "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+                }
+              ],
+              "lab": {
+                "title": "Benchmark dossier",
+                "brief": "Compare two implementations on a controlled dataset, record timing methodology, and explain the trade-off.",
+                "deliverable": "A reproducible benchmark script and a one-page conclusion with limitations.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "import time\nstart = time.perf_counter()\n_ = sum(range(1000))\nprint(time.perf_counter() - start)",
+                "prompt": "Measure two approaches fairly and report the result without claiming universal performance."
+              }
+            },
+            {
+              "id": "python-capstone",
+              "title": "Python Capstone: A finished system explains its boundaries",
+              "duration": "120 min",
+              "summary": "Integrate the route into a capstone service with tests, packaging, source attribution, observability, and a failure-focused review.",
+              "video": "https://www.youtube-nocookie.com/embed/nLRL_NcnK-4",
+              "videoLabel": "Harvard CS50P / final project framing",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50P",
+                  "url": "https://cs50.harvard.edu/python/",
+                  "source": "Harvard",
+                  "note": "Browser-accessible Python course with problem sets and a final project."
+                },
+                {
+                  "type": "DOC",
+                  "label": "Python Packaging User Guide",
+                  "url": "https://packaging.python.org/en/latest/",
+                  "source": "Python Packaging Authority",
+                  "note": "Official guidance for environments, packaging, publishing, and dependency management."
+                },
+                {
+                  "type": "DOC",
+                  "label": "pytest documentation",
+                  "url": "https://docs.pytest.org/en/stable/",
+                  "source": "pytest",
+                  "note": "Testing framework documentation and fixture patterns."
+                },
+                {
+                  "type": "LAB",
+                  "label": "JupyterLite",
+                  "url": "https://jupyterlite.readthedocs.io/",
+                  "source": "Project Jupyter",
+                  "note": "JupyterLab distribution that runs in the browser."
+                }
+              ],
+              "lab": {
+                "title": "Rampage Python capstone",
+                "brief": "Ship a tested, installable data service or developer tool that reads a real public source, transforms it, and exposes a clear interface.",
+                "deliverable": "Repository, architecture note, tests, runbook, source attribution, and a recorded failure review.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "PYODIDE",
+                "mode": "browser-repl",
+                "embedUrl": "https://pyodide.org/en/stable/console.html",
+                "label": "Open browser Python lab",
+                "safetyNote": "Runs in the external browser environment. Rampage records your checkpoint and evidence, not arbitrary code execution.",
+                "starter": "def main():\n    return {'status': 'start'}\n\nprint(main())",
+                "prompt": "Define the capstone interface, one happy path, one failure path, and the evidence you will submit."
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "resourceCatalog": [
@@ -3586,6 +4347,83 @@
       "url": "https://ocw.mit.edu/search/?d=Electrical%20Engineering%20and%20Computer%20Science",
       "source": "MIT",
       "note": "Broader open course archive."
+    },
+    {
+      "type": "COURSE",
+      "label": "Harvard CS50P",
+      "url": "https://cs50.harvard.edu/python/",
+      "source": "Harvard",
+      "note": "Browser-accessible Python course with problem sets and a final project."
+    },
+    {
+      "type": "COURSE",
+      "label": "MIT 6.0001",
+      "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+      "source": "MIT OpenCourseWare",
+      "note": "Lecture videos, notes, problem sets, and programming assignments."
+    },
+    {
+      "type": "COURSE",
+      "label": "Google's Python Class",
+      "url": "https://developers.google.com/edu/python",
+      "source": "Google",
+      "note": "Written lessons, lecture videos, and coding exercises for scripting and HTTP."
+    },
+    {
+      "type": "DOC",
+      "label": "The Python Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "source": "Python Software Foundation",
+      "note": "Official language tutorial and reference path."
+    },
+    {
+      "type": "DOC",
+      "label": "Python Data Model",
+      "url": "https://docs.python.org/3/reference/datamodel.html",
+      "source": "Python Software Foundation",
+      "note": "Authoritative reference for objects, protocols, special methods, and identity."
+    },
+    {
+      "type": "DOC",
+      "label": "Python Packaging User Guide",
+      "url": "https://packaging.python.org/en/latest/",
+      "source": "Python Packaging Authority",
+      "note": "Official guidance for environments, packaging, publishing, and dependency management."
+    },
+    {
+      "type": "DOC",
+      "label": "pytest documentation",
+      "url": "https://docs.pytest.org/en/stable/",
+      "source": "pytest",
+      "note": "Testing framework documentation and fixture patterns."
+    },
+    {
+      "type": "DOC",
+      "label": "asyncio documentation",
+      "url": "https://docs.python.org/3/library/asyncio.html",
+      "source": "Python Software Foundation",
+      "note": "Official asynchronous I/O library reference."
+    },
+    {
+      "type": "LAB",
+      "label": "JupyterLite",
+      "url": "https://jupyterlite.readthedocs.io/",
+      "source": "Project Jupyter",
+      "note": "JupyterLab distribution that runs in the browser."
+    },
+    {
+      "type": "LAB",
+      "label": "Pyodide browser REPL",
+      "url": "https://pyodide.org/en/stable/console.html",
+      "source": "Pyodide",
+      "note": "Browser-only Python runtime for short experiments; not an authenticated assessment runner."
+    },
+    {
+      "type": "COURSE",
+      "label": "Stanford Code in Place",
+      "url": "https://codeinplace.stanford.edu/",
+      "source": "Stanford",
+      "note": "Python fundamentals and console-program practice."
     }
   ]
 }

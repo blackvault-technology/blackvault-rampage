@@ -11,6 +11,23 @@ export type Resource = {
   readingFocus?: string;
 };
 
+export type LessonLab = {
+  title: string;
+  brief: string;
+  deliverable: string;
+  difficulty?: string;
+};
+
+export type CodeLab = {
+  provider: string;
+  mode: string;
+  embedUrl?: string;
+  label: string;
+  safetyNote: string;
+  starter: string;
+  prompt: string;
+};
+
 export type Lesson = {
   id: string;
   title: string;
@@ -19,6 +36,8 @@ export type Lesson = {
   video?: string;
   videoLabel?: string;
   resources: Resource[];
+  lab?: LessonLab;
+  codeLab?: CodeLab;
 };
 
 export type Phase = {
