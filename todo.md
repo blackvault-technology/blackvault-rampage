@@ -495,3 +495,10 @@
 - [x] Implement per-source annotations and learner highlights with local-first persistence and Neon sync for authenticated learners.
 - [x] Polish quiz presentation and implement a complete result report with score breakdown, question explanations, learning recommendations, and share-safe output.
 - [x] Run tests, TypeScript, production build, responsive visual review, and save a recoverable checkpoint.
+
+## Continue: Mobile App Shell and Fixed Learning Console
+- [x] Audit the mobile and wide-screen course, lesson, resource, dashboard, assessment, shell, card, and action layouts against the supplied console references.
+- [x] Define and document a fixed-desktop context model, with course bars and contextual rails kept stable while the central study workspace owns scrolling.
+- [x] Rebuild mobile course and lesson flows into a study-first app shell with thumb-reachable navigation, touch-safe controls, horizontal context rails, and reliable bottom-navigation clearance.
+- [x] Implement fixed course bars and desktop side regions while keeping the central course and lesson workspace independently scrollable.
+- [x] Add responsive console regression coverage, run tests, TypeScript, production build, and desktop/mobile visual validation, then save a recoverable checkpoint.
