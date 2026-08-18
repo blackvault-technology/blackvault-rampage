@@ -1,149 +1,84 @@
-// BlackVault Rampage content model: all course, lesson, video, and resource metadata lives here so pages remain reusable.
+// Canonical Rampage content model. Course and source records are maintained in curriculum.json.
+import curriculum from "./curriculum.json";
 import { arxivResources } from "./arxivResources";
-import { topSkillCourses } from "./topSkillCourses";
 
-export type Resource = { type: string; label: string; url: string; source: string; note?: string; readingFocus?: string };
-export type Lesson = { id: string; title: string; duration: string; summary: string; video?: string; videoLabel?: string; resources: Resource[] };
-export type Phase = { id: string; number: string; title: string; description: string; project: string; lessons: Lesson[] };
-export type Course = { id: string; title: string; subtitle: string; eyebrow: string; description: string; status: string; color: string; sourceLabel: string; sourceUrl: string; time: string; level: string; phases: Phase[] };
-
-const mitPlaylist = "https://www.youtube-nocookie.com/embed/videoseries?list=PLTsf9UeqkReZHXWY9yJvTwLJWYYPcKEqK";
-const resources = {
-  missing: { type: "COURSE", label: "MIT Missing Semester", url: "https://missing.csail.mit.edu/2026/course-shell/", source: "MIT", note: "Shell, tools, editors, and debugging.", readingFocus: "Shell workflows, editor habits, debugging, profiling, and durable command-line practice." },
-  xv6: { type: "REPO", label: "xv6-riscv", url: "https://github.com/mit-pdos/xv6-riscv", source: "MIT", note: "Teaching OS source and labs." },
-  mitOs: { type: "COURSE", label: "MIT 6.S081", url: "https://pdos.csail.mit.edu/6.828/2021/overview.html", source: "MIT", note: "Operating System Engineering." },
-  stanford: { type: "COURSE", label: "Stanford CS144", url: "https://cs144.github.io/", source: "Stanford", note: "TCP/IP stack checkpoints." },
-  ostep: { type: "READ", label: "Operating Systems: Three Easy Pieces", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/", source: "University of Wisconsin–Madison", note: "Open operating-systems text with exercises.", readingFocus: "Processes, virtual memory, concurrency, persistence, and the reasoning that connects them." },
-  wireshark: { type: "LAB", label: "Kurose–Ross Wireshark Labs", url: "https://gaia.cs.umass.edu/kurose_ross/wireshark.php", source: "UMass Amherst", note: "Official guided packet-analysis labs.", readingFocus: "Use supplied traces or authorized local captures to observe network behavior safely." },
-  crafting: { type: "READ", label: "Crafting Interpreters", url: "https://craftinginterpreters.com/introduction.html", source: "Robert Nystrom", note: "Free implementation-first text for interpreters and bytecode VMs.", readingFocus: "Two complete interpreters, parsing, bytecode, runtime structures, garbage collection, and benchmarking." },
-  nand: { type: "COURSE", label: "Nand2Tetris projects", url: "https://www.nand2tetris.org/course", source: "Nand2Tetris", note: "12 first-principles projects." },
-  distributed: { type: "COURSE", label: "MIT 6.5840", url: "https://pdos.csail.mit.edu/6.824/", source: "MIT", note: "Distributed systems labs." },
-  raft: { type: "PAPER", label: "Raft paper", url: "https://raft.github.io/raft.pdf", source: "USENIX", note: "Understandable consensus." },
-  cs61c: { type: "COURSE", label: "Berkeley CS61C", url: "https://cs61c.org/", source: "Berkeley", note: "RISC-V and computer architecture." },
+export type Resource = {
+  type: string;
+  label: string;
+  url: string;
+  source: string;
+  note?: string;
+  readingFocus?: string;
 };
 
-export const courses: Course[] = [
-  {
-    id: "systems-fundamentals", title: "System Fundamentals", subtitle: "Zero to Top 1%", eyebrow: "SPOTLIGHT COURSE / SYSTEMS", description: "Build a shell, a CPU, a kernel, a TCP stack, and a distributed store. The guided lessons are the spine; the real depth comes from the source labs and the project work that follows each boundary.", status: "SPOTLIGHT", color: "lime", sourceLabel: "MIT · Stanford · Berkeley · Nand2Tetris", sourceUrl: "https://pdos.csail.mit.edu/6.828/2021/overview.html", time: "18–28h guided lessons + 20–32h project work", level: "Foundational → Advanced",
-    phases: [
-      { id: "foundations", number: "00", title: "Foundations & Tools", description: "Make the machine legible. Learn the shell, C, memory, Git, Vim, and GDB.", project: "Write a shell", lessons: [
-        { id: "shell", title: "The shell is your first interface", duration: "35 min", summary: "Processes, files, streams, and the tools that let you inspect a running machine.", video: mitPlaylist, videoLabel: "MIT Missing Semester / official course", resources: [resources.missing, { type: "READ", label: "The Missing Semester", url: "https://missing.csail.mit.edu/", source: "MIT" }] },
-        { id: "memory", title: "Memory is not an abstraction", duration: "48 min", summary: "Trace pointers through stack and heap, then watch the machine change under a debugger.", video: "https://www.youtube-nocookie.com/embed/w7efr8-MRPQ", videoLabel: "Berkeley CS61C / RISC-V intro", resources: [resources.cs61c, resources.missing] },
-        { id: "debugging", title: "Debugging as a systems skill", duration: "42 min", summary: "Use GDB, assertions, traces, and small experiments to turn uncertainty into evidence.", video: mitPlaylist, videoLabel: "MIT Missing Semester / debugging and profiling", resources: [resources.missing, { type: "DOC", label: "GDB reference", url: "https://sourceware.org/gdb/documentation/", source: "GNU" }] },
-      ] },
-      { id: "architecture", number: "01", title: "Architecture", description: "Assemble a computer from logic gates to instruction sets and see where software becomes hardware.", project: "Build a CPU in Logisim", lessons: [
-        { id: "nand", title: "From NAND to a computer", duration: "52 min", summary: "Compose universal logic into an ALU, memory, CPU, and a small software hierarchy.", resources: [resources.nand, resources.cs61c] },
-        { id: "riscv", title: "RISC-V is a contract", duration: "44 min", summary: "Read instruction encoding, calling conventions, and control flow at the ISA boundary.", video: "https://www.youtube-nocookie.com/embed/1jplJRDB0TI", videoLabel: "Berkeley CS61C / RISC-V and CALL", resources: [resources.cs61c] },
-      ] },
-      { id: "operating-systems", number: "02", title: "Operating Systems", description: "Enter the kernel: processes, traps, virtual memory, file systems, and concurrency.", project: "Extend xv6", lessons: [
-        { id: "os-organization", title: "The kernel is a boundary", duration: "58 min", summary: "Understand system calls, traps, processes, and the hardware/software contract inside xv6.", video: mitPlaylist, videoLabel: "MIT 6.S081 / official lecture playlist", resources: [resources.mitOs, resources.xv6] },
-        { id: "page-tables", title: "Page tables and address translation", duration: "66 min", summary: "Walk a virtual address through page tables and implement a memory feature in xv6.", resources: [resources.mitOs, resources.xv6] },
-      ] },
-      { id: "networking", number: "03", title: "Networking", description: "Build the layers that move bytes from one process to another across an unreliable world.", project: "Build a TCP stack", lessons: [
-        { id: "byte-stream", title: "Turn fragments into a byte stream", duration: "45 min", summary: "Start with Stanford CS144 Checkpoint 0 and make an interface that can survive fragmentation.", resources: [resources.stanford] },
-        { id: "tcp", title: "Reliability, flow, and congestion", duration: "70 min", summary: "Implement a TCP sender and receiver, then measure the real world instead of trusting diagrams.", resources: [resources.stanford, { type: "READ", label: "CS144 lecture notes", url: "https://cs144.github.io/", source: "Stanford" }] },
-      ] },
-      { id: "distributed", number: "04", title: "Distributed Systems", description: "Reason about failure, replication, consistency, and the limits of coordination.", project: "Implement Raft", lessons: [
-        { id: "mapreduce", title: "MapReduce and the shape of scale", duration: "62 min", summary: "Build a distributed data-processing model and confront work distribution and failure.", resources: [resources.distributed] },
-        { id: "raft", title: "Make replicas agree", duration: "76 min", summary: "Implement Raft’s leader election, log replication, and safety invariants.", resources: [resources.distributed, resources.raft] },
-      ] },
-      { id: "capstone", number: "05", title: "Capstone", description: "Combine the ideas into a distributed key-value store you can explain and test.", project: "Ship a distributed KV store", lessons: [
-        { id: "design", title: "Design the store before you code", duration: "54 min", summary: "Define the API, consistency model, failure modes, and tests before implementation begins.", resources: [resources.distributed, resources.raft] },
-        { id: "ship", title: "The proof is in the failure tests", duration: "88 min", summary: "Integrate, benchmark, break, and document your system until the behavior is defensible.", resources: [resources.distributed] },
-      ] },
-    ],
-  },
-  { id: "networking-systems", title: "Networking Systems", subtitle: "Packets, Protocols, and Real Servers", eyebrow: "GUIDED COURSE / NETWORKS", description: "A source-led route from the first packet to a defensible service network. Each chapter moves from model to traceable evidence: access, IP, transport, application protocols, troubleshooting, and security.", status: "GUIDED COURSE", color: "orange", sourceLabel: "UMass Kurose-Ross · Stanford CS144 · Cisco · Microsoft", sourceUrl: "https://gaia.cs.umass.edu/kurose_ross/lectures.php", time: "10–14h guided lessons + 22–30h lab work", level: "Beginner → Intermediate", phases: [
-    { id: "net-foundations", number: "00", title: "The Network Model", description: "Build a mental model of the Internet, its edge/core, performance, and layered contracts.", project: "Draw the request path", lessons: [
-      { id: "net-internet", title: "What is the Internet?", duration: "32 min", summary: "Map end systems, access networks, core forwarding, and the layered view from an official networking lecture sequence.", video: "https://www.youtube-nocookie.com/embed/videoseries?list=PL1ya5dD_M8uX-BLUF1FEvUNsYWQL5_l0O", videoLabel: "Jim Kurose / Computer Networking official lecture playlist", resources: [{ type: "VIDEO", label: "UMass Kurose-Ross lectures", url: "https://gaia.cs.umass.edu/kurose_ross/lectures.php", source: "UMass" }, { type: "COURSE", label: "Microsoft network fundamentals", url: "https://learn.microsoft.com/en-us/training/modules/network-fundamentals/", source: "Microsoft" }] },
-      { id: "net-performance", title: "Delay, loss, and throughput", duration: "38 min", summary: "Explain where time goes in a packet path and turn a vague slow-network complaint into measurable hypotheses.", resources: [{ type: "VIDEO", label: "Kurose-Ross Chapter 1 videos", url: "https://www.youtube.com/playlist?list=PL1ya5dD_M8uX-BLUF1FEvUNsYWQL5_l0O", source: "UMass" }, resources.wireshark] },
-    ] },
-    { id: "net-access", number: "01", title: "Access and Ethernet", description: "Follow a frame across the local network and understand the devices that make the first hop work.", project: "Trace a local frame", lessons: [
-      { id: "net-ethernet", title: "Frames, switches, and access", duration: "46 min", summary: "Read the link layer as a local delivery contract and distinguish a switch decision from a router decision.", resources: [{ type: "COURSE", label: "Cisco Networking Basics", url: "https://www.netacad.com/courses/networking-basics?courseLang=en-US", source: "Cisco" }, { type: "VIDEO", label: "Kurose-Ross link-layer lectures", url: "https://gaia.cs.umass.edu/kurose_ross/lectures.php", source: "UMass" }] },
-      { id: "net-wireless", title: "Wireless is still a network", duration: "40 min", summary: "Compare wired and wireless access, contention, mobility, and the operational signals that change the path.", resources: [{ type: "COURSE", label: "Cisco Networking Basics", url: "https://www.netacad.com/courses/networking-basics?courseLang=en-US", source: "Cisco" }, { type: "READ", label: "CS144 course materials", url: "https://cs144.github.io/", source: "Stanford" }] },
-    ] },
-    { id: "net-ip", number: "02", title: "IP and Subnets", description: "Turn addresses into a plan: prefixes, routing boundaries, DHCP, NAT, and the packet’s next hop.", project: "Design a subnet plan", lessons: [
-      { id: "net-ipv4", title: "IPv4, IPv6, and prefixes", duration: "54 min", summary: "Translate an address and prefix into a network boundary, host space, and routing decision.", resources: [{ type: "COURSE", label: "Microsoft network fundamentals", url: "https://learn.microsoft.com/en-us/training/modules/network-fundamentals/", source: "Microsoft" }, { type: "COURSE", label: "Cisco Networking Basics", url: "https://www.netacad.com/courses/networking-basics?courseLang=en-US", source: "Cisco" }] },
-      { id: "net-dhcp-nat", title: "DHCP, ARP, and NAT", duration: "48 min", summary: "Reconstruct how a host discovers its local neighbor, receives configuration, and crosses a private boundary.", resources: [{ type: "VIDEO", label: "Kurose-Ross network-layer lectures", url: "https://gaia.cs.umass.edu/kurose_ross/lectures.php", source: "UMass" }, resources.wireshark] },
-    ] },
-    { id: "net-transport", number: "03", title: "Transport and Reliability", description: "Understand ports, sockets, retransmission, flow control, and congestion as observable behavior.", project: "Explain a TCP trace", lessons: [
-      { id: "net-udp-tcp", title: "UDP, TCP, and ports", duration: "52 min", summary: "Choose the right transport mental model and trace application data into a socket and segment.", video: "https://www.youtube-nocookie.com/embed/videoseries?list=PLvFG2xYBrYAQCyz4Wx3NPoYJOFjvU7g2Z", videoLabel: "Stanford CS144 networking lecture playlist", resources: [{ type: "COURSE", label: "Stanford CS144", url: "https://cs144.github.io/", source: "Stanford" }, { type: "VIDEO", label: "Stanford CS144 lecture playlist", url: "https://www.youtube.com/playlist?list=PLvFG2xYBrYAQCyz4Wx3NPoYJOFjvU7g2Z", source: "Stanford" }] },
-      { id: "net-reliability", title: "Reliability, flow, and congestion", duration: "66 min", summary: "Use sequence numbers, acknowledgements, windows, and loss to explain why TCP behaves the way it does.", resources: [{ type: "COURSE", label: "Stanford CS144", url: "https://cs144.github.io/", source: "Stanford" }, { type: "VIDEO", label: "Kurose-Ross transport lectures", url: "https://gaia.cs.umass.edu/kurose_ross/lectures.php", source: "UMass" }] },
-    ] },
-    { id: "net-services", number: "04", title: "Application Protocols", description: "Follow DNS, HTTP, and service ports from a user action to a real server response.", project: "Annotate one HTTP request", lessons: [
-      { id: "net-dns", title: "DNS: names become addresses", duration: "42 min", summary: "Explain recursive resolution, caching, and why a name lookup is part of the request path rather than magic.", resources: [{ type: "VIDEO", label: "Kurose-Ross application-layer lectures", url: "https://gaia.cs.umass.edu/kurose_ross/lectures.php", source: "UMass" }, { type: "COURSE", label: "Microsoft network fundamentals", url: "https://learn.microsoft.com/en-us/training/modules/network-fundamentals/", source: "Microsoft" }] },
-      { id: "net-http", title: "HTTP and real servers", duration: "50 min", summary: "Read request/response headers, status codes, connections, and the operational clues inside a web exchange.", resources: [{ type: "COURSE", label: "Stanford CS144", url: "https://cs144.github.io/", source: "Stanford" }, resources.wireshark] },
-    ] },
-    { id: "net-ops", number: "05", title: "Troubleshooting and Security", description: "Turn symptoms into evidence with a repeatable operator workflow and a security-aware threat model.", project: "Write an incident runbook", lessons: [
-      { id: "net-tools", title: "Ping, traceroute, and packet evidence", duration: "44 min", summary: "Choose a diagnostic command from the question you need answered and record the result as evidence.", resources: [{ type: "COURSE", label: "Cisco Networking Basics", url: "https://www.netacad.com/courses/networking-basics?courseLang=en-US", source: "Cisco" }, { type: "COURSE", label: "Stanford CS144", url: "https://cs144.github.io/", source: "Stanford" }] },
-      { id: "net-security", title: "Threats, boundaries, and safe defaults", duration: "58 min", summary: "Map trust boundaries, common network threats, and the controls that make a service safer to operate.", resources: [{ type: "VIDEO", label: "Kurose-Ross network security lectures", url: "https://gaia.cs.umass.edu/kurose_ross/lectures.php", source: "UMass" }, { type: "COURSE", label: "Cisco Networking Basics", url: "https://www.netacad.com/courses/networking-basics?courseLang=en-US", source: "Cisco" }] },
-    ] },
-  ] },
-  { id: "ai-systems", title: "AI Systems", subtitle: "Build the Inference Stack", eyebrow: "GUIDED COURSE / AI SYSTEMS", description: "A calm, systems-first route from tokens and tensors to reliable inference. The lesson set establishes the vocabulary; the build work turns one small model into a measured, observable service.", status: "GUIDED COURSE", color: "lime", sourceLabel: "Stanford CS229S · CS329S · HF · Google", sourceUrl: "https://cs229s.stanford.edu/fall2024/", time: "8–12h guided lessons + 20–28h build work", level: "Beginner → Intermediate", phases: [
-    { id: "ai-onramp", number: "00", title: "The On-Ramp", description: "Learn the small set of ideas that make modern AI systems readable before touching optimization or infrastructure.", project: "Explain a language model", lessons: [
-      { id: "ai-map", title: "What is an AI system?", duration: "24 min", summary: "Separate data, model, evaluation, serving, and the human goal so the system stops feeling like magic.", resources: [{ type: "COURSE", label: "Google ML Crash Course", url: "https://developers.google.com/machine-learning/crash-course", source: "Google" }, { type: "READ", label: "CS329S overview", url: "https://stanford-cs329s.github.io/", source: "Stanford" }] },
-      { id: "ai-tokens", title: "Tokens, tensors, predictions", duration: "32 min", summary: "Trace text into tensors and predictions with a tiny notebook-sized experiment.", video: "https://www.youtube-nocookie.com/embed/aircAruvnKk", videoLabel: "3Blue1Brown / neural networks", resources: [{ type: "COURSE", label: "HF LLM Course", url: "https://huggingface.co/learn/llm-course/en/chapter1/1", source: "Hugging Face" }] },
-    ] },
-    { id: "ai-model", number: "01", title: "Model Mechanics", description: "Build intuition for training, representations, attention, and the tradeoffs hidden inside a model call.", project: "Train a tiny classifier", lessons: [
-      { id: "ai-training", title: "Training is search", duration: "38 min", summary: "Run a miniature training loop and observe loss, data, parameters, and overfitting as measurable behavior.", resources: [{ type: "DOC", label: "PyTorch Tutorials", url: "https://docs.pytorch.org/tutorials/", source: "PyTorch" }, { type: "COURSE", label: "Google ML Crash Course", url: "https://developers.google.com/machine-learning/crash-course", source: "Google" }] },
-      { id: "ai-attention", title: "Attention as a systems boundary", duration: "45 min", summary: "Understand why sequence length, memory bandwidth, and KV cache shape the cost of inference.", resources: [{ type: "COURSE", label: "Stanford CS229S", url: "https://cs229s.stanford.edu/fall2024/", source: "Stanford" }] },
-    ] },
-    { id: "ai-inference", number: "02", title: "Inference in the Real World", description: "Turn a model into a service you can measure, budget, and explain.", project: "Ship a tiny inference API", lessons: [
-      { id: "ai-serving", title: "The request path", duration: "42 min", summary: "Map tokenization, batching, model execution, post-processing, and response time in one request trace.", resources: [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }, { type: "COURSE", label: "Stanford CS229S", url: "https://cs229s.stanford.edu/fall2024/", source: "Stanford" }] },
-      { id: "ai-cache", title: "KV caching and latency", duration: "48 min", summary: "Measure how caching and speculative decoding change the cost of generating a response.", resources: [{ type: "READ", label: "CS229S projects", url: "https://cs229s.stanford.edu/fall2024/", source: "Stanford" }] },
-    ] },
-    { id: "ai-quality", number: "03", title: "Quality & Safety", description: "Make behavior observable and evaluation explicit before you call a system ready.", project: "Build an evaluation set", lessons: [
-      { id: "ai-eval", title: "Evaluation before vibes", duration: "36 min", summary: "Write a small, versioned evaluation set that can prove whether a change helped.", resources: [{ type: "COURSE", label: "CS329S systems design", url: "https://stanford-cs329s.github.io/", source: "Stanford" }] },
-      { id: "ai-monitoring", title: "Monitor the system, not just the model", duration: "34 min", summary: "Track latency, cost, failures, drift, and user impact with a simple operational dashboard.", resources: [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }] },
-    ] },
-    { id: "ai-capstone", number: "04", title: "Capstone: One Useful System", description: "Combine the pieces into a small AI feature with a clear user, evidence, and operating envelope.", project: "Publish an AI system brief", lessons: [
-      { id: "ai-architecture", title: "Draw the smallest architecture", duration: "40 min", summary: "Choose the simplest components that satisfy the user goal, quality bar, and cost envelope.", resources: [{ type: "COURSE", label: "CS329S overview", url: "https://stanford-cs329s.github.io/", source: "Stanford" }] },
-      { id: "ai-ship", title: "Ship the evidence", duration: "55 min", summary: "Document the data, prompts, model, tests, costs, failure modes, and next experiment in one clear brief.", resources: [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }] },
-    ] },
-  ] },
-];
+export type Lesson = {
+  id: string;
+  title: string;
+  duration: string;
+  summary: string;
+  video?: string;
+  videoLabel?: string;
+  resources: Resource[];
+};
 
-export const resourceCatalog = [resources.missing, resources.xv6, resources.mitOs, resources.ostep, resources.stanford, resources.wireshark, resources.nand, resources.crafting, resources.distributed, resources.raft, resources.cs61c, { type: "DOC", label: "MIT OpenCourseWare", url: "https://ocw.mit.edu/search/?d=Electrical%20Engineering%20and%20Computer%20Science", source: "MIT", note: "Broader open course archive." }];
+export type Phase = {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  project: string;
+  lessons: Lesson[];
+};
+
+export type Course = {
+  id: string;
+  title: string;
+  subtitle: string;
+  eyebrow: string;
+  description: string;
+  status: string;
+  color: string;
+  sourceLabel: string;
+  sourceUrl: string;
+  time: string;
+  level: string;
+  phases: Phase[];
+};
+
+export type PdfResource = {
+  id: string;
+  title: string;
+  author: string;
+  institution: string;
+  url: string;
+  topic: string;
+  level: string;
+  pages: string;
+  readTime: string;
+  tags: string[];
+  relatedCourse: string;
+  note: string;
+};
+
+type CurriculumPayload = {
+  schemaVersion: number;
+  generatedAt: string;
+  courses: Course[];
+  resourceCatalog: Resource[];
+};
+
+const content = curriculum as CurriculumPayload;
+export const courses: Course[] = content.courses;
+export const resourceCatalog: Resource[] = content.resourceCatalog;
 export const spotlightCourse = courses.find((course) => course.id === "ai-systems") || courses[0];
-export function findLesson(courseId: string, lessonId: string) { return courses.find((course) => course.id === courseId)?.phases.flatMap((phase) => phase.lessons).find((lesson) => lesson.id === lessonId); }
-export function findPhase(courseId: string, phaseId: string) { return courses.find((course) => course.id === courseId)?.phases.find((phase) => phase.id === phaseId); }
 
+export function findLesson(courseId: string, lessonId: string) {
+  return courses.find((course) => course.id === courseId)?.phases.flatMap((phase) => phase.lessons).find((lesson) => lesson.id === lessonId);
+}
 
-// Ecosystem expansion: deep courses and source-indexed PDF records are appended without changing the page components.
-export type PdfResource = { id: string; title: string; author: string; institution: string; url: string; topic: string; level: string; pages: string; readTime: string; tags: string[]; relatedCourse: string; note: string };
-const deepLesson = (id: string, title: string, summary: string, resources: Resource[]): Lesson => ({ id, title, duration: "60 min", summary, resources });
-const systemsResearch: Course = { id: "systems-research-lab", title: "Systems Research Lab", subtitle: "Failure Is a Feature", eyebrow: "DEEP COURSE / SYSTEMS RESEARCH", description: "A rigorous lab sequence for tracing kernels, walking memory, building replicated services, and testing the failures that diagrams leave out. This is deliberately research-paced rather than a short survey.", status: "DEEP COURSE", color: "orange", sourceLabel: "MIT 6.S081 · OSTEP · MIT 6.5840 · Raft", sourceUrl: "https://pdos.csail.mit.edu/6.824/", time: "16–24h guided reading + 54–76h lab work", level: "Advanced", phases: [
-  { id: "kernel-tracing", number: "00", title: "Kernel Tracing", description: "Read a live system through syscalls, traces, and controlled experiments.", project: "Build a syscall tracer", lessons: [deepLesson("syscall-tracing", "See the boundary move", "Instrument a process and connect user intent to kernel work.", [resources.mitOs, resources.xv6, resources.ostep]), deepLesson("scheduler", "The scheduler as policy", "Measure scheduling behavior and explain the trade-offs behind it.", [resources.mitOs, resources.ostep]) ] },
-  { id: "memory-lab", number: "01", title: "Memory Lab", description: "Turn virtual memory into something you can walk, mutate, and test.", project: "Implement copy-on-write", lessons: [deepLesson("vm-walk", "Walk the page table", "Trace translation, faults, and permissions through a real address space.", [resources.xv6, resources.mitOs, resources.ostep]), deepLesson("cow", "Copy-on-write under pressure", "Implement a memory optimization and test it under fork-heavy workloads.", [resources.xv6, resources.ostep]) ] },
-  { id: "distributed-proof", number: "02", title: "Distributed Proof", description: "Move from a happy-path service to one that can name and survive failure.", project: "Ship a replicated KV store", lessons: [deepLesson("replication", "Replication is a promise", "Define consistency before you add replicas.", [resources.distributed, resources.raft]), deepLesson("failure-tests", "Test the impossible", "Build a failure matrix for partitions, restarts, and stale leaders.", [resources.distributed, resources.raft]) ] },
-  { id: "observability", number: "03", title: "Observability", description: "Make invisible behavior legible to the person who has to debug it at 3 a.m.", project: "Publish a systems report", lessons: [deepLesson("traces", "Traces over intuition", "Design traces that answer one question without drowning you in noise.", [resources.missing]), deepLesson("report", "Write the evidence", "Turn experiments into a technical report another engineer can reproduce.", [resources.distributed]) ] },
-] };
-const compilerRuntime: Course = { id: "compiler-runtime-architecture", title: "Compiler & Runtime Architecture", subtitle: "Language Into Motion", eyebrow: "DEEP COURSE / COMPILERS", description: "Build a language toolchain from tokens to runtime behavior, then measure where performance, memory, and machine constraints reshape the design. The implementation work is the course, not an optional appendix.", status: "DEEP COURSE", color: "lime", sourceLabel: "Crafting Interpreters · Nand2Tetris · Berkeley CS61C", sourceUrl: "https://craftinginterpreters.com/introduction.html", time: "8–12h guided lessons + 52–78h implementation", level: "Advanced", phases: [
-  { id: "front-end", number: "00", title: "The Front-End", description: "Turn characters into a structured program with a grammar you can defend.", project: "Build a parser", lessons: [deepLesson("lexing", "Tokens are decisions", "Design a lexer that makes errors visible rather than mysterious.", [resources.crafting, resources.nand]), deepLesson("parsing", "Make syntax explicit", "Build a recursive-descent parser and inspect its tree.", [resources.crafting, resources.nand]) ] },
-  { id: "intermediate", number: "01", title: "Intermediate Forms", description: "Choose representations that make optimization and execution possible.", project: "Design an IR", lessons: [deepLesson("ir", "The program between languages", "Use an intermediate representation to separate meaning from machinery.", [resources.crafting, resources.nand, resources.cs61c]), deepLesson("bytecode", "A small virtual machine", "Compile into bytecode and execute it with explicit stack behavior.", [resources.crafting, resources.nand]) ] },
-  { id: "runtime", number: "02", title: "Runtime Systems", description: "Understand memory, calls, object layout, and the work a language hides.", project: "Build a runtime", lessons: [deepLesson("calls", "Calling conventions", "Connect function calls, registers, stack frames, and ABI decisions.", [resources.cs61c, resources.crafting]), deepLesson("memory-runtime", "Objects need a home", "Model allocation, lifetime, and the cost of automatic memory management.", [resources.crafting, resources.nand]) ] },
-  { id: "performance", number: "03", title: "Performance", description: "Measure first, then optimize across the compiler/runtime boundary.", project: "Publish a benchmark", lessons: [deepLesson("profiling", "Performance is a measurement", "Build a benchmark that can falsify your optimization story.", [resources.crafting, resources.missing]), deepLesson("optimization", "Optimize the bottleneck", "Make one change, measure it, and write down what did not improve.", [resources.cs61c, resources.crafting]) ] },
-] };
-courses.push(systemsResearch, compilerRuntime);
-
-const aiLesson = (id: string, title: string, duration: string, summary: string, resourcesList: Resource[]): Lesson => ({ id, title, duration, summary, resources: resourcesList });
-const aiProductSystems: Course = { id: "ai-product-systems", title: "AI Product Systems", subtitle: "From Prototype to Reliable Feature", eyebrow: "GUIDED COURSE / AI PRODUCT", description: "Design a useful AI feature from user problem to measured production behavior. Work through retrieval, prompts, evaluation, observability, and the decisions that keep a small system honest.", status: "GUIDED COURSE", color: "orange", sourceLabel: "Full Stack Deep Learning · Stanford CS329S · Google", sourceUrl: "https://fullstackdeeplearning.com/", time: "7–10h guided lessons + 18–26h build work", level: "Intermediate", phases: [
-  { id: "product-framing", number: "00", title: "Frame the Product", description: "Choose a narrow user problem and define what good looks like before choosing a model.", project: "Write an AI product brief", lessons: [aiLesson("product-problem", "Start with the user problem", "36 min", "Turn a vague AI idea into a concrete user, task, constraint, and measurable outcome.", [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }]), aiLesson("product-boundary", "The smallest useful system", "42 min", "Choose the simplest architecture that can test the product hypothesis without hiding failure modes.", [{ type: "COURSE", label: "CS329S systems design", url: "https://stanford-cs329s.github.io/", source: "Stanford" }]) ] },
-  { id: "product-build", number: "01", title: "Build and Measure", description: "Move from prompt and retrieval experiments to evidence that can survive iteration.", project: "Ship a measured prototype", lessons: [aiLesson("retrieval", "Ground the answer", "48 min", "Compare context selection, citation behavior, and the failure cases that retrieval can create.", [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }]), aiLesson("product-eval", "Evaluation before launch", "44 min", "Create a small evaluation set and use it to decide whether the feature is ready for another user.", [{ type: "COURSE", label: "Google ML Crash Course", url: "https://developers.google.com/machine-learning/crash-course", source: "Google" }]) ] },
-  { id: "product-operations", number: "02", title: "Operate the Feature", description: "Make quality, cost, latency, and user trust visible after the demo ends.", project: "Publish an operating brief", lessons: [aiLesson("product-observability", "Watch the real request path", "46 min", "Instrument latency, token use, errors, and user outcomes as one operating picture.", [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }]), aiLesson("product-brief", "Write the boundary conditions", "38 min", "Document what the feature does, where it fails, and what evidence should change the next version.", [{ type: "COURSE", label: "CS329S systems design", url: "https://stanford-cs329s.github.io/", source: "Stanford" }]) ] }
-] };
-const aiEvaluationEngineering: Course = { id: "ai-evaluation-engineering", title: "AI Evaluation Engineering", subtitle: "Make Quality Measurable", eyebrow: "DEEP COURSE / AI QUALITY", description: "Build the evaluation discipline around an AI system: task definitions, datasets, rubrics, regression checks, human review, and monitoring that can tell a story over time.", status: "DEEP COURSE", color: "lime", sourceLabel: "Stanford CS329S · Google ML · Hugging Face", sourceUrl: "https://stanford-cs329s.github.io/", time: "9–13h guided lessons + 24–36h evaluation work", level: "Intermediate → Advanced", phases: [
-  { id: "eval-foundations", number: "00", title: "Define Quality", description: "Make the task and its failure modes precise enough to evaluate.", project: "Design an evaluation contract", lessons: [aiLesson("eval-task", "A metric is a decision", "40 min", "Connect a metric to the user decision it is meant to support instead of optimizing a number in isolation.", [{ type: "COURSE", label: "Google ML Crash Course", url: "https://developers.google.com/machine-learning/crash-course", source: "Google" }]), aiLesson("eval-data", "Build a representative set", "52 min", "Sample normal, difficult, ambiguous, and harmful cases so the evaluation reflects the real task.", [{ type: "COURSE", label: "Hugging Face LLM Course", url: "https://huggingface.co/learn/llm-course/en/chapter1/1", source: "Hugging Face" }]) ] },
-  { id: "eval-systems", number: "01", title: "Run the Evaluation", description: "Turn a dataset and rubric into repeatable evidence across model and prompt changes.", project: "Build a regression harness", lessons: [aiLesson("eval-rubric", "Rubrics that explain failure", "48 min", "Write review criteria that help a person distinguish factual, useful, safe, and stylistic failures.", [{ type: "COURSE", label: "CS329S systems design", url: "https://stanford-cs329s.github.io/", source: "Stanford" }]), aiLesson("eval-regression", "Protect the behavior you earned", "56 min", "Run a small regression suite and record which change improved one slice while damaging another.", [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }]) ] },
-  { id: "eval-operations", number: "02", title: "Monitor Change", description: "Keep evaluation connected to production behavior, users, and the next experiment.", project: "Publish an evaluation report", lessons: [aiLesson("eval-drift", "Quality moves over time", "44 min", "Track data, user behavior, and model changes that can make yesterday's score misleading.", [{ type: "COURSE", label: "CS329S systems design", url: "https://stanford-cs329s.github.io/", source: "Stanford" }]), aiLesson("eval-report", "Make the result legible", "42 min", "Write an evaluation report that another engineer can reproduce, challenge, and extend.", [{ type: "COURSE", label: "Hugging Face LLM Course", url: "https://huggingface.co/learn/llm-course/en/chapter1/1", source: "Hugging Face" }]) ] }
-] };
-const aiDataInfrastructure: Course = { id: "ai-data-infrastructure", title: "AI Data Infrastructure", subtitle: "Pipelines, Features, and Retrieval", eyebrow: "DEEP COURSE / AI DATA", description: "Follow the data path behind an AI system: collection, cleaning, chunking, embeddings, retrieval, freshness, and the operational choices that make context dependable.", status: "DEEP COURSE", color: "orange", sourceLabel: "Stanford CS329S · Hugging Face · Full Stack Deep Learning", sourceUrl: "https://stanford-cs329s.github.io/", time: "10–15h guided lessons + 28–42h pipeline work", level: "Intermediate → Advanced", phases: [
-  { id: "data-contracts", number: "00", title: "Data Contracts", description: "Make data quality and ownership explicit before the pipeline grows around assumptions.", project: "Write a data contract", lessons: [aiLesson("data-sources", "Know the source material", "42 min", "Map where the data comes from, who can use it, and which claims need provenance.", [{ type: "COURSE", label: "CS329S systems design", url: "https://stanford-cs329s.github.io/", source: "Stanford" }]), aiLesson("data-cleaning", "Cleaning changes meaning", "50 min", "Inspect duplication, missing context, formatting, and leakage before turning documents into model input.", [{ type: "COURSE", label: "Hugging Face LLM Course", url: "https://huggingface.co/learn/llm-course/en/chapter1/1", source: "Hugging Face" }]) ] },
-  { id: "retrieval-pipeline", number: "01", title: "Retrieval Pipeline", description: "Build the path from document to context window and test each transformation.", project: "Implement a retrieval trace", lessons: [aiLesson("chunking", "Chunking is a model choice", "46 min", "Compare chunk boundaries, overlap, metadata, and the evidence each strategy preserves or loses.", [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }]), aiLesson("embeddings", "Similarity is not truth", "54 min", "Use embeddings to retrieve candidates, then design checks that keep relevance from masquerading as correctness.", [{ type: "COURSE", label: "Hugging Face LLM Course", url: "https://huggingface.co/learn/llm-course/en/chapter1/1", source: "Hugging Face" }]) ] },
-  { id: "data-operations", number: "02", title: "Freshness and Failure", description: "Operate a data path that can explain stale context, missing documents, and bad retrieval.", project: "Publish a retrieval runbook", lessons: [aiLesson("freshness", "Context has a half-life", "44 min", "Define freshness, invalidation, and ownership so retrieval does not quietly drift away from reality.", [{ type: "COURSE", label: "CS329S systems design", url: "https://stanford-cs329s.github.io/", source: "Stanford" }]), aiLesson("retrieval-runbook", "Debug the context", "58 min", "Build a runbook for empty results, wrong results, stale results, and evidence that cannot be traced back to source.", [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }]) ] }
-] };
-courses.push(aiProductSystems, aiEvaluationEngineering, aiDataInfrastructure);
-courses.push(...topSkillCourses);
+export function findPhase(courseId: string, phaseId: string) {
+  return courses.find((course) => course.id === courseId)?.phases.find((phase) => phase.id === phaseId);
+}
 
 export const pdfCatalog: PdfResource[] = [
   { id: "ostep", title: "Operating Systems: Three Easy Pieces", author: "Remzi H. Arpaci-Dusseau & Andrea C. Arpaci-Dusseau", institution: "University of Wisconsin–Madison", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/", topic: "Operating Systems", level: "Foundational", pages: "Free web/PDF book", readTime: "12–18 hours", tags: ["os", "processes", "memory", "filesystems"], relatedCourse: "systems-fundamentals", note: "Free official book site with chapter PDFs and lab references." },
@@ -156,5 +91,6 @@ export const pdfCatalog: PdfResource[] = [
   { id: "missing", title: "The Missing Semester", author: "MIT staff", institution: "MIT CSAIL", url: "https://missing.csail.mit.edu/", topic: "Developer Tools", level: "Foundational", pages: "9 lectures", readTime: "8 hours", tags: ["shell", "git", "debugging", "vim"], relatedCourse: "systems-fundamentals", note: "Official practical computing course." },
   { id: "mit-ocw-824", title: "Distributed Computer Systems Engineering Lecture Notes", author: "MIT course staff", institution: "MIT OpenCourseWare", url: "https://ocw.mit.edu/courses/6-824-distributed-computer-systems-engineering-spring-2006/pages/lecture-notes/", topic: "Distributed Systems", level: "Advanced", pages: "Lecture notes", readTime: "6–10 hours", tags: ["rpc", "fault tolerance", "storage"], relatedCourse: "systems-research-lab", note: "Official archive of lecture notes and handouts." },
 ];
+
 pdfCatalog.push(...arxivResources);
 export function findPdf(id: string) { return pdfCatalog.find((item) => item.id === id); }

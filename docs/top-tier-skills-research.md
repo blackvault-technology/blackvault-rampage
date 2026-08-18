@@ -72,3 +72,18 @@ Negotiation and collaboration will focus on preparation, communication, ethical 
 ## 6. Final responsive catalogue review — 2026-08-18
 
 The dedicated `/courses` route was reviewed at desktop and narrow phone widths. On wide screens, the editorial hero, course-map count, filter strip, and route-dossier cards maintain a clear discovery hierarchy. On phones, the catalogue collapses into a single column with retained source labels, route actions, and bottom-navigation clearance. The content density intentionally remains high: each dossier preserves its course route, source cue, duration estimate, and proof-of-work signal rather than becoming a generic card feed.
+
+## 7. Verified lesson-level lecture and source hubs — 2026-08-18
+
+The JSON migration uses official source pages or direct institution-hosted media as lesson-level context, while the embedded reading remains the primary study surface. MIT OpenCourseWare's *How to Speak* page exposes a downloadable lecture video, transcript, timestamped outline, and a Creative Commons notice [1]. Google Technical Writing identifies its audience as engineers, computer-science students, and engineering-adjacent roles, and provides self-directed Technical Writing One, Two, accessibility, and helpful-error-message courses [2]. OpenLearn's workplace communication course is free, self-paced, organised into eight weeks, and includes activities, quizzes, and a course-introduction video/transcript [3]. MIT OpenCourseWare's *Advanced Communication for Leaders* provides a structured lecture-note sequence covering communication styles, listening and inquiry, feedback, meetings, and diverse audiences [4]. Carnegie Mellon OLI exposes open-and-free Evidence-Based Management and Learning to Learn Online course hubs for evidence inspection and learning-system practice [5] [6]. OpenLearn maintains a Career Ready collection for career-oriented learning [7]. The University of Michigan's Successful Negotiation course page remains an outbound source with platform-dependent access terms, so Rampage does not claim unrestricted availability [8].
+
+### References
+
+[1]: https://ocw.mit.edu/courses/res-tll-005-how-to-speak-january-iap-2018/pages/how-to-speak/ "MIT OpenCourseWare — How to Speak"
+[2]: https://developers.google.com/tech-writing "Google Technical Writing Courses for Engineers"
+[3]: https://www.open.edu/openlearn/money-business/effective-communication-the-workplace "OpenLearn — Effective communication in the workplace"
+[4]: https://ocw.mit.edu/courses/15-281-advanced-communication-for-leaders-spring-2016/pages/lecture-notes/ "MIT OpenCourseWare — Advanced Communication for Leaders"
+[5]: https://oli.cmu.edu/courses/evidence-based-management-o-f/ "Carnegie Mellon OLI — Evidence-Based Management"
+[6]: https://oli.cmu.edu/courses/learning-to-learn-online-o-f/ "Carnegie Mellon OLI — Learning to Learn Online"
+[7]: https://www.open.edu/openlearn/miscellaneous/career-ready-courses "OpenLearn — Career Ready course collection"
+[8]: https://www.coursera.org/learn/negotiation-skills "University of Michigan — Successful Negotiation"

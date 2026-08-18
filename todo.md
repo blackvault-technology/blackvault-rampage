@@ -510,3 +510,11 @@
 - [x] Extend the catalogue and source metadata without inventing ratings, testimonials, or unsupported claims.
 - [x] Build a dedicated Courses page with curated discovery, skill filters, route comparison, clear course cards, and first-class mobile behavior.
 - [x] Validate all new catalogue data, routes, responsive UI, TypeScript, tests, and production build, then save a recoverable checkpoint.
+
+## Continue: JSON Curriculum and Full Lesson Study Flow
+- [x] Audit current catalogue, lesson contracts, source metadata, and lesson-page UX for a JSON migration.
+- [x] Research and verify lesson-level videos and primary sources for all nine top-tier skill courses.
+- [x] Create a canonical JSON content model and migrate course metadata, phases, lessons, videos, sources, practice, and evidence fields.
+- [x] Expand all nine courses with complete lesson-level video, reading, practice, assessment, and proof-of-work data.
+- [x] Polish lesson pages for clean reading, watching, source access, progress, and mobile behavior.
+- [x] Run content-integrity tests, TypeScript, production build, responsive visual review, and save a recoverable checkpoint.

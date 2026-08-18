@@ -144,6 +144,7 @@ export default function Lesson() {
   const activeQuizQuestion = quizQuestions[quizQuestionIndex];
   const quizAnswered = Object.keys(quizAnswers).length;
   const quizProgressPercent = quizQuestions.length ? Math.round((quizAnswered / quizQuestions.length) * 100) : 0;
+  const directVideo = Boolean(lesson.video?.match(/\.(mp4|webm|ogg)(\?|$)/i));
 
   useEffect(() => { setSelectedSource(lesson.resources[0]); setQuizAnswers({}); setQuizQuestionIndex(0); setQuizResult(null); }, [lesson.id]);
   useEffect(() => { localStorage.setItem(`rampage-work-${progressKey}`, JSON.stringify(work)); }, [progressKey, work]);
@@ -221,7 +222,7 @@ export default function Lesson() {
 
         <div className="lesson-command-rail"><div><span>LESSON {String(lessonIndex + 1).padStart(2, "0")} / {flatLessons.length}</span><strong>{lesson.video ? "WATCH + STUDY" : "STUDY + PRACTICE"}</strong></div><div><span>VERIFIED PRACTICE</span><strong>{practice.label.toUpperCase()}</strong></div><div className="lesson-command-next"><span>NEXT MOVE</span><strong>{next ? next.title : "Final assessment"}</strong></div></div>
 
-        {lesson.video && <section className="lesson-media-stage"><div className="lesson-media-frame"><iframe src={lesson.video} title={lesson.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen /></div><div className="lesson-media-meta"><div><span className="aside-label">OPTIONAL CONTEXT / VERIFIED VIDEO</span><strong>{lesson.videoLabel || "Official lesson video"}</strong><small>Video supports the primary reading and practice rather than replacing them.</small></div><span className="lesson-media-signal"><Play size={14} /> VIDEO SOURCE</span></div></section>}
+        {lesson.video && <section className="lesson-media-stage"><div className="lesson-media-frame">{directVideo ? <video controls preload="metadata" src={lesson.video} aria-label={lesson.title} /> : <iframe src={lesson.video} title={`${lesson.title} — official lecture or course source`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />}</div><div className="lesson-media-meta"><div><span className="aside-label">{directVideo ? "OPTIONAL CONTEXT / VERIFIED VIDEO" : "OFFICIAL LECTURE / COURSE SOURCE"}</span><strong>{lesson.videoLabel || (directVideo ? "Official lesson video" : "Official course source")}</strong><small>{directVideo ? "Use the lecture as context, then return to the primary reading and practice." : "This official source page may contain lecture media, notes, or a course sequence. Rampage keeps the original publisher visible."}</small></div><span className="lesson-media-signal"><Play size={14} /> {directVideo ? "VIDEO SOURCE" : "SOURCE HUB"}</span></div></section>}
 
         <div className="lesson-flow-strip"><span><b>01</b> STUDY</span><span><b>02</b> PRACTICE</span><span><b>03</b> EVIDENCE</span><strong>{stepCount === 3 ? "Ready to complete this lesson" : `${3 - stepCount} work step${3 - stepCount === 1 ? "" : "s"} before the lesson closes`}</strong></div>
 
