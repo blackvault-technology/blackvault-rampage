@@ -537,3 +537,12 @@
 - [x] Save a recoverable video-embed repair checkpoint.
 
 - [x] Repair the missing Neon `rampage_certificates` table that blocks authenticated lesson pages from reaching video/source media.
+
+## Continue: C++ Spotlight Course Launch
+- [x] Audit the JSON course model, Spotlight presentation, lesson contracts, quiz, lab, and progress surfaces for the new C++ route.
+- [x] Research and verify authoritative C++ lectures, references, standards guidance, tooling, and lab resources.
+- [x] Design a beginner-to-advanced C++ Spotlight route with structured phases, full lessons, quizzes, labs, sources, and proof-of-work.
+- [x] Add the C++ route to the canonical JSON content model with honest metadata and no fabricated learner-generated content.
+- [x] Polish the C++ course discovery card, Spotlight announcement, lesson media, labs, and progress experience.
+- [x] Validate C++ content integrity, source/video coverage, quizzes, labs, routes, responsive UX, tests, and production build.
+- [x] Save a recoverable C++ Spotlight Course checkpoint.

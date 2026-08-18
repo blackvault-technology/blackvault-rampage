@@ -18,7 +18,8 @@ function lessonCount(course: (typeof courses)[number]) {
 }
 
 function typeLabel(course: (typeof courses)[number]) {
-  return topSkillCourseIds.includes(course.id) ? "TOP-TIER SKILL" : "TECHNICAL SYSTEM";
+  const isSpotlight = Boolean((course as (typeof course & { spotlight?: boolean })).spotlight);
+  return isSpotlight ? "SPOTLIGHT COURSE" : topSkillCourseIds.includes(course.id) ? "TOP-TIER SKILL" : "TECHNICAL SYSTEM";
 }
 
 export default function Courses() {
@@ -37,6 +38,7 @@ export default function Courses() {
   }, [onlyNew, query, track]);
   const copy = routeCopy[track];
   const skillCount = courses.filter((course) => topSkillCourseIds.includes(course.id)).length;
+  const spotlight = courses.find((course) => Boolean((course as (typeof course & { spotlight?: boolean })).spotlight));
 
   return <Shell><main className="courses-page">
     <section className="courses-hero" aria-labelledby="courses-title">
@@ -56,6 +58,8 @@ export default function Courses() {
       </aside>
     </section>
 
+    {spotlight && <section className="spotlight-launch-panel" aria-labelledby="spotlight-launch-title"><div className="spotlight-launch-panel__signal"><span className="lime-dot" /> NEW / FLAGSHIP ROUTE</div><div><p className="eyebrow">SPOTLIGHT COURSE / {spotlight.title}</p><h2 id="spotlight-launch-title">Learn C++ without skipping the first principles.</h2><p>{spotlight.description}</p><div className="spotlight-launch-panel__proof"><span>{lessonCount(spotlight)} lessons</span><span>{spotlight.phases.length} phases</span><span>Source-led labs</span><span>Beginner → Advanced</span></div></div><Link className="primary-cta" href={`/course/${spotlight.id}`}>Open Spotlight Course <ArrowUpRight size={17} /></Link></section>}
+
     <section className="course-explorer" id="course-explorer" aria-labelledby="course-explorer-title">
       <div className="course-explorer-head"><div><div className="section-index">01 <span>/</span> FIND A ROUTE</div><h2 id="course-explorer-title">{copy.title}</h2><p>{copy.body}</p></div><div className="course-explorer-count"><span>ROUTES MATCHING</span><strong>{filtered.length.toString().padStart(2, "0")}</strong></div></div>
       <div className="course-controls" aria-label="Course filters">
@@ -68,8 +72,9 @@ export default function Courses() {
 
       {filtered.length ? <div className="courses-catalogue-grid">{filtered.map((course, index) => {
         const isSkill = topSkillCourseIds.includes(course.id);
+        const isSpotlight = Boolean((course as (typeof course & { spotlight?: boolean })).spotlight);
         const lessonTotal = lessonCount(course);
-        return <article className={`course-explorer-card ${isSkill ? "skill-route" : "technical-route"} ${course.status === "NEW ROUTE" ? "is-new-route" : ""}`} key={course.id}>
+        return <article className={`course-explorer-card ${isSkill ? "skill-route" : "technical-route"} ${course.status === "NEW ROUTE" ? "is-new-route" : ""} ${isSpotlight ? "is-spotlight-course" : ""}`} key={course.id}>
           <div className="course-explorer-top"><span>{String(index + 1).padStart(2, "0")}</span><span>{typeLabel(course)}</span><span className={course.status === "NEW ROUTE" ? "route-status is-new" : "route-status"}>{course.status}</span></div>
           <div className="course-explorer-signal"><span aria-hidden="true">{isSkill ? "↗" : "↳"}</span><i /><b>ROUTE / {String(index + 1).padStart(2, "0")}</b></div>
           <h3>{course.title}</h3><p>{course.subtitle}</p>

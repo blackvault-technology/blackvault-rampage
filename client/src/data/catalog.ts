@@ -89,7 +89,7 @@ type CurriculumPayload = {
 const content = curriculum as CurriculumPayload;
 export const courses: Course[] = content.courses;
 export const resourceCatalog: Resource[] = content.resourceCatalog;
-export const spotlightCourse = courses.find((course) => course.id === "ai-systems") || courses[0];
+export const spotlightCourse = courses.find((course) => (course as Course & { spotlight?: boolean }).spotlight) || courses.find((course) => course.id === "ai-systems") || courses[0];
 
 export function findLesson(courseId: string, lessonId: string) {
   return courses.find((course) => course.id === courseId)?.phases.flatMap((phase) => phase.lessons).find((lesson) => lesson.id === lessonId);
