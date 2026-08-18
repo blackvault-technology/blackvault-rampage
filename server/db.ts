@@ -112,7 +112,10 @@ export async function getLearnerState(authOpenId: string) {
     db.select().from(rampageReaderState).where(eq(rampageReaderState.userId, learner.id)).orderBy(desc(rampageReaderState.updatedAt)),
     db.select().from(rampageReaderBookmarks).where(eq(rampageReaderBookmarks.userId, learner.id)).orderBy(desc(rampageReaderBookmarks.createdAt)),
     db.select().from(rampageReaderHighlights).where(eq(rampageReaderHighlights.userId, learner.id)).orderBy(desc(rampageReaderHighlights.createdAt)),
-    db.select().from(rampageCertificates).where(eq(rampageCertificates.userId, learner.id)).orderBy(desc(rampageCertificates.issuedAt)),
+    db.select().from(rampageCertificates).where(eq(rampageCertificates.userId, learner.id)).orderBy(desc(rampageCertificates.issuedAt)).catch(error => {
+      console.warn("[Database] Certificates unavailable; continuing learner state without certificates:", error instanceof Error ? error.message : error);
+      return [];
+    }),
     db.select().from(rampageXpLedger).where(eq(rampageXpLedger.userId, learner.id)),
     db.select().from(rampageLessonState).where(eq(rampageLessonState.userId, learner.id)).orderBy(desc(rampageLessonState.updatedAt)),
     preferencesQuery,

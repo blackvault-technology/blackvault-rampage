@@ -527,3 +527,13 @@
 - [x] Implement safe code-embed presentation for Python labs and clearly distinguish external execution from Rampage progress tracking.
 - [x] Validate Python content integrity, source coverage, embeds, routes, responsive UX, tests, and production build.
 - [x] Save a recoverable Python-course checkpoint and synchronize the finished project to GitHub.
+
+## Continue: Reliable Video Embeds and Source Loading
+- [x] Audit every lesson video URL, source URL, embed classification, and media renderer.
+- [x] Verify official video/source targets and provider-specific embed constraints.
+- [x] Normalize lesson video URLs and source metadata in the canonical JSON model.
+- [x] Harden lesson media rendering with reliable embed fallbacks and honest unavailable states.
+- [x] Validate URL coverage, content integrity, TypeScript, production build, and responsive media loading.
+- [x] Save a recoverable video-embed repair checkpoint.
+
+- [x] Repair the missing Neon `rampage_certificates` table that blocks authenticated lesson pages from reaching video/source media.

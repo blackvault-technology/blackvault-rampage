@@ -159,8 +159,24 @@ export default function Lesson() {
   const quizAnswered = Object.keys(quizAnswers).length;
   const quizProgressPercent = quizQuestions.length ? Math.round((quizAnswered / quizQuestions.length) * 100) : 0;
   const directVideo = Boolean(lesson.video?.match(/\.(mp4|webm|ogg)(\?|$)/i));
+  const [mediaFailed, setMediaFailed] = useState(false);
+  const mediaUrl = useMemo(() => {
+    if (!lesson.video) return "";
+    try {
+      const url = new URL(lesson.video);
+      if (url.hostname === "youtu.be") return `https://www.youtube-nocookie.com/embed/${url.pathname.slice(1)}?rel=0`;
+      if (url.hostname.endsWith("youtube.com") && url.pathname === "/watch") {
+        const id = url.searchParams.get("v");
+        return id ? `https://www.youtube-nocookie.com/embed/${id}?rel=0` : lesson.video;
+      }
+      return lesson.video;
+    } catch {
+      return lesson.video;
+    }
+  }, [lesson.video]);
+  const canEmbedVideo = directVideo || /youtube(?:-nocookie)?\.com\/embed\//i.test(mediaUrl);
 
-  useEffect(() => { setSelectedSource(lesson.resources[0]); setQuizAnswers({}); setQuizQuestionIndex(0); setQuizResult(null); }, [lesson.id]);
+  useEffect(() => { setSelectedSource(lesson.resources[0]); setQuizAnswers({}); setQuizQuestionIndex(0); setQuizResult(null); setMediaFailed(false); }, [lesson.id]);
   useEffect(() => { localStorage.setItem(`rampage-work-${progressKey}`, JSON.stringify(work)); }, [progressKey, work]);
   useEffect(() => { localStorage.setItem(`rampage-timeline-${progressKey}`, String(currentSecond)); }, [progressKey, currentSecond]);
   useEffect(() => {
@@ -236,7 +252,7 @@ export default function Lesson() {
 
         <div className="lesson-command-rail"><div><span>LESSON {String(lessonIndex + 1).padStart(2, "0")} / {flatLessons.length}</span><strong>{lesson.video ? "WATCH + STUDY" : "STUDY + PRACTICE"}</strong></div><div><span>VERIFIED PRACTICE</span><strong>{practice.label.toUpperCase()}</strong></div><div className="lesson-command-next"><span>NEXT MOVE</span><strong>{next ? next.title : "Final assessment"}</strong></div></div>
 
-        {lesson.video && <section className="lesson-media-stage"><div className="lesson-media-frame">{directVideo ? <video controls preload="metadata" src={lesson.video} aria-label={lesson.title} /> : <iframe src={lesson.video} title={`${lesson.title} — official lecture or course source`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />}</div><div className="lesson-media-meta"><div><span className="aside-label">{directVideo ? "OPTIONAL CONTEXT / VERIFIED VIDEO" : "OFFICIAL LECTURE / COURSE SOURCE"}</span><strong>{lesson.videoLabel || (directVideo ? "Official lesson video" : "Official course source")}</strong><small>{directVideo ? "Use the lecture as context, then return to the primary reading and practice." : "This official source page may contain lecture media, notes, or a course sequence. Rampage keeps the original publisher visible."}</small></div><span className="lesson-media-signal"><Play size={14} /> {directVideo ? "VIDEO SOURCE" : "SOURCE HUB"}</span></div></section>}
+        <section className="lesson-media-stage"><div className="lesson-media-frame">{lesson.video ? (mediaFailed || !canEmbedVideo ? <div className="lesson-media-fallback"><Play size={22} /><div><span className="aside-label">PUBLISHER-LINKED MEDIA</span><h3>This source cannot be framed here.</h3><p>The original lecture or course page remains available in a new tab. Your Rampage progress and source workflow stay on this lesson.</p><a className="complete-button" href={lesson.video} target="_blank" rel="noreferrer">Open original media <ExternalLink size={15} /></a></div></div> : directVideo ? <video controls preload="metadata" src={mediaUrl} aria-label={lesson.title} onError={() => setMediaFailed(true)} /> : <iframe src={mediaUrl} title={`${lesson.title} — official lecture or course source`} loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen onError={() => setMediaFailed(true)} />) : <div className="lesson-media-fallback lesson-media-fallback--source"><BookOpen size={22} /><div><span className="aside-label">OFFICIAL SOURCE STUDIO</span><h3>This lesson is source-led.</h3><p>No verified embeddable lecture was supplied by the publisher for this lesson. Start with the primary material below; Rampage keeps your study, practice, and evidence record in this workspace.</p><button type="button" className="complete-button" onClick={() => document.querySelector(".embedded-source-studio")?.scrollIntoView({ behavior: "smooth", block: "start" })}>Open source studio <ArrowRight size={15} /></button></div></div>}</div><div className="lesson-media-meta"><div><span className="aside-label">{lesson.video ? (directVideo ? "OPTIONAL CONTEXT / VERIFIED VIDEO" : "OFFICIAL LECTURE / COURSE SOURCE") : "PRIMARY SOURCE / NO EMBED CLAIM"}</span><strong>{lesson.videoLabel || (lesson.video ? (directVideo ? "Official lesson video" : "Official course source") : "Read the original material in the source studio")}</strong><small>{lesson.video ? (directVideo ? "Use the lecture as context, then return to the primary reading and practice." : "This official source page may contain lecture media, notes, or a course sequence. Rampage keeps the original publisher visible.") : "Open the original source in the embedded reader when supported, or use its publisher link from the source card."}</small></div><span className="lesson-media-signal"><Play size={14} /> {lesson.video ? (directVideo ? "VIDEO SOURCE" : "SOURCE HUB") : "SOURCE STUDIO"}</span></div></section>
 
         <div className="lesson-flow-strip"><span><b>01</b> STUDY</span><span><b>02</b> PRACTICE</span><span><b>03</b> EVIDENCE</span><strong>{stepCount === 3 ? "Ready to complete this lesson" : `${3 - stepCount} work step${3 - stepCount === 1 ? "" : "s"} before the lesson closes`}</strong></div>
 
