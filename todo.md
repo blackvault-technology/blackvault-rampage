@@ -487,3 +487,11 @@
 - [x] Expand course data with explicit source-reading, lab, and embed metadata while retaining only factual course and duration claims.
 - [x] Rebuild lesson and resource experiences so compatible PDFs, articles, documentation, and repositories can be studied inline before linking outward.
 - [x] Add regression coverage, validate responsive source-reading UX, run tests, TypeScript, and production build, then save a recoverable checkpoint.
+
+## Continue: Learning Workspace Intelligence and Polish
+- [x] Audit every affected component, quiz/result flow, reader state, and progress contract for polish, performance, and dead-end behavior.
+- [x] Define a progress-aware next-source recommendation model tied to chosen learning paths and completed source/lesson state.
+- [x] Add embedded-reader zoom controls, dark-mode toggle, full-screen support, and responsive keyboard-accessible controls.
+- [x] Implement per-source annotations and learner highlights with local-first persistence and Neon sync for authenticated learners.
+- [x] Polish quiz presentation and implement a complete result report with score breakdown, question explanations, learning recommendations, and share-safe output.
+- [x] Run tests, TypeScript, production build, responsive visual review, and save a recoverable checkpoint.
