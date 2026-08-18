@@ -502,3 +502,11 @@
 - [x] Rebuild mobile course and lesson flows into a study-first app shell with thumb-reachable navigation, touch-safe controls, horizontal context rails, and reliable bottom-navigation clearance.
 - [x] Implement fixed course bars and desktop side regions while keeping the central course and lesson workspace independently scrollable.
 - [x] Add responsive console regression coverage, run tests, TypeScript, production build, and desktop/mobile visual validation, then save a recoverable checkpoint.
+
+## Continue: Top-Tier Skills Catalogue and Dedicated Courses Page
+- [x] Audit the active course catalogue, route map, learner-flow data, and current source model to define a scalable nine-course expansion.
+- [x] Research and document credible, open, beginner-friendly primary resources for English, communication, personality, and six additional high-leverage professional skills.
+- [x] Design nine structured learning routes with real lessons, source-led practice, assessments, practical proof-of-work, and factual duration estimates.
+- [x] Extend the catalogue and source metadata without inventing ratings, testimonials, or unsupported claims.
+- [x] Build a dedicated Courses page with curated discovery, skill filters, route comparison, clear course cards, and first-class mobile behavior.
+- [x] Validate all new catalogue data, routes, responsive UI, TypeScript, tests, and production build, then save a recoverable checkpoint.

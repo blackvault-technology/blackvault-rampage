@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { courses, resourceCatalog } from "../client/src/data/catalog";
 import { canStudyInline, classifyInlineSource, verifiedPracticeByPhase } from "../client/src/data/learningSources";
+import { topSkillCourses } from "../client/src/data/topSkillCourses";
 
 describe("verified Rampage curriculum sources", () => {
   it("maps every active course phase to a bounded, source-backed practice brief", () => {
@@ -22,5 +23,23 @@ describe("verified Rampage curriculum sources", () => {
     expect(classifyInlineSource("https://www.youtube.com/watch?v=example")).toBe("video");
     expect(canStudyInline("https://example.invalid/unknown")).toBe(false);
     expect(resourceCatalog.some((resource) => /community mirror/i.test(resource.note ?? ""))).toBe(false);
+  });
+
+  it("keeps all nine high-leverage skill routes structured, source-backed, and evidence-led", () => {
+    expect(topSkillCourses).toHaveLength(9);
+    for (const course of topSkillCourses) {
+      expect(courses.some((candidate) => candidate.id === course.id)).toBe(true);
+      expect(course.status).toBe("NEW ROUTE");
+      expect(course.sourceUrl).toMatch(/^https:\/\//);
+      expect(course.phases).toHaveLength(3);
+      for (const phase of course.phases) {
+        expect(phase.project.length).toBeGreaterThan(12);
+        expect(phase.lessons).toHaveLength(2);
+        for (const lesson of phase.lessons) {
+          expect(lesson.resources.length).toBeGreaterThan(0);
+          expect(lesson.resources.every((resource) => resource.url.startsWith("https://"))).toBe(true);
+        }
+      }
+    }
   });
 });

@@ -1,5 +1,6 @@
 // BlackVault Rampage content model: all course, lesson, video, and resource metadata lives here so pages remain reusable.
 import { arxivResources } from "./arxivResources";
+import { topSkillCourses } from "./topSkillCourses";
 
 export type Resource = { type: string; label: string; url: string; source: string; note?: string; readingFocus?: string };
 export type Lesson = { id: string; title: string; duration: string; summary: string; video?: string; videoLabel?: string; resources: Resource[] };
@@ -142,6 +143,7 @@ const aiDataInfrastructure: Course = { id: "ai-data-infrastructure", title: "AI 
   { id: "data-operations", number: "02", title: "Freshness and Failure", description: "Operate a data path that can explain stale context, missing documents, and bad retrieval.", project: "Publish a retrieval runbook", lessons: [aiLesson("freshness", "Context has a half-life", "44 min", "Define freshness, invalidation, and ownership so retrieval does not quietly drift away from reality.", [{ type: "COURSE", label: "CS329S systems design", url: "https://stanford-cs329s.github.io/", source: "Stanford" }]), aiLesson("retrieval-runbook", "Debug the context", "58 min", "Build a runbook for empty results, wrong results, stale results, and evidence that cannot be traced back to source.", [{ type: "COURSE", label: "Full Stack Deep Learning", url: "https://fullstackdeeplearning.com/", source: "FSDL" }]) ] }
 ] };
 courses.push(aiProductSystems, aiEvaluationEngineering, aiDataInfrastructure);
+courses.push(...topSkillCourses);
 
 export const pdfCatalog: PdfResource[] = [
   { id: "ostep", title: "Operating Systems: Three Easy Pieces", author: "Remzi H. Arpaci-Dusseau & Andrea C. Arpaci-Dusseau", institution: "University of Wisconsin–Madison", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/", topic: "Operating Systems", level: "Foundational", pages: "Free web/PDF book", readTime: "12–18 hours", tags: ["os", "processes", "memory", "filesystems"], relatedCourse: "systems-fundamentals", note: "Free official book site with chapter PDFs and lab references." },
