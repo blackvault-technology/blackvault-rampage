@@ -479,3 +479,11 @@
 - [x] Refine hero copy, visual framing, course-focus signal, and technical-manual details without introducing mock claims.
 - [x] Add restrained premium motion and responsive behavior with reduced-motion support.
 - [x] Verify desktop and mobile screenshots, run TypeScript/tests/build, and save a recoverable checkpoint.
+
+## Continue: Source-Verified Curriculum and Embedded Learning
+- [x] Audit every course lesson, source, video, lab reference, and current embed treatment for accuracy and depth.
+- [x] Research and verify authoritative primary sources, official course material, documentation, repositories, and papers for each course domain.
+- [x] Replace weak, implied, unavailable, or generic labs with structured source-backed practice or remove them where a credible exercise is not available.
+- [x] Expand course data with explicit source-reading, lab, and embed metadata while retaining only factual course and duration claims.
+- [x] Rebuild lesson and resource experiences so compatible PDFs, articles, documentation, and repositories can be studied inline before linking outward.
+- [x] Add regression coverage, validate responsive source-reading UX, run tests, TypeScript, and production build, then save a recoverable checkpoint.
