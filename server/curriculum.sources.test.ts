@@ -3,6 +3,7 @@ import { courses, resourceCatalog } from "../client/src/data/catalog";
 import { canStudyInline, classifyInlineSource, verifiedPracticeByPhase } from "../client/src/data/learningSources";
 import { topSkillCourses } from "../client/src/data/topSkillCourses";
 import curriculum from "../client/src/data/curriculum.json";
+import { chapterQuizBank, finalAssessmentBank } from "../shared/courseAssessments";
 
 describe("verified Rampage curriculum sources", () => {
   it("maps every active course phase to a bounded, source-backed practice brief", () => {
@@ -35,6 +36,35 @@ describe("verified Rampage curriculum sources", () => {
           expect(lesson.video, `${course.id}/${lesson.id} needs a video or official source hub`).toMatch(/^https:\/\//);
           expect(lesson.videoLabel?.length, `${course.id}/${lesson.id} needs provenance label`).toBeGreaterThan(10);
         }
+      }
+    }
+  });
+
+  it("gives every active course complete lesson media, source, and applied-lab coverage", () => {
+    for (const course of courses) {
+      for (const phase of course.phases) {
+        for (const lesson of phase.lessons) {
+          expect(lesson.video, `${course.id}/${lesson.id} needs an official lecture target`).toMatch(/^https:\/\//);
+          expect(lesson.videoLabel?.length, `${course.id}/${lesson.id} needs lecture provenance`).toBeGreaterThan(10);
+          expect(lesson.resources?.[0]?.url, `${course.id}/${lesson.id} needs a primary source`).toMatch(/^https:\/\//);
+          expect(lesson.lab?.brief, `${course.id}/${lesson.id} needs an applied lab brief`).toBeTruthy();
+          expect(lesson.lab?.deliverable, `${course.id}/${lesson.id} needs a lab deliverable`).toBeTruthy();
+        }
+      }
+    }
+  });
+
+  it("gives every active course a working chapter quiz and final assessment bank", () => {
+    for (const course of courses) {
+      expect(chapterQuizBank[course.id], `${course.id} needs chapter quiz coverage`).toBeDefined();
+      expect(chapterQuizBank[course.id].length, `${course.id} needs chapter questions`).toBeGreaterThanOrEqual(3);
+      expect(finalAssessmentBank[course.id], `${course.id} needs final assessment coverage`).toBeDefined();
+      expect(finalAssessmentBank[course.id].length, `${course.id} needs final questions`).toBeGreaterThanOrEqual(5);
+      for (const question of [...chapterQuizBank[course.id], ...finalAssessmentBank[course.id]]) {
+        expect(question.options).toHaveLength(4);
+        expect(question.explanation.length).toBeGreaterThan(20);
+        expect(question.answer).toBeGreaterThanOrEqual(0);
+        expect(question.answer).toBeLessThan(question.options.length);
       }
     }
   });

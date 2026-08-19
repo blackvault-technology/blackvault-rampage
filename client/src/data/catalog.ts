@@ -49,6 +49,18 @@ export type Phase = {
   lessons: Lesson[];
 };
 
+export type LearningArcStage = {
+  stage: string;
+  label: string;
+  description: string;
+};
+
+export type AssessmentSummary = {
+  chapterQuestions: number;
+  finalQuestions: number;
+  format: string;
+};
+
 export type Course = {
   id: string;
   title: string;
@@ -61,6 +73,8 @@ export type Course = {
   sourceUrl: string;
   time: string;
   level: string;
+  learningArc?: LearningArcStage[];
+  assessmentSummary?: AssessmentSummary;
   phases: Phase[];
 };
 

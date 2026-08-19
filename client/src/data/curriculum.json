@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 3,
-  "generatedAt": "2026-08-18T09:30:22.663Z",
+  "schemaVersion": 4,
+  "generatedAt": "2026-08-19T05:29:37.948Z",
   "courses": [
     {
       "id": "systems-fundamentals",
@@ -44,7 +44,13 @@
                   "url": "https://missing.csail.mit.edu/",
                   "source": "MIT"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "The shell is your first interface applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for The shell is your first interface: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "memory",
@@ -69,7 +75,13 @@
                   "note": "Shell, tools, editors, and debugging.",
                   "readingFocus": "Shell workflows, editor habits, debugging, profiling, and durable command-line practice."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Memory is not an abstraction applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Memory is not an abstraction: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "debugging",
@@ -93,7 +105,13 @@
                   "url": "https://sourceware.org/gdb/documentation/",
                   "source": "GNU"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Debugging as a systems skill applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Debugging as a systems skill: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -124,7 +142,15 @@
                   "source": "Berkeley",
                   "note": "RISC-V and computer architecture."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "From NAND to a computer applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for From NAND to a computer: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://pdos.csail.mit.edu/6.828/2021/overview.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "riscv",
@@ -141,7 +167,13 @@
                   "source": "Berkeley",
                   "note": "RISC-V and computer architecture."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "RISC-V is a contract applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for RISC-V is a contract: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -174,7 +206,13 @@
                   "source": "MIT",
                   "note": "Teaching OS source and labs."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "The kernel is a boundary applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for The kernel is a boundary: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "page-tables",
@@ -196,7 +234,15 @@
                   "source": "MIT",
                   "note": "Teaching OS source and labs."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Page tables and address translation applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Page tables and address translation: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://pdos.csail.mit.edu/6.828/2021/overview.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -220,7 +266,15 @@
                   "source": "Stanford",
                   "note": "TCP/IP stack checkpoints."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Turn fragments into a byte stream applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Turn fragments into a byte stream: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.828/2021/overview.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "tcp",
@@ -241,7 +295,15 @@
                   "url": "https://cs144.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Reliability, flow, and congestion applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Reliability, flow, and congestion: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.828/2021/overview.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -265,7 +327,15 @@
                   "source": "MIT",
                   "note": "Distributed systems labs."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "MapReduce and the shape of scale applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for MapReduce and the shape of scale: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.828/2021/overview.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "raft",
@@ -287,7 +357,15 @@
                   "source": "USENIX",
                   "note": "Understandable consensus."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Make replicas agree applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Make replicas agree: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.828/2021/overview.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -318,7 +396,15 @@
                   "source": "USENIX",
                   "note": "Understandable consensus."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Design the store before you code applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Design the store before you code: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.828/2021/overview.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "ship",
@@ -333,12 +419,47 @@
                   "source": "MIT",
                   "note": "Distributed systems labs."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "The proof is in the failure tests applied lab",
+                "brief": "Use the lesson's source material to work through a bounded System Fundamentals exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for The proof is in the failure tests: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.828/2021/overview.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Foundations & Tools, Architecture, Operating Systems."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "networking-systems",
@@ -380,7 +501,13 @@
                   "url": "https://learn.microsoft.com/en-us/training/modules/network-fundamentals/",
                   "source": "Microsoft"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "What is the Internet? applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for What is the Internet?: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "net-performance",
@@ -402,7 +529,15 @@
                   "note": "Official guided packet-analysis labs.",
                   "readingFocus": "Use supplied traces or authorized local captures to observe network behavior safely."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Delay, loss, and throughput applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Delay, loss, and throughput: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -431,7 +566,15 @@
                   "url": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
                   "source": "UMass"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Frames, switches, and access applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Frames, switches, and access: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "net-wireless",
@@ -451,7 +594,15 @@
                   "url": "https://cs144.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Wireless is still a network applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Wireless is still a network: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -480,7 +631,15 @@
                   "url": "https://www.netacad.com/courses/networking-basics?courseLang=en-US",
                   "source": "Cisco"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "IPv4, IPv6, and prefixes applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for IPv4, IPv6, and prefixes: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "net-dhcp-nat",
@@ -502,7 +661,15 @@
                   "note": "Official guided packet-analysis labs.",
                   "readingFocus": "Use supplied traces or authorized local captures to observe network behavior safely."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "DHCP, ARP, and NAT applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for DHCP, ARP, and NAT: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -533,7 +700,13 @@
                   "url": "https://www.youtube.com/playlist?list=PLvFG2xYBrYAQCyz4Wx3NPoYJOFjvU7g2Z",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "UDP, TCP, and ports applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for UDP, TCP, and ports: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "net-reliability",
@@ -553,7 +726,15 @@
                   "url": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
                   "source": "UMass"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Reliability, flow, and congestion applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Reliability, flow, and congestion: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -582,7 +763,15 @@
                   "url": "https://learn.microsoft.com/en-us/training/modules/network-fundamentals/",
                   "source": "Microsoft"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "DNS: names become addresses applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for DNS: names become addresses: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "net-http",
@@ -604,7 +793,15 @@
                   "note": "Official guided packet-analysis labs.",
                   "readingFocus": "Use supplied traces or authorized local captures to observe network behavior safely."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "HTTP and real servers applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for HTTP and real servers: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -633,7 +830,15 @@
                   "url": "https://cs144.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Ping, traceroute, and packet evidence applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Ping, traceroute, and packet evidence: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "net-security",
@@ -653,12 +858,47 @@
                   "url": "https://www.netacad.com/courses/networking-basics?courseLang=en-US",
                   "source": "Cisco"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Threats, boundaries, and safe defaults applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Networking Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Threats, boundaries, and safe defaults: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://gaia.cs.umass.edu/kurose_ross/lectures.php",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through The Network Model, Access and Ethernet, IP and Subnets."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "ai-systems",
@@ -698,7 +938,15 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "What is an AI system? applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for What is an AI system?: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "ai-tokens",
@@ -714,7 +962,13 @@
                   "url": "https://huggingface.co/learn/llm-course/en/chapter1/1",
                   "source": "Hugging Face"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Tokens, tensors, predictions applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Tokens, tensors, predictions: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -743,7 +997,15 @@
                   "url": "https://developers.google.com/machine-learning/crash-course",
                   "source": "Google"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Training is search applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Training is search: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "ai-attention",
@@ -757,7 +1019,15 @@
                   "url": "https://cs229s.stanford.edu/fall2024/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Attention as a systems boundary applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Attention as a systems boundary: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -786,7 +1056,15 @@
                   "url": "https://cs229s.stanford.edu/fall2024/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "The request path applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for The request path: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "ai-cache",
@@ -800,7 +1078,15 @@
                   "url": "https://cs229s.stanford.edu/fall2024/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "KV caching and latency applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for KV caching and latency: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -823,7 +1109,15 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Evaluation before vibes applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Evaluation before vibes: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "ai-monitoring",
@@ -837,7 +1131,15 @@
                   "url": "https://fullstackdeeplearning.com/",
                   "source": "FSDL"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Monitor the system, not just the model applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Monitor the system, not just the model: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -860,7 +1162,15 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Draw the smallest architecture applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Draw the smallest architecture: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "ai-ship",
@@ -874,12 +1184,47 @@
                   "url": "https://fullstackdeeplearning.com/",
                   "source": "FSDL"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Ship the evidence applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Ship the evidence: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://cs229s.stanford.edu/fall2024/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through The On-Ramp, Model Mechanics, Inference in the Real World."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "systems-research-lab",
@@ -929,7 +1274,15 @@
                   "note": "Open operating-systems text with exercises.",
                   "readingFocus": "Processes, virtual memory, concurrency, persistence, and the reasoning that connects them."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "See the boundary move applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Systems Research Lab exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for See the boundary move: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.824/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "scheduler",
@@ -952,7 +1305,15 @@
                   "note": "Open operating-systems text with exercises.",
                   "readingFocus": "Processes, virtual memory, concurrency, persistence, and the reasoning that connects them."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "The scheduler as policy applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Systems Research Lab exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for The scheduler as policy: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.824/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -991,7 +1352,15 @@
                   "note": "Open operating-systems text with exercises.",
                   "readingFocus": "Processes, virtual memory, concurrency, persistence, and the reasoning that connects them."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Walk the page table applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Systems Research Lab exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Walk the page table: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://pdos.csail.mit.edu/6.824/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "cow",
@@ -1014,7 +1383,15 @@
                   "note": "Open operating-systems text with exercises.",
                   "readingFocus": "Processes, virtual memory, concurrency, persistence, and the reasoning that connects them."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Copy-on-write under pressure applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Systems Research Lab exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Copy-on-write under pressure: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://pdos.csail.mit.edu/6.824/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1045,7 +1422,15 @@
                   "source": "USENIX",
                   "note": "Understandable consensus."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Replication is a promise applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Systems Research Lab exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Replication is a promise: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://pdos.csail.mit.edu/6.824/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "failure-tests",
@@ -1067,7 +1452,15 @@
                   "source": "USENIX",
                   "note": "Understandable consensus."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Test the impossible applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Systems Research Lab exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Test the impossible: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://pdos.csail.mit.edu/6.824/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1092,7 +1485,15 @@
                   "note": "Shell, tools, editors, and debugging.",
                   "readingFocus": "Shell workflows, editor habits, debugging, profiling, and durable command-line practice."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Traces over intuition applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Systems Research Lab exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Traces over intuition: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.824/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "report",
@@ -1107,12 +1508,47 @@
                   "source": "MIT",
                   "note": "Distributed systems labs."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Write the evidence applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Systems Research Lab exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Write the evidence: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://pdos.csail.mit.edu/6.824/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Kernel Tracing, Memory Lab."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "compiler-runtime-architecture",
@@ -1155,7 +1591,15 @@
                   "source": "Nand2Tetris",
                   "note": "12 first-principles projects."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Tokens are decisions applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Compiler & Runtime Architecture exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Tokens are decisions: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://craftinginterpreters.com/introduction.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "parsing",
@@ -1178,7 +1622,15 @@
                   "source": "Nand2Tetris",
                   "note": "12 first-principles projects."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Make syntax explicit applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Compiler & Runtime Architecture exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Make syntax explicit: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://craftinginterpreters.com/introduction.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1217,7 +1669,15 @@
                   "source": "Berkeley",
                   "note": "RISC-V and computer architecture."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "The program between languages applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Compiler & Runtime Architecture exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for The program between languages: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://craftinginterpreters.com/introduction.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "bytecode",
@@ -1240,7 +1700,15 @@
                   "source": "Nand2Tetris",
                   "note": "12 first-principles projects."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "A small virtual machine applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Compiler & Runtime Architecture exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for A small virtual machine: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://craftinginterpreters.com/introduction.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1272,7 +1740,15 @@
                   "note": "Free implementation-first text for interpreters and bytecode VMs.",
                   "readingFocus": "Two complete interpreters, parsing, bytecode, runtime structures, garbage collection, and benchmarking."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Calling conventions applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Compiler & Runtime Architecture exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Calling conventions: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://craftinginterpreters.com/introduction.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "memory-runtime",
@@ -1295,7 +1771,15 @@
                   "source": "Nand2Tetris",
                   "note": "12 first-principles projects."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Objects need a home applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Compiler & Runtime Architecture exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Objects need a home: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://craftinginterpreters.com/introduction.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1328,7 +1812,15 @@
                   "note": "Shell, tools, editors, and debugging.",
                   "readingFocus": "Shell workflows, editor habits, debugging, profiling, and durable command-line practice."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Performance is a measurement applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Compiler & Runtime Architecture exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Performance is a measurement: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://craftinginterpreters.com/introduction.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "optimization",
@@ -1351,12 +1843,47 @@
                   "note": "Free implementation-first text for interpreters and bytecode VMs.",
                   "readingFocus": "Two complete interpreters, parsing, bytecode, runtime structures, garbage collection, and benchmarking."
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Optimize the bottleneck applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Compiler & Runtime Architecture exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Optimize the bottleneck: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://craftinginterpreters.com/introduction.html",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through The Front-End, Intermediate Forms."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "ai-product-systems",
@@ -1390,7 +1917,15 @@
                   "url": "https://fullstackdeeplearning.com/",
                   "source": "FSDL"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Start with the user problem applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Product Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Start with the user problem: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://fullstackdeeplearning.com/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "product-boundary",
@@ -1404,7 +1939,15 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "The smallest useful system applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Product Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for The smallest useful system: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://fullstackdeeplearning.com/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1427,7 +1970,15 @@
                   "url": "https://fullstackdeeplearning.com/",
                   "source": "FSDL"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Ground the answer applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Product Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Ground the answer: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://fullstackdeeplearning.com/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "product-eval",
@@ -1441,7 +1992,15 @@
                   "url": "https://developers.google.com/machine-learning/crash-course",
                   "source": "Google"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Evaluation before launch applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Product Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Evaluation before launch: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://fullstackdeeplearning.com/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1464,7 +2023,15 @@
                   "url": "https://fullstackdeeplearning.com/",
                   "source": "FSDL"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Watch the real request path applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Product Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Watch the real request path: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://fullstackdeeplearning.com/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "product-brief",
@@ -1478,12 +2045,47 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Write the boundary conditions applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Product Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Write the boundary conditions: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://fullstackdeeplearning.com/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Frame the Product, Build and Measure."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "ai-evaluation-engineering",
@@ -1517,7 +2119,15 @@
                   "url": "https://developers.google.com/machine-learning/crash-course",
                   "source": "Google"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "A metric is a decision applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Evaluation Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for A metric is a decision: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "eval-data",
@@ -1531,7 +2141,15 @@
                   "url": "https://huggingface.co/learn/llm-course/en/chapter1/1",
                   "source": "Hugging Face"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Build a representative set applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Evaluation Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Build a representative set: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1554,7 +2172,15 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Rubrics that explain failure applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Evaluation Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Rubrics that explain failure: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "eval-regression",
@@ -1568,7 +2194,15 @@
                   "url": "https://fullstackdeeplearning.com/",
                   "source": "FSDL"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Protect the behavior you earned applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Evaluation Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Protect the behavior you earned: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1591,7 +2225,15 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Quality moves over time applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Evaluation Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Quality moves over time: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "eval-report",
@@ -1605,12 +2247,47 @@
                   "url": "https://huggingface.co/learn/llm-course/en/chapter1/1",
                   "source": "Hugging Face"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Make the result legible applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Evaluation Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Make the result legible: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Define Quality, Run the Evaluation."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "ai-data-infrastructure",
@@ -1644,7 +2321,15 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Know the source material applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Data Infrastructure exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Know the source material: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "data-cleaning",
@@ -1658,7 +2343,15 @@
                   "url": "https://huggingface.co/learn/llm-course/en/chapter1/1",
                   "source": "Hugging Face"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Cleaning changes meaning applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Data Infrastructure exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Cleaning changes meaning: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1681,7 +2374,15 @@
                   "url": "https://fullstackdeeplearning.com/",
                   "source": "FSDL"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Chunking is a model choice applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Data Infrastructure exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Chunking is a model choice: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "embeddings",
@@ -1695,7 +2396,15 @@
                   "url": "https://huggingface.co/learn/llm-course/en/chapter1/1",
                   "source": "Hugging Face"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Similarity is not truth applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Data Infrastructure exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Similarity is not truth: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         },
@@ -1718,7 +2427,15 @@
                   "url": "https://stanford-cs329s.github.io/",
                   "source": "Stanford"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Context has a half-life applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Data Infrastructure exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Context has a half-life: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             },
             {
               "id": "retrieval-runbook",
@@ -1732,12 +2449,47 @@
                   "url": "https://fullstackdeeplearning.com/",
                   "source": "FSDL"
                 }
-              ]
+              ],
+              "lab": {
+                "title": "Debug the context applied lab",
+                "brief": "Use the lesson's source material to work through a bounded AI Data Infrastructure exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Debug the context: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              },
+              "video": "https://stanford-cs329s.github.io/",
+              "videoLabel": "Official course lecture hub • inline playback depends on publisher policy"
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Data Contracts, Retrieval Pipeline."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "english-for-technical-work",
@@ -1783,7 +2535,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing",
-              "videoLabel": "Google Technical Writing / official course hub"
+              "videoLabel": "Google Technical Writing / official course hub",
+              "lab": {
+                "title": "Plain English is a technical skill applied lab",
+                "brief": "Use the lesson's source material to work through a bounded English for Technical Work exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Plain English is a technical skill: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "eng-clarify",
@@ -1809,7 +2567,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing",
-              "videoLabel": "Google Technical Writing / official course hub"
+              "videoLabel": "Google Technical Writing / official course hub",
+              "lab": {
+                "title": "Ask the question that moves work forward applied lab",
+                "brief": "Use the lesson's source material to work through a bounded English for Technical Work exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Ask the question that moves work forward: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -1844,7 +2608,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing",
-              "videoLabel": "Google Technical Writing / official course hub"
+              "videoLabel": "Google Technical Writing / official course hub",
+              "lab": {
+                "title": "Explain one process end to end applied lab",
+                "brief": "Use the lesson's source material to work through a bounded English for Technical Work exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Explain one process end to end: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "eng-update",
@@ -1870,7 +2640,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing",
-              "videoLabel": "Google Technical Writing / official course hub"
+              "videoLabel": "Google Technical Writing / official course hub",
+              "lab": {
+                "title": "Write an update people can use applied lab",
+                "brief": "Use the lesson's source material to work through a bounded English for Technical Work exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Write an update people can use: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -1905,7 +2681,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing",
-              "videoLabel": "Google Technical Writing / official course hub"
+              "videoLabel": "Google Technical Writing / official course hub",
+              "lab": {
+                "title": "Feedback is data, not a verdict applied lab",
+                "brief": "Use the lesson's source material to work through a bounded English for Technical Work exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Feedback is data, not a verdict: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "eng-routine",
@@ -1931,12 +2713,45 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing",
-              "videoLabel": "Google Technical Writing / official course hub"
+              "videoLabel": "Google Technical Writing / official course hub",
+              "lab": {
+                "title": "Build your language loop applied lab",
+                "brief": "Use the lesson's source material to work through a bounded English for Technical Work exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Build your language loop: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Make Meaning Clear, Explain the Work."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "clear-communication",
@@ -1982,7 +2797,13 @@
                 }
               ],
               "video": "https://archive.org/download/mithowtospeak/MIT_How_To_Speak_IAP_2018_300k.mp4",
-              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak"
+              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak",
+              "lab": {
+                "title": "Audience changes the message applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Clear Communication exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Audience changes the message: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "comm-structure",
@@ -2008,7 +2829,13 @@
                 }
               ],
               "video": "https://archive.org/download/mithowtospeak/MIT_How_To_Speak_IAP_2018_300k.mp4",
-              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak"
+              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak",
+              "lab": {
+                "title": "Lead with the decision applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Clear Communication exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Lead with the decision: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -2043,7 +2870,13 @@
                 }
               ],
               "video": "https://archive.org/download/mithowtospeak/MIT_How_To_Speak_IAP_2018_300k.mp4",
-              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak"
+              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak",
+              "lab": {
+                "title": "Meetings need an artifact applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Clear Communication exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Meetings need an artifact: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "comm-present",
@@ -2069,7 +2902,13 @@
                 }
               ],
               "video": "https://archive.org/download/mithowtospeak/MIT_How_To_Speak_IAP_2018_300k.mp4",
-              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak"
+              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak",
+              "lab": {
+                "title": "Present the signal, not every fact applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Clear Communication exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Present the signal, not every fact: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -2104,7 +2943,13 @@
                 }
               ],
               "video": "https://archive.org/download/mithowtospeak/MIT_How_To_Speak_IAP_2018_300k.mp4",
-              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak"
+              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak",
+              "lab": {
+                "title": "Review the work, not the person applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Clear Communication exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Review the work, not the person: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "comm-repair",
@@ -2130,12 +2975,45 @@
                 }
               ],
               "video": "https://archive.org/download/mithowtospeak/MIT_How_To_Speak_IAP_2018_300k.mp4",
-              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak"
+              "videoLabel": "MIT OpenCourseWare / Patrick Winston — How to Speak",
+              "lab": {
+                "title": "Repair a misunderstanding applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Clear Communication exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Repair a misunderstanding: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Message Design, Live Communication."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "professional-presence",
@@ -2181,7 +3059,13 @@
                 }
               ],
               "video": "https://ocw.mit.edu/courses/res-tll-005-how-to-speak-january-iap-2018/pages/how-to-speak/",
-              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page"
+              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page",
+              "lab": {
+                "title": "Preparation is a respect signal applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Professional Presence exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Preparation is a respect signal: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "presence-follow",
@@ -2207,7 +3091,13 @@
                 }
               ],
               "video": "https://ocw.mit.edu/courses/res-tll-005-how-to-speak-january-iap-2018/pages/how-to-speak/",
-              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page"
+              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page",
+              "lab": {
+                "title": "Close the loop applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Professional Presence exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Close the loop: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -2242,7 +3132,13 @@
                 }
               ],
               "video": "https://ocw.mit.edu/courses/res-tll-005-how-to-speak-january-iap-2018/pages/how-to-speak/",
-              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page"
+              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page",
+              "lab": {
+                "title": "Name the patterns applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Professional Presence exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Name the patterns: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "presence-boundaries",
@@ -2268,7 +3164,13 @@
                 }
               ],
               "video": "https://ocw.mit.edu/courses/res-tll-005-how-to-speak-january-iap-2018/pages/how-to-speak/",
-              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page"
+              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page",
+              "lab": {
+                "title": "Boundaries make commitments real applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Professional Presence exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Boundaries make commitments real: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -2303,7 +3205,13 @@
                 }
               ],
               "video": "https://ocw.mit.edu/courses/res-tll-005-how-to-speak-january-iap-2018/pages/how-to-speak/",
-              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page"
+              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page",
+              "lab": {
+                "title": "Tell one capability story applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Professional Presence exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Tell one capability story: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "presence-review",
@@ -2329,12 +3237,45 @@
                 }
               ],
               "video": "https://ocw.mit.edu/courses/res-tll-005-how-to-speak-january-iap-2018/pages/how-to-speak/",
-              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page"
+              "videoLabel": "MIT OpenCourseWare / How to Speak lecture page",
+              "lab": {
+                "title": "Ask for useful feedback applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Professional Presence exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Ask for useful feedback: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Reliable Signals, Self-Awareness."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "critical-thinking",
@@ -2380,7 +3321,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "A claim is not its evidence applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Critical Thinking exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for A claim is not its evidence: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "think-source",
@@ -2406,7 +3353,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Check the source before the conclusion applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Critical Thinking exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Check the source before the conclusion: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -2441,7 +3394,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Find the load-bearing assumption applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Critical Thinking exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Find the load-bearing assumption: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "think-alternative",
@@ -2467,7 +3426,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Generate a credible alternative applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Critical Thinking exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Generate a credible alternative: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -2502,7 +3467,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Write the recommendation last applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Critical Thinking exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Write the recommendation last: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "think-revise",
@@ -2528,12 +3499,45 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Invite a challenge applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Critical Thinking exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Invite a challenge: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Claims and Evidence, Alternatives and Assumptions."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "high-signal-writing",
@@ -2579,7 +3583,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing/overview",
-              "videoLabel": "Google Technical Writing / course overview"
+              "videoLabel": "Google Technical Writing / course overview",
+              "lab": {
+                "title": "Short sentences carry more signal applied lab",
+                "brief": "Use the lesson's source material to work through a bounded High-Signal Writing exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Short sentences carry more signal: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "write-structure",
@@ -2605,7 +3615,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing/overview",
-              "videoLabel": "Google Technical Writing / course overview"
+              "videoLabel": "Google Technical Writing / course overview",
+              "lab": {
+                "title": "Headings are a decision tree applied lab",
+                "brief": "Use the lesson's source material to work through a bounded High-Signal Writing exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Headings are a decision tree: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -2640,7 +3656,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing/overview",
-              "videoLabel": "Google Technical Writing / course overview"
+              "videoLabel": "Google Technical Writing / course overview",
+              "lab": {
+                "title": "A how-to needs a proof point applied lab",
+                "brief": "Use the lesson's source material to work through a bounded High-Signal Writing exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for A how-to needs a proof point: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "write-example",
@@ -2666,7 +3688,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing/overview",
-              "videoLabel": "Google Technical Writing / course overview"
+              "videoLabel": "Google Technical Writing / course overview",
+              "lab": {
+                "title": "Examples carry the hidden rules applied lab",
+                "brief": "Use the lesson's source material to work through a bounded High-Signal Writing exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Examples carry the hidden rules: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -2701,7 +3729,13 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing/overview",
-              "videoLabel": "Google Technical Writing / course overview"
+              "videoLabel": "Google Technical Writing / course overview",
+              "lab": {
+                "title": "Edit in passes applied lab",
+                "brief": "Use the lesson's source material to work through a bounded High-Signal Writing exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Edit in passes: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "write-reader",
@@ -2727,12 +3761,45 @@
                 }
               ],
               "video": "https://developers.google.com/tech-writing/overview",
-              "videoLabel": "Google Technical Writing / course overview"
+              "videoLabel": "Google Technical Writing / course overview",
+              "lab": {
+                "title": "Test with a real reader applied lab",
+                "brief": "Use the lesson's source material to work through a bounded High-Signal Writing exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Test with a real reader: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Clarity Before Style, Documentation That Works."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "learning-systems",
@@ -2778,7 +3845,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/learning-to-learn-online-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online"
+              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online",
+              "lab": {
+                "title": "Study goals need observable evidence applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Learning Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Study goals need observable evidence: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "learn-retrieve",
@@ -2796,7 +3869,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/learning-to-learn-online-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online"
+              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online",
+              "lab": {
+                "title": "Retrieval beats re-reading applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Learning Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Retrieval beats re-reading: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -2823,7 +3902,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/learning-to-learn-online-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online"
+              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online",
+              "lab": {
+                "title": "Space the return applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Learning Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Space the return: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "learn-interleave",
@@ -2849,7 +3934,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/learning-to-learn-online-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online"
+              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online",
+              "lab": {
+                "title": "Mix the right problems applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Learning Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Mix the right problems: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -2884,7 +3975,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/learning-to-learn-online-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online"
+              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online",
+              "lab": {
+                "title": "Make feedback specific applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Learning Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Make feedback specific: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "learn-retro",
@@ -2910,12 +4007,45 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/learning-to-learn-online-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online"
+              "videoLabel": "Carnegie Mellon OLI / Learning to Learn Online",
+              "lab": {
+                "title": "Recover the plan applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Learning Systems exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Recover the plan: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Design the Loop, Space and Interleave."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "career-navigation",
@@ -2961,7 +4091,13 @@
                 }
               ],
               "video": "https://www.open.edu/openlearn/miscellaneous/career-ready-courses",
-              "videoLabel": "OpenLearn / Career Ready course collection"
+              "videoLabel": "OpenLearn / Career Ready course collection",
+              "lab": {
+                "title": "Read the role beneath the title applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Career Navigation exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Read the role beneath the title: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "career-gap",
@@ -2987,7 +4123,13 @@
                 }
               ],
               "video": "https://www.open.edu/openlearn/miscellaneous/career-ready-courses",
-              "videoLabel": "OpenLearn / Career Ready course collection"
+              "videoLabel": "OpenLearn / Career Ready course collection",
+              "lab": {
+                "title": "Choose the next capability applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Career Navigation exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Choose the next capability: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -3022,7 +4164,13 @@
                 }
               ],
               "video": "https://www.open.edu/openlearn/miscellaneous/career-ready-courses",
-              "videoLabel": "OpenLearn / Career Ready course collection"
+              "videoLabel": "OpenLearn / Career Ready course collection",
+              "lab": {
+                "title": "Write the project story applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Career Navigation exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Write the project story: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "career-portfolio",
@@ -3048,7 +4196,13 @@
                 }
               ],
               "video": "https://www.open.edu/openlearn/miscellaneous/career-ready-courses",
-              "videoLabel": "OpenLearn / Career Ready course collection"
+              "videoLabel": "OpenLearn / Career Ready course collection",
+              "lab": {
+                "title": "Choose proof over claims applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Career Navigation exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Choose proof over claims: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -3083,7 +4237,13 @@
                 }
               ],
               "video": "https://www.open.edu/openlearn/miscellaneous/career-ready-courses",
-              "videoLabel": "OpenLearn / Career Ready course collection"
+              "videoLabel": "OpenLearn / Career Ready course collection",
+              "lab": {
+                "title": "Ask useful career questions applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Career Navigation exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Ask useful career questions: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "career-followup",
@@ -3109,12 +4269,45 @@
                 }
               ],
               "video": "https://www.open.edu/openlearn/miscellaneous/career-ready-courses",
-              "videoLabel": "OpenLearn / Career Ready course collection"
+              "videoLabel": "OpenLearn / Career Ready course collection",
+              "lab": {
+                "title": "Follow up with evidence applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Career Navigation exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Follow up with evidence: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Map the Work, Show the Work."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "decision-making",
@@ -3160,7 +4353,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Name the decision applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Decision-Making exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Name the decision: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "decision-reversible",
@@ -3186,7 +4385,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Match effort to reversibility applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Decision-Making exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Match effort to reversibility: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -3221,7 +4426,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Choose criteria before options applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Decision-Making exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Choose criteria before options: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "decision-uncertainty",
@@ -3247,7 +4458,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Document what you do not know applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Decision-Making exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Document what you do not know: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -3282,7 +4499,13 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Write the decision record applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Decision-Making exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Write the decision record: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "decision-review",
@@ -3308,12 +4531,45 @@
                 }
               ],
               "video": "https://oli.cmu.edu/courses/evidence-based-management-o-f/",
-              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course"
+              "videoLabel": "Carnegie Mellon OLI / Evidence-Based Management course",
+              "lab": {
+                "title": "Review the outcome without hindsight applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Decision-Making exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Review the outcome without hindsight: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Frame the Decision, Compare Evidence."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "negotiation-and-collaboration",
@@ -3359,7 +4615,13 @@
                 }
               ],
               "video": "https://www.coursera.org/learn/negotiation-skills",
-              "videoLabel": "University of Michigan / Successful Negotiation course page"
+              "videoLabel": "University of Michigan / Successful Negotiation course page",
+              "lab": {
+                "title": "Interests are not positions applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Negotiation & Collaboration exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Interests are not positions: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             },
             {
               "id": "collab-boundaries",
@@ -3385,7 +4647,13 @@
                 }
               ],
               "video": "https://www.coursera.org/learn/negotiation-skills",
-              "videoLabel": "University of Michigan / Successful Negotiation course page"
+              "videoLabel": "University of Michigan / Successful Negotiation course page",
+              "lab": {
+                "title": "Name your constraints honestly applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Negotiation & Collaboration exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Name your constraints honestly: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
+              }
             }
           ]
         },
@@ -3420,7 +4688,13 @@
                 }
               ],
               "video": "https://www.coursera.org/learn/negotiation-skills",
-              "videoLabel": "University of Michigan / Successful Negotiation course page"
+              "videoLabel": "University of Michigan / Successful Negotiation course page",
+              "lab": {
+                "title": "Questions create room applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Negotiation & Collaboration exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Questions create room: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             },
             {
               "id": "collab-options",
@@ -3446,7 +4720,13 @@
                 }
               ],
               "video": "https://www.coursera.org/learn/negotiation-skills",
-              "videoLabel": "University of Michigan / Successful Negotiation course page"
+              "videoLabel": "University of Michigan / Successful Negotiation course page",
+              "lab": {
+                "title": "Generate options before closing applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Negotiation & Collaboration exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Generate options before closing: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
+              }
             }
           ]
         },
@@ -3481,7 +4761,13 @@
                 }
               ],
               "video": "https://www.coursera.org/learn/negotiation-skills",
-              "videoLabel": "University of Michigan / Successful Negotiation course page"
+              "videoLabel": "University of Michigan / Successful Negotiation course page",
+              "lab": {
+                "title": "Write what was agreed applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Negotiation & Collaboration exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Write what was agreed: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             },
             {
               "id": "collab-retro",
@@ -3507,12 +4793,45 @@
                 }
               ],
               "video": "https://www.coursera.org/learn/negotiation-skills",
-              "videoLabel": "University of Michigan / Successful Negotiation course page"
+              "videoLabel": "University of Michigan / Successful Negotiation course page",
+              "lab": {
+                "title": "Review the collaboration applied lab",
+                "brief": "Use the lesson's source material to work through a bounded Negotiation & Collaboration exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Review the collaboration: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
+              }
             }
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Prepare the Conversation, Work the Problem Together."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "python-engineering",
@@ -4274,7 +5593,34 @@
           ]
         }
       ],
-      "spotlight": false
+      "spotlight": false,
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Python Foundations, Data and Program Design, Reliable Software."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 3,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "cpp-engineering",
@@ -4330,6 +5676,12 @@
                 "starter": "#include <iostream>\nint main() {\n  std::cout << \"hello, Rampage\\n\";\n}",
                 "prompt": "Change the program so it prints a short diagnostic and compile it with a modern standard.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "From source file to running program applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for From source file to running program: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
               }
             },
             {
@@ -4364,6 +5716,12 @@
                 "starter": "int whole = 7;\ndouble precise = 2.5;\n// Add an explicit conversion and print the result.",
                 "prompt": "Try two conversions that look similar and explain the observed result.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Values, types, and expressions applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Values, types, and expressions: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
               }
             },
             {
@@ -4398,6 +5756,12 @@
                 "starter": "#include <string>\nint classify(int value) {\n  return value;\n}",
                 "prompt": "Refactor the starter into three small functions with explicit return values.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Functions, decisions, and iteration applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Functions, decisions, and iteration: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "FOUNDATION"
               }
             }
           ]
@@ -4441,6 +5805,12 @@
                 "starter": "class Temperature {\n public:\n  explicit Temperature(double celsius);\n  double celsius() const;\n private:\n  double celsius_{};\n};",
                 "prompt": "Complete the constructor and one invariant-preserving method.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Classes, invariants, and interfaces applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Classes, invariants, and interfaces: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
               }
             },
             {
@@ -4475,6 +5845,12 @@
                 "starter": "struct FileHandle {\n  // Give this type an explicit ownership story.\n};",
                 "prompt": "Replace the raw ownership comment with a scoped owner and explain its destruction point.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "RAII, destructors, and smart pointers applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for RAII, destructors, and smart pointers: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
               }
             },
             {
@@ -4509,6 +5885,12 @@
                 "starter": "#include <string>\nstruct Report {\n  std::string body;\n};",
                 "prompt": "Add a trace to the starter and compare return-by-value behavior.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Copying, moving, and the rule of zero applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Copying, moving, and the rule of zero: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "BUILD"
               }
             }
           ]
@@ -4552,6 +5934,12 @@
                 "starter": "#include <string>\n#include <unordered_map>\nstd::unordered_map<char, int> count_chars(const std::string& text) {\n  return {};\n}",
                 "prompt": "Complete the frequency counter and note the lookup trade-off.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Containers and complexity applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Containers and complexity: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             },
             {
@@ -4586,6 +5974,12 @@
                 "starter": "#include <algorithm>\n#include <vector>\nint count_positive(const std::vector<int>& values) {\n  return 0;\n}",
                 "prompt": "Replace the manual loop with an algorithm and a named predicate.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Algorithms, lambdas, and ranges applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Algorithms, lambdas, and ranges: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             },
             {
@@ -4620,6 +6014,12 @@
                 "starter": "#include <optional>\nstd::optional<int> parse_port(const char* text) {\n  return std::nullopt;\n}",
                 "prompt": "Choose a return type and make the failure branch explicit.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Exceptions, optional, expected, and error boundaries applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Exceptions, optional, expected, and error boundaries: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             }
           ]
@@ -4663,6 +6063,12 @@
                 "starter": "template <typename T>\nT add(T left, T right) {\n  return left + right;\n}",
                 "prompt": "Turn the concrete reducer into a template while preserving the invariant.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Templates and generic functions applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Templates and generic functions: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             },
             {
@@ -4697,6 +6103,12 @@
                 "starter": "#include <concepts>\ntemplate <typename T>\nconcept Summable = requires(T value) { value + value; };",
                 "prompt": "Add a concept that expresses the operation required by the function.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Concepts and constrained interfaces applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Concepts and constrained interfaces: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             },
             {
@@ -4731,6 +6143,12 @@
                 "starter": "struct Sink {\n  virtual ~Sink() = default;\n  virtual void write(const char*) = 0;\n};",
                 "prompt": "Sketch the interface and make ownership explicit at the construction boundary.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Composition, polymorphism, and stable interfaces applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Composition, polymorphism, and stable interfaces: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             }
           ]
@@ -4774,6 +6192,12 @@
                 "starter": "cmake_minimum_required(VERSION 3.20)\nproject(rampage_cpp LANGUAGES CXX)\n# Add a library and executable target.",
                 "prompt": "Write the smallest CMake target graph that separates library code from the executable.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "CMake and reproducible builds applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for CMake and reproducible builds: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             },
             {
@@ -4808,6 +6232,12 @@
                 "starter": "int clamp(int value, int low, int high) {\n  return value;\n}\n// Add tests around the contract.",
                 "prompt": "Write one assertion for the happy path and one for the boundary case.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Tests, fixtures, and failure reports applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Tests, fixtures, and failure reports: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             },
             {
@@ -4842,6 +6272,12 @@
                 "starter": "int* value = new int(42);\n// Inspect ownership and cleanup with a sanitizer-enabled build.",
                 "prompt": "Describe the bug hypothesis, the tool used, and the evidence that confirmed the repair.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Warnings, sanitizers, and debugger thinking applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Warnings, sanitizers, and debugger thinking: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             }
           ]
@@ -4885,6 +6321,12 @@
                 "starter": "#include <mutex>\n#include <queue>\n// Define the queue's ownership and shutdown policy.",
                 "prompt": "Identify the shared state and state the synchronization invariant before adding a thread.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Threads, tasks, and synchronization applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Threads, tasks, and synchronization: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             },
             {
@@ -4919,6 +6361,12 @@
                 "starter": "#include <chrono>\n// Define a repeatable workload and capture a baseline.",
                 "prompt": "Define the input, measurement, and hypothesis before changing the implementation.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Measure before optimizing applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Measure before optimizing: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             },
             {
@@ -4960,11 +6408,44 @@
                 "starter": "// Paste the smallest meaningful capstone excerpt here.\n// Include the contract and the evidence you would show a reviewer.",
                 "prompt": "Use this surface to inspect one key function, then record the artifact, test command, and one known limitation.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              },
+              "lab": {
+                "title": "Capstone: ship a tested C++ tool applied lab",
+                "brief": "Use the lesson's source material to work through a bounded C++ Engineering exercise. Start with the smallest observable case, record one decision, and test one failure mode before expanding it.",
+                "deliverable": "A concise artifact for Capstone: ship a tested C++ tool: working notes or code, one observed result, and a short explanation of the trade-off you chose.",
+                "difficulty": "APPLY"
               }
             }
           ]
         }
-      ]
+      ],
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Phase 01 / First principles, Phase 02 / Objects and ownership, Phase 03 / The standard library."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 6,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     },
     {
       "id": "c-foundations",
@@ -5874,7 +7355,34 @@
             }
           ]
         }
-      ]
+      ],
+      "learningArc": [
+        {
+          "stage": "ORIENT",
+          "label": "Absolute beginner",
+          "description": "Start with the vocabulary, mental model, and first observable example."
+        },
+        {
+          "stage": "BUILD",
+          "label": "Guided capability",
+          "description": "Build through Phase 01 / Start without fear, Phase 02 / Shape the problem, Phase 03 / See memory."
+        },
+        {
+          "stage": "APPLY",
+          "label": "Evidence in practice",
+          "description": "Use source-backed exercises, critique, and a bounded artifact to make the skill inspectable."
+        },
+        {
+          "stage": "MASTER",
+          "label": "Mastery evidence",
+          "description": "Explain trade-offs, handle failure cases, and define the next independent project."
+        }
+      ],
+      "assessmentSummary": {
+        "chapterQuestions": 6,
+        "finalQuestions": 5,
+        "format": "one-question-at-a-time with explanations and a final score report"
+      }
     }
   ],
   "resourceCatalog": [

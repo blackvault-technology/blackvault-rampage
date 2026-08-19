@@ -79,8 +79,9 @@ export default function Courses() {
           <div className="course-explorer-signal"><span aria-hidden="true">{isSkill ? "↗" : "↳"}</span><i /><b>ROUTE / {String(index + 1).padStart(2, "0")}</b></div>
           <h3>{course.title}</h3><p>{course.subtitle}</p>
           <div className="course-explorer-meta"><span>{course.level}</span><span>{lessonTotal} lessons</span><span>{course.time}</span></div>
+          <div className="course-explorer-arc"><span>ABSOLUTE BEGINNER</span><i aria-hidden="true" /><span>MASTERY EVIDENCE</span></div>
           <div className="course-explorer-source"><small>PRIMARY MATERIAL</small><b>{course.sourceLabel}</b></div>
-          <div className="course-explorer-foot"><span>{course.phases.length} phases / applied evidence</span><Link href={`/course/${course.id}`} aria-label={`Open ${course.title}`}>Enter route <ArrowUpRight size={16} /></Link></div>
+          <div className="course-explorer-foot"><span>{course.phases.length} phases / {course.assessmentSummary?.chapterQuestions ?? 0} checkpoint questions + final test</span><Link href={`/course/${course.id}`} aria-label={`Open ${course.title}`}>Enter route <ArrowUpRight size={16} /></Link></div>
         </article>;
       })}</div> : <div className="course-empty"><BookOpen size={26} /><h3>No route matches that filter.</h3><p>Clear the search or return to every route to find a sensible place to begin.</p><button onClick={() => { setQuery(""); setTrack("all"); setOnlyNew(false); }}>Reset course filters</button></div>}
     </section>

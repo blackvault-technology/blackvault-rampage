@@ -555,3 +555,12 @@
 - [x] Polish the C announcement, discovery card, beginner guidance, lesson media, labs, and progress experience.
 - [x] Validate C content integrity, source/video coverage, quizzes, labs, routes, responsive UX, tests, and production build.
 - [x] Save a recoverable C Spotlight Course checkpoint.
+
+## Continue: All-Course Beginner-to-Mastery Upgrade
+- [x] Audit every active course for beginner foundations, advanced depth, lecture/source metadata, labs, quizzes, final assessments, and progress wiring.
+- [x] Research and verify course-specific lecture series, primary sources, labs, and advanced progression references.
+- [x] Expand canonical course JSON with beginner-to-advanced lessons, lecture metadata, resources, labs, and evidence.
+- [x] Build complete chapter quiz and final-assessment coverage for every active course using the existing secure scoring flow.
+- [x] Polish course discovery and lesson progression for clearer beginner-to-mastery sequencing and next actions.
+- [x] Validate every route, video/source target, quiz, assessment, progress path, responsive state, tests, and production build.
+- [x] Save a recoverable all-course curriculum-upgrade checkpoint.
