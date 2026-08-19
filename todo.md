@@ -546,3 +546,12 @@
 - [x] Polish the C++ course discovery card, Spotlight announcement, lesson media, labs, and progress experience.
 - [x] Validate C++ content integrity, source/video coverage, quizzes, labs, routes, responsive UX, tests, and production build.
 - [x] Save a recoverable C++ Spotlight Course checkpoint.
+
+## Continue: C Spotlight Course for Absolute Beginners
+- [x] Audit the JSON course model, Spotlight presentation, beginner flow, lesson contracts, quiz, lab, and progress surfaces for the new C route.
+- [x] Research and verify beginner-friendly C lectures, documentation, references, tooling, and lab resources.
+- [x] Design a foundations-to-systems C Spotlight route with clear lessons, quizzes, guided labs, sources, and proof-of-work.
+- [x] Add the C route to the canonical JSON content model with honest beginner-focused metadata and no fabricated learner-generated content.
+- [x] Polish the C announcement, discovery card, beginner guidance, lesson media, labs, and progress experience.
+- [x] Validate C content integrity, source/video coverage, quizzes, labs, routes, responsive UX, tests, and production build.
+- [x] Save a recoverable C Spotlight Course checkpoint.

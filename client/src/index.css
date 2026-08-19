@@ -1266,9 +1266,9 @@ footer { border-top:1px solid var(--rv-line); padding:38px clamp(22px,6vw,88px);
   .lesson-media-frame video { min-height: 13rem; }
 }
 
-/* C++ Spotlight launch panel */
+/* C Foundations Spotlight launch panel */
 .spotlight-launch-panel { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2rem; align-items:end; margin:0 auto 4rem; max-width:1180px; padding:2rem; border:1px solid color-mix(in srgb, var(--line) 70%, #c7ff2f 30%); background:linear-gradient(135deg, color-mix(in srgb, var(--navy-2) 94%, #c7ff2f 6%), var(--navy-2)); position:relative; overflow:hidden; }
-.spotlight-launch-panel::after { content:"C++"; position:absolute; right:1.5rem; top:-1.6rem; font:900 8rem/1 'Space Grotesk',sans-serif; letter-spacing:-.08em; color:color-mix(in srgb, #c7ff2f 12%, transparent); pointer-events:none; }
+.spotlight-launch-panel::after { content:"C"; position:absolute; right:1.5rem; top:-1.6rem; font:900 8rem/1 'Space Grotesk',sans-serif; letter-spacing:-.08em; color:color-mix(in srgb, #c7ff2f 12%, transparent); pointer-events:none; }
 .spotlight-launch-panel > * { position:relative; z-index:1; }
 .spotlight-launch-panel__signal { grid-column:1 / -1; color:var(--lime); font:700 .68rem/1.2 'JetBrains Mono',monospace; letter-spacing:.12em; }
 .spotlight-launch-panel h2 { max-width:680px; margin:.35rem 0 .7rem; font-size:clamp(1.8rem,4vw,3.6rem); letter-spacing:-.05em; }

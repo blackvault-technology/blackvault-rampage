@@ -337,7 +337,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "networking-systems",
@@ -656,7 +657,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "ai-systems",
@@ -876,7 +878,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "systems-research-lab",
@@ -1108,7 +1111,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "compiler-runtime-architecture",
@@ -1351,7 +1355,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "ai-product-systems",
@@ -1477,7 +1482,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "ai-evaluation-engineering",
@@ -1603,7 +1609,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "ai-data-infrastructure",
@@ -1729,7 +1736,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "english-for-technical-work",
@@ -1927,7 +1935,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "clear-communication",
@@ -2125,7 +2134,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "professional-presence",
@@ -2323,7 +2333,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "critical-thinking",
@@ -2521,7 +2532,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "high-signal-writing",
@@ -2719,7 +2731,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "learning-systems",
@@ -2901,7 +2914,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "career-navigation",
@@ -3099,7 +3113,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "decision-making",
@@ -3297,7 +3312,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "negotiation-and-collaboration",
@@ -3495,7 +3511,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "python-engineering",
@@ -4256,7 +4273,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spotlight": false
     },
     {
       "id": "cpp-engineering",
@@ -4269,7 +4287,7 @@
       "level": "Beginner → Advanced",
       "time": "60–90h guided route + labs",
       "status": "SPOTLIGHT COURSE",
-      "spotlight": true,
+      "spotlight": false,
       "spotlightLabel": "NEW FLAGSHIP ROUTE",
       "sourceLabel": "MIT OpenCourseWare · cppreference · C++ Core Guidelines · CppCon",
       "phases": [
@@ -4942,6 +4960,916 @@
                 "starter": "// Paste the smallest meaningful capstone excerpt here.\n// Include the contract and the evidence you would show a reviewer.",
                 "prompt": "Use this surface to inspect one key function, then record the artifact, test command, and one known limitation.",
                 "safetyNote": "Run small, non-sensitive experiments in the external compiler. Rampage records your explanation and evidence, not arbitrary native-code execution."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c-foundations",
+      "title": "C Foundations",
+      "subtitle": "Start at zero. Learn what the machine is actually doing.",
+      "eyebrow": "SPOTLIGHT COURSE",
+      "color": "#ff5b2e",
+      "sourceUrl": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+      "description": "A patient, beginner-first route into C that starts with your first compiled program and builds toward pointers, memory, files, data structures, secure coding, Unix processes, and a finished systems-minded capstone. No prior programming experience is assumed; every phase pairs a plain-language explanation with a guided lab, a quiz, and evidence you can review.",
+      "level": "Absolute Beginner → Systems Capable",
+      "time": "55–80h guided route + labs",
+      "status": "SPOTLIGHT COURSE",
+      "spotlight": true,
+      "spotlightLabel": "NEW BEGINNER FLAGSHIP",
+      "sourceLabel": "MIT OpenCourseWare · Harvard CS50 · cppreference · SEI CERT C",
+      "phases": [
+        {
+          "id": "c-orientation",
+          "number": "01",
+          "title": "Phase 01 / Start without fear",
+          "project": "Compile a small, inspectable program",
+          "description": "Learn the edit-compile-run loop, basic values, control flow, and how to read feedback.",
+          "lessons": [
+            {
+              "id": "c-first-program",
+              "title": "Your first C program",
+              "duration": "30 min",
+              "summary": "Meet source files, main, headers, printf, compilation, and the edit-compile-run loop.",
+              "video": "https://www.youtube-nocookie.com/embed/SlqjA04_dpk",
+              "videoLabel": "Harvard CS50 / C lecture",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                }
+              ],
+              "practice": "Compile a hello program with warnings enabled and write a three-line explanation of source, compiler, and executable.",
+              "lab": {
+                "title": "Hello, C",
+                "brief": "Compile a hello program with warnings enabled and write a three-line explanation of source, compiler, and executable.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "FOUNDATION"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Hello, C",
+                "starter": "#include <stdio.h>\nint main(void) {\n  printf(\"hello, Rampage\\n\");\n  return 0;\n}",
+                "prompt": "Change the output, compile again, and explain one warning or error you encountered.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-tools-errors",
+              "title": "The compiler is a teacher",
+              "duration": "34 min",
+              "summary": "Read compiler messages, use a terminal, and make small changes without losing your place.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                }
+              ],
+              "practice": "Create three intentional mistakes, record the diagnostic, fix each one, and keep a short debugging log.",
+              "lab": {
+                "title": "Compiler feedback drill",
+                "brief": "Create three intentional mistakes, record the diagnostic, fix each one, and keep a short debugging log.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "FOUNDATION"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Compiler feedback drill",
+                "starter": "#include <stdio.h>\nint main(void) {\n  printf(\"find the error\\n\")\n}",
+                "prompt": "Repair the program, then add -Wall -Wextra -std=c17 to your local compile command.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-values-types",
+              "title": "Values, types, and format codes",
+              "duration": "42 min",
+              "summary": "Understand integers, characters, floating-point values, variables, constants, and printf formats.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                }
+              ],
+              "practice": "Build a unit converter that makes conversions explicit and documents its assumptions.",
+              "lab": {
+                "title": "Type boundaries",
+                "brief": "Build a unit converter that makes conversions explicit and documents its assumptions.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "FOUNDATION"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Type boundaries",
+                "starter": "#include <stdio.h>\nint main(void) {\n  int count = 7;\n  double ratio = 2.5;\n  printf(\"%d %.2f\\n\", count, ratio);\n}",
+                "prompt": "Add one intentional conversion and explain whether information can be lost.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c-functions-arrays",
+          "number": "02",
+          "title": "Phase 02 / Shape the problem",
+          "project": "Build a tested command-line utility",
+          "description": "Move from statements to functions, arrays, strings, and clear decomposition.",
+          "lessons": [
+            {
+              "id": "c-control-flow",
+              "title": "Decisions and loops",
+              "duration": "46 min",
+              "summary": "Use if, else, switch, while, and for to express decisions and repetition.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                }
+              ],
+              "practice": "Implement a small number analyzer with clear branches and a loop invariant you can state.",
+              "lab": {
+                "title": "Control-flow drill",
+                "brief": "Implement a small number analyzer with clear branches and a loop invariant you can state.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "FOUNDATION"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Control-flow drill",
+                "starter": "#include <stdio.h>\nint main(void) {\n  for (int i = 1; i <= 10; ++i) printf(\"%d\\n\", i);\n}",
+                "prompt": "Add a classification branch and test boundary values.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-functions",
+              "title": "Functions and decomposition",
+              "duration": "45 min",
+              "summary": "Turn a problem into small functions with parameters, return values, prototypes, and clear responsibilities.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                }
+              ],
+              "practice": "Refactor a command-line calculator into parsing, calculation, and reporting functions.",
+              "lab": {
+                "title": "Function boundaries",
+                "brief": "Refactor a command-line calculator into parsing, calculation, and reporting functions.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "FOUNDATION"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Function boundaries",
+                "starter": "int clamp(int value, int low, int high) {\n  return value;\n}",
+                "prompt": "Complete the function and write two edge-case tests.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-arrays",
+              "title": "Arrays and indexed data",
+              "duration": "48 min",
+              "summary": "Work with contiguous collections, indices, lengths, and the common boundary errors beginners meet first.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                }
+              ],
+              "practice": "Write a fixed-size score analyzer that reports min, max, and average without reading beyond the array.",
+              "lab": {
+                "title": "Array inspection",
+                "brief": "Write a fixed-size score analyzer that reports min, max, and average without reading beyond the array.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "FOUNDATION"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Array inspection",
+                "starter": "#include <stddef.h>\nint sum(const int values[], size_t length) {\n  return 0;\n}",
+                "prompt": "Implement sum and explain how the length travels with the array.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c-memory-model",
+          "number": "03",
+          "title": "Phase 03 / See memory",
+          "project": "Explain and control ownership",
+          "description": "Make addresses, pointers, dynamic memory, structs, and files observable rather than magical.",
+          "lessons": [
+            {
+              "id": "c-strings",
+              "title": "Strings are arrays of characters",
+              "duration": "52 min",
+              "summary": "Understand null termination, input boundaries, string functions, and why text handling needs discipline.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                }
+              ],
+              "practice": "Build a bounded line normalizer that rejects overlong input and reports its length safely.",
+              "lab": {
+                "title": "String boundary lab",
+                "brief": "Build a bounded line normalizer that rejects overlong input and reports its length safely.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "String boundary lab",
+                "starter": "#include <stdio.h>\n#include <string.h>\nint main(void) {\n  char name[32] = \"Rampage\";\n  printf(\"%zu\\n\", strlen(name));\n}",
+                "prompt": "Replace the fixed example with bounded input and describe the terminator.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-pointers",
+              "title": "Addresses, pointers, and indirection",
+              "duration": "58 min",
+              "summary": "See how addresses and dereferencing work through small, observable experiments.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "GNU C Library manual",
+                  "url": "https://www.gnu.org/software/libc/manual/",
+                  "source": "GNU Project",
+                  "readingFocus": "Use the manual to compare standard-library behavior and error handling."
+                }
+              ],
+              "practice": "Write swap and min/max functions that modify caller-owned values through pointers.",
+              "lab": {
+                "title": "Pointer map",
+                "brief": "Write swap and min/max functions that modify caller-owned values through pointers.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Pointer map",
+                "starter": "void swap(int *left, int *right) {\n  int temporary = *left;\n  *left = *right;\n  *right = temporary;\n}",
+                "prompt": "Trace the values before and after the call and identify the dereference operations.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-memory",
+              "title": "Dynamic memory without mystery",
+              "duration": "64 min",
+              "summary": "Introduce malloc, calloc, realloc, free, ownership, leaks, and failure paths with explicit contracts.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                }
+              ],
+              "practice": "Build a growable integer buffer that handles allocation failure and frees every successful allocation.",
+              "lab": {
+                "title": "Heap ownership",
+                "brief": "Build a growable integer buffer that handles allocation failure and frees every successful allocation.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Heap ownership",
+                "starter": "#include <stdlib.h>\nint *values = malloc(4 * sizeof *values);\n/* define the owner and cleanup path */",
+                "prompt": "Add a cleanup path for both success and allocation failure.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c-engineering",
+          "number": "04",
+          "title": "Phase 04 / Build with intent",
+          "project": "Split and test a small library",
+          "description": "Use modules, defensive interfaces, debugging tools, and repeatable tests.",
+          "lessons": [
+            {
+              "id": "c-structs",
+              "title": "Structs and data models",
+              "duration": "48 min",
+              "summary": "Represent related fields together and design records whose invariants are easy to explain.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                }
+              ],
+              "practice": "Create a small inventory record with validation and a function that prints one stable report.",
+              "lab": {
+                "title": "Record design",
+                "brief": "Create a small inventory record with validation and a function that prints one stable report.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Record design",
+                "starter": "struct Item {\n  unsigned id;\n  char name[32];\n  double price;\n};",
+                "prompt": "Add validation for the identifier, name, and price before reporting.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-files",
+              "title": "Files, streams, and error handling",
+              "duration": "58 min",
+              "summary": "Read and write text files, inspect return values, and make failure visible to the user.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                }
+              ],
+              "practice": "Implement a line-oriented journal importer that reports malformed records without silently discarding them.",
+              "lab": {
+                "title": "File boundary lab",
+                "brief": "Implement a line-oriented journal importer that reports malformed records without silently discarding them.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "File boundary lab",
+                "starter": "#include <stdio.h>\nint main(void) {\n  FILE *file = fopen(\"notes.txt\", \"r\");\n  return file ? 0 : 1;\n}",
+                "prompt": "Add an explicit error message and close the file on every successful path.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-modules",
+              "title": "Headers, modules, and separate compilation",
+              "duration": "55 min",
+              "summary": "Split a program into interfaces and implementations, then use a build command that makes dependencies visible.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                }
+              ],
+              "practice": "Turn the calculator into multiple .c files with a header that exposes only the intended functions.",
+              "lab": {
+                "title": "Module boundary",
+                "brief": "Turn the calculator into multiple .c files with a header that exposes only the intended functions.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "BUILD"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Module boundary",
+                "starter": "/* calculator.h */\nint add(int left, int right);",
+                "prompt": "Define the interface, implementation, and compile command for the module.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c-systems",
+          "number": "05",
+          "title": "Phase 05 / Work closer to the machine",
+          "project": "Implement a small data structure and process tool",
+          "description": "Explore linked structures, secure C habits, Unix processes, and error propagation.",
+          "lessons": [
+            {
+              "id": "c-debugging",
+              "title": "Debugging and tests as a habit",
+              "duration": "62 min",
+              "summary": "Use assertions, reproducible inputs, sanitizers, and small tests to replace guesswork.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                },
+                {
+                  "type": "SECURITY",
+                  "label": "SEI CERT C",
+                  "url": "https://wiki.sei.cmu.edu/confluence/display/c",
+                  "source": "Carnegie Mellon Software Engineering Institute",
+                  "readingFocus": "Use the relevant rule to review the failure mode before submitting evidence."
+                }
+              ],
+              "practice": "Create a test matrix for a parser and fix at least one memory or boundary defect with evidence.",
+              "lab": {
+                "title": "Failure review",
+                "brief": "Create a test matrix for a parser and fix at least one memory or boundary defect with evidence.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "SYSTEMS"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Failure review",
+                "starter": "#include <assert.h>\nint clamp(int value, int low, int high);\nint main(void) {\n  assert(clamp(5, 0, 10) == 5);\n}",
+                "prompt": "Add boundary tests and write the smallest failing input you can find.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-data-structures",
+              "title": "Linked lists, stacks, and queues",
+              "duration": "72 min",
+              "summary": "Use structs and pointers to build a small dynamic data structure while tracking ownership.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                },
+                {
+                  "type": "SECURITY",
+                  "label": "SEI CERT C",
+                  "url": "https://wiki.sei.cmu.edu/confluence/display/c",
+                  "source": "Carnegie Mellon Software Engineering Institute",
+                  "readingFocus": "Use the relevant rule to review the failure mode before submitting evidence."
+                }
+              ],
+              "practice": "Implement one linked structure with insert, remove, traversal, and complete cleanup.",
+              "lab": {
+                "title": "Data-structure lab",
+                "brief": "Implement one linked structure with insert, remove, traversal, and complete cleanup.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "SYSTEMS"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Data-structure lab",
+                "starter": "struct Node {\n  int value;\n  struct Node *next;\n};",
+                "prompt": "Choose a representation, state its ownership rule, and test empty and one-item cases.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-secure-c",
+              "title": "Secure C: boundaries are part of design",
+              "duration": "66 min",
+              "summary": "Review integer overflow, buffer limits, input validation, format strings, and undefined behavior.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                },
+                {
+                  "type": "SECURITY",
+                  "label": "SEI CERT C",
+                  "url": "https://wiki.sei.cmu.edu/confluence/display/c",
+                  "source": "Carnegie Mellon Software Engineering Institute",
+                  "readingFocus": "Use the relevant rule to review the failure mode before submitting evidence."
+                }
+              ],
+              "practice": "Audit an intentionally unsafe parser, classify each defect, and produce a safer revision with tests.",
+              "lab": {
+                "title": "Secure review",
+                "brief": "Audit an intentionally unsafe parser, classify each defect, and produce a safer revision with tests.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "SYSTEMS"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Secure review",
+                "starter": "#include <stdio.h>\nint main(void) {\n  char input[16];\n  /* design a bounded input path */\n}",
+                "prompt": "Name the trust boundary and show how your revision controls length and conversion.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c-capstone-phase",
+          "number": "06",
+          "title": "Phase 06 / Make it explainable",
+          "project": "Ship a finished C system",
+          "description": "Bring the language, toolchain, testing, and systems thinking together in a bounded capstone.",
+          "lessons": [
+            {
+              "id": "c-unix-processes",
+              "title": "Processes and the Unix model",
+              "duration": "74 min",
+              "summary": "Connect C to operating-system concepts through arguments, exit status, environment, and process boundaries.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                },
+                {
+                  "type": "SECURITY",
+                  "label": "SEI CERT C",
+                  "url": "https://wiki.sei.cmu.edu/confluence/display/c",
+                  "source": "Carnegie Mellon Software Engineering Institute",
+                  "readingFocus": "Use the relevant rule to review the failure mode before submitting evidence."
+                }
+              ],
+              "practice": "Build a small command runner or pipeline sketch with explicit error propagation and a written safety boundary.",
+              "lab": {
+                "title": "Process model",
+                "brief": "Build a small command runner or pipeline sketch with explicit error propagation and a written safety boundary.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "SYSTEMS"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Process model",
+                "starter": "#include <stdio.h>\nint main(int argc, char **argv) {\n  printf(\"argc=%d\\n\", argc);\n  return 0;\n}",
+                "prompt": "Inspect arguments and return a meaningful status for invalid input.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-build-review",
+              "title": "Build review and release discipline",
+              "duration": "54 min",
+              "summary": "Turn a working C program into a reproducible build with warnings, tests, sample data, and a short runbook.",
+              "video": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+              "videoLabel": "MIT OpenCourseWare / Practical Programming in C course hub",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                },
+                {
+                  "type": "SECURITY",
+                  "label": "SEI CERT C",
+                  "url": "https://wiki.sei.cmu.edu/confluence/display/c",
+                  "source": "Carnegie Mellon Software Engineering Institute",
+                  "readingFocus": "Use the relevant rule to review the failure mode before submitting evidence."
+                }
+              ],
+              "practice": "Prepare a clean build script or Makefile and verify the project from a fresh directory.",
+              "lab": {
+                "title": "Release checklist",
+                "brief": "Prepare a clean build script or Makefile and verify the project from a fresh directory.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "SYSTEMS"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "Release checklist",
+                "starter": "CC ?= cc\nCFLAGS ?= -std=c17 -Wall -Wextra -Wpedantic\nall:\n\t$(CC) $(CFLAGS) main.c -o app",
+                "prompt": "Add a reproducible target and document the exact command a new learner should run.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
+              }
+            },
+            {
+              "id": "c-capstone",
+              "title": "Capstone: ship a small C system",
+              "duration": "120 min",
+              "summary": "Integrate compilation, modules, data modelling, validation, tests, debugging, and a failure-focused review.",
+              "video": "https://www.youtube-nocookie.com/embed/SlqjA04_dpk",
+              "videoLabel": "Harvard CS50 / C foundations lecture context",
+              "resources": [
+                {
+                  "type": "COURSE",
+                  "label": "MIT Practical Programming in C",
+                  "url": "https://ocw.mit.edu/courses/6-087-practical-programming-in-c-january-iap-2010/",
+                  "source": "MIT OpenCourseWare",
+                  "readingFocus": "Use the relevant lecture notes, assignment, or lab as the primary study surface."
+                },
+                {
+                  "type": "REFERENCE",
+                  "label": "C language reference",
+                  "url": "https://en.cppreference.com/w/c",
+                  "source": "cppreference",
+                  "readingFocus": "Check the exact language or library rule after attempting the exercise."
+                },
+                {
+                  "type": "TOOLS",
+                  "label": "GCC documentation",
+                  "url": "https://gcc.gnu.org/onlinedocs/",
+                  "source": "GNU Project",
+                  "readingFocus": "Review the warning, language-standard, or debugging flag used in the lab."
+                },
+                {
+                  "type": "SECURITY",
+                  "label": "SEI CERT C",
+                  "url": "https://wiki.sei.cmu.edu/confluence/display/c",
+                  "source": "Carnegie Mellon Software Engineering Institute",
+                  "readingFocus": "Use the relevant rule to review the failure mode before submitting evidence."
+                },
+                {
+                  "type": "COURSE",
+                  "label": "Harvard CS50",
+                  "url": "https://cs50.harvard.edu/x/",
+                  "source": "Harvard University",
+                  "readingFocus": "Use the problem-set and final-project framing as a second beginner-friendly perspective."
+                }
+              ],
+              "practice": "Ship a small command-line system such as a journal, inventory tool, or log indexer with a clear scope.",
+              "lab": {
+                "title": "C foundations capstone",
+                "brief": "Ship a small command-line system such as a journal, inventory tool, or log indexer with a clear scope.",
+                "deliverable": "Source code, compile/run instructions, tests or sample runs, a short explanation, and a failure note.",
+                "difficulty": "SYSTEMS"
+              },
+              "codeLab": {
+                "provider": "Compiler Explorer",
+                "mode": "external C compiler",
+                "embedUrl": "https://godbolt.org/",
+                "label": "C foundations capstone",
+                "starter": "Repository, build instructions, tests, sample input/output, architecture note, source attribution, and failure review.",
+                "prompt": "Design the smallest complete system you can finish, then document one limitation and one next improvement.",
+                "safetyNote": "Runs in the external compiler. Rampage records your checkpoint and evidence, not arbitrary native-code execution. Never paste secrets or personal data."
               }
             }
           ]
